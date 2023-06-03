@@ -1,0 +1,58 @@
+---
+id: cd
+title: CD (Change Directory)
+---
+
+# CD
+
+Altere o diretório de trabalho de uma shell.
+
+Acessando um diretório absoluto, ou seja, é informado o caminho à partir da 
+raiz:
+
+```bash
+# cd <diretório>
+cd /tmp
+```
+
+Acessando um diretório relativo, normalmente usado para acessar diretórios 
+filhos do atual:
+
+```bash
+# cd <diretório>
+cd Desktop
+```
+
+:::warning
+Note que não há uma barra (/) indicando a raiz do sistema.
+:::
+
+Voltando para o diretório anterior:
+
+```bash
+cd -
+```
+
+:::info
+Esse comando irá usar a variável de ambiente ``OLDPWD`` que estará com o valor 
+do diretório anterior.
+:::
+
+Acessando o diretório do usuário atual:
+
+```bash
+cd ~
+# or
+cd
+```
+
+Voltando um diretório acima do atual:
+
+```bash
+cd ..
+```
+
+:::info
+O mesmo pode ser feito para acessar mais de um nível acima, por exemplo se eu 
+necessitar subir dois níveis de pasta basta usar ``../../`` como argumento.
+:::
