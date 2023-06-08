@@ -1,13 +1,15 @@
 ---
 id: cd
-title: CD (Change Directory)
+title: cd (change directory)
 ---
 
-# CD
+# cd
 
 Altere o diretório de trabalho de uma shell.
 
-Acessando um diretório absoluto, ou seja, é informado o caminho à partir da 
+---
+
+Acessando um diretório absoluto, ou seja, é informado o caminho à partir da
 raiz:
 
 ```bash
@@ -15,7 +17,7 @@ raiz:
 cd /tmp
 ```
 
-Acessando um diretório relativo, normalmente usado para acessar diretórios 
+Acessando um diretório relativo, normalmente usado para acessar diretórios
 filhos do atual:
 
 ```bash
@@ -34,7 +36,7 @@ cd -
 ```
 
 :::info
-Esse comando irá usar a variável de ambiente ``OLDPWD`` que estará com o valor 
+Esse comando irá usar a variável de ambiente `OLDPWD` que estará com o valor
 do diretório anterior.
 :::
 
@@ -53,6 +55,6 @@ cd ..
 ```
 
 :::info
-O mesmo pode ser feito para acessar mais de um nível acima, por exemplo se eu 
-necessitar subir dois níveis de pasta basta usar ``../../`` como argumento.
+O mesmo pode ser feito para acessar mais de um nível acima, por exemplo se eu
+necessitar subir dois níveis de pasta basta usar `../../` como argumento.
 :::
