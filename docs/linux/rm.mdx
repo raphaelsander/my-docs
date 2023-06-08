@@ -1,0 +1,77 @@
+---
+id: rm
+title: rm
+---
+
+# rm
+
+Remova os arquivos, diretórios ou links simbólicos.
+
+---
+
+## Remover Arquivos {#file-remove}
+
+Para remover um arquivo basta utilizar o comando `rm` seguido do arquivo que de
+seja remover como argumento:
+
+```bash
+rm nomedoarquivo.txt
+```
+
+## Remover Multiplos Arquivos {#file-remove-multi}
+
+Para remover multiplos arquivos, basta passar mais de um nome de arquivo como
+argumento.
+
+```bash
+rm arquivo01.txt arquivo02.txt
+```
+
+Outra função muito útil é a remoção baseada em padrões, onde é possível excluir
+arquivos com determinada extensão ou padrão no nome, como podemos ver no
+exemplo abaixo em que os arquivos com extensão de texto (.txt) foram removidos
+com o comando `rm *.txt`.
+
+```bash
+$ ls
+log01.txt log02.txt log03.txt log.tgz
+$ rm *.txt
+$ ls
+log.tgz
+```
+
+## Forçando a Remoção de Arquivos {#file-remove-forced}
+
+Remover um arquivo de forma forçada, sem a necessidade de confirmação e
+ignorando arquivos inexistentes:
+
+```bash
+rm -f nomedoarquivo.txt
+```
+
+:::info
+Note que mesmo removendo um arquivo inexistente, temos como retorno o valor
+`0`.
+
+```bash
+$ rm -f arquivo-inexistente
+$ echo $?
+0
+```
+
+Muito utilizado em scripts e pipelines, pois evita que interrompa a execução.
+:::
+
+## Removendo Diretórios {#folder-remove}
+
+Para remover diretórios é necessário informar a flag `-R` (recursive), como
+argumento:
+
+```bash
+rm -R nome_do_diretório
+```
+
+:::danger
+Todos os diretórios, arquivos e links simbólicos dentro do diretório que está
+sendo removido serão removidos também, recursivamente.
+:::
