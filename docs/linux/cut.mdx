@@ -1,0 +1,49 @@
+---
+id: cut
+title: cut
+---
+
+# cut
+
+Este programa corta colunas ou campos de dados de entrada.
+
+---
+
+## Extraindo Colunas
+
+Extraindo a primeira coluna de um arquivo em que as colunas são separadas por
+`TAB`:
+
+```bash
+$ printf 'apple\tbanana\tcherry\tdates\n' | cut -f2
+banana
+```
+
+Exibindo primeira coluna de um arquivo, delimitando as colunas por `:`:
+
+```bash
+cut -d ":" -f 1 /etc/passwd
+```
+
+:::caution
+Não é possível utilizar mais de um caracter como delimitador.
+:::
+
+Podemos também utilizar o `stdout` de outro comando e enviar para o `stdin` do
+`cut`
+
+```bash
+cat /etc/passwd | cut -d ":" -f 1
+```
+
+Exibindo mais de uma coluna de um arquivo, delimitando as colunas por `:`:
+
+```bash
+cut -d ":" -f 1,6 /etc/passwd
+```
+
+## Referências
+
+- <https://www.gnu.org/software/coreutils/manual/html_node/The-cut-command.html>
+- <https://learnbyexample.github.io/cli_text_processing_coreutils/cut.html>
+- <https://man7.org/linux/man-pages/man1/cut.1.html>
