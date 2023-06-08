@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[728],{85:e=>{e.exports=JSON.parse('{"title":"Linux","slug":"/category/linux","permalink":"/my-docs/docs/category/linux","navigation":{"previous":{"title":"Introdu\xe7\xe3o","permalink":"/my-docs/docs/intro"},"next":{"title":"cd (change directory)","permalink":"/my-docs/docs/linux/cd"}}}')}}]);
