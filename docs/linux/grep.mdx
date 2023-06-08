@@ -1,0 +1,97 @@
+---
+id: grep
+title: grep (global regular expression print)
+---
+
+# grep
+
+Procure padrões em arquivos de texto ou `stdin`.
+
+---
+
+## Pesquisa em Arquivo {#find-in-file}
+
+Para pesquisar uma *string* dentro de um arquivo:
+
+```bash
+grep "/bin/bash" /etc/passwd
+```
+
+Também podemos fazer isso utilizando o `stdout` de outro comando e passar via 
+`stdin` para o `grep`:
+
+```bash
+cat /etc/passwd | grep "/bin/bash"
+```
+
+Para informar a linha da *string* pesquisada:
+
+```bash
+grep "pesquisa" file -n
+```
+
+Podemos enviar o `stdout` do `grep` para algum arquivo:
+
+```bash
+cat /etc/passwd | grep "/bin/bash" > shell.txt
+```
+
+```bash
+grep "/bin/bash" /etc/passwd > shell.txt
+```
+
+## Pesquisa em Multiplos Arquivos {#find-in-multi-files}
+
+Para efetuar pesquisas de string em mais de um arquivo é somente passar mais de
+um arquivo como argumento:
+
+```bash
+grep "pesquisa" file1 file2
+```
+
+## Eliminar Linhas {#remove-lines}
+
+Com o `grep` também é possível eliminar linhas que contenham o padrão procurado
+e exibir o restante do conteúdo do arquivo passado como argumento:
+
+```bash
+grep -v "nologin" /etc/passwd
+```
+
+Mesmo exemplo utilizando `stdin`:
+
+```bash
+cat /etc/passwd | grep -v "nologin"
+```
+
+## Filtro com Mutiplas *Strings* {#filter-multi-strings}
+
+Há duas formas de fazer isso, a primeira é contatenando multiplos comandos de
+`grep` e outra é utilizando o comando `egrep`.
+
+```bash
+cat /etc/passwd | grep -v "nologin" | grep -v "/bin/false"
+```
+
+```bash
+grep -v "nologin" /etc/passwd | grep -v "/bin/false"
+```
+
+No exemplo do `egrep` utilizamos o `|` para separar os padrões que desejamos
+pesquisar ou eliminar no `stdout`.
+
+```bash
+egrep -v "nologin|/bin/false"
+```
+
+## Pesquisa Recursiva {#recursive-grep}
+
+É possível fazer uma pesquisa recursiva em um diretório:
+
+```bash
+grep -R "nologin"
+```
+
+## Referências {#references}
+
+- <https://www.gnu.org/software/grep/>
