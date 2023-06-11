@@ -1,0 +1,68 @@
+---
+id: ansible
+title: Ansible
+---
+
+# Ansible
+
+Ansible oferece automação de código aberto que é simples, flexível e poderosa
+para provisionamento.
+
+---
+
+## Instalação {#install}
+
+Existem algumas formas de instalar o Ansible, mas a forma mais recomendada pelo
+RedHat é a instalação via Python Pip:
+
+```bash
+python3 -m pip install --user ansible
+```
+
+:::info
+Para instalar o **Ansible** utilizando repositórios APT siga as instuções nesse
+[link](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu).
+:::
+
+Após a instalação para verificar se o **Ansible** foi instalado corretamente
+basta checar a sua versão:
+
+```bash
+ansible --version
+```
+
+## Hello World com Ansible {#ansible-hello-world}
+
+No **Ansible** é possível passar o módulo que queremos executar e seus
+argumentos, no exemplo abaixo estamos utilizando o módulo `shell`:
+
+```bash
+ansible -vvvv wordpress \
+  -u vagrant \
+  --private-key .vagrant/machines/wordpress/virtualbox/private_key \
+  -i hosts \
+  -m shell \
+  -a 'echo Hello, World'
+```
+
+| Argumento                | Descrição                                    |
+| ------------------------ | -------------------------------------------- |
+| `-vvvv`                  | Modo verboso nível 4 (ótimo para debug).     |
+| `wordpress`              | Grupo de hosts para rodar o provisionamento. |
+| `-u vagrant`             | Usuário.                                     |
+| `--private-key <PATH>`   | Chave privada SSH.                           |
+| `-i hosts`               | Arquivo com os hosts.                        |
+| `-m shell`               | Módulo que será executado.                   |
+| `-a 'echo Hello, World'` | Argumentos do módulo.                        |
+
+## Utilizando Playbook {#using-playbook}
+
+O Playbook é utilizado para passar um arquivo com todas as configurações dos
+módulos para execução. Isso irá transformar todo o provisionamento em código.
+
+```bash
+ansible-playbook provisioning.yml \
+  -u vagrant \
+  -i hosts \
+  --private-key .vagrant/machines/wordpress/virtualbox/private_key
+```
