@@ -1,0 +1,95 @@
+---
+id: awk
+title: AWK
+---
+
+# AWK
+
+A linguagem de programação **AWK** permite a manipulação de textos a partir de
+uma sequência de padrões. É uma linguagem interpretada (não há necessidade de
+compilação).
+
+O nome **AWK** vem dos sobrenomes dos três criadores da linguagem: Alfred V.
+**A**ho, Peter J. **W**einberger e Brian W. **K**ernighan.
+
+---
+
+## Extraindo Colunas
+
+Podemos extrair colunas no AWK passando como argumento o delimitador que o
+arquivo ou o `stdin` utiliza. No exemplo abaixo o delimitador é o `:` e estamos
+exibindo a primeira coluna do arquivo `/etc/passwd`:
+
+```bash
+$ awk -F : '{print $1}' /etc/passwd
+root
+daemon
+bin
+sys
+sync
+games
+man
+lp
+mail
+...
+```
+
+:::info
+Se não for informado nenhum delimitador o padrão é o espaço.
+:::
+
+## Extraindo Multiplas Colunas
+
+Extraindo as colunas `1` e `6`:
+
+```bash
+$ awk -F : '{print $1,$6}' /etc/passwd
+root /root
+daemon /usr/sbin
+bin /bin
+sys /dev
+sync /bin
+games /usr/games
+man /var/cache/man
+lp /var/spool/lpd
+mail /var/mail
+...
+```
+
+## Formatando a Saída
+
+É possível formatar a saída e concatenar textos, para isso colocamos entre aspas
+dupla (`"`) o texto desejado:
+
+```bash
+$ awk -F : '{print "Usuário:"$1 " - Diretório:"$6}' /etc/passwd
+Usuário:root - Diretório:/root
+Usuário:daemon - Diretório:/usr/sbin
+Usuário:bin - Diretório:/bin
+Usuário:sys - Diretório:/dev
+Usuário:sync - Diretório:/bin
+Usuário:games - Diretório:/usr/games
+Usuário:man - Diretório:/var/cache/man
+Usuário:lp - Diretório:/var/spool/lpd
+Usuário:mail - Diretório:/var/mail
+...
+```
+
+## Concatenando com Outros Softwares
+
+O AWK também suporta entrada via `stdin`, sendo possível enviar o `stdout` de
+outro software para o AWK, como mostra o exemplo abaixo:
+
+```bash
+$ cat /etc/passwd | awk -F : '{print $1}'
+root
+daemon
+bin
+sys
+sync
+games
+man
+lp
+mail
+...
+```
