@@ -1,0 +1,71 @@
+---
+id: locate
+title: locate
+---
+
+# locate
+
+Programa utilizado para localizar arquivos.
+
+---
+
+## Procurando Arquivos
+
+Para procurar arquivos basta passar para o `locate` o nome do arquivo como
+argumento:
+
+```bash
+locate access.log
+```
+
+```bash
+locate sshd_config
+```
+
+:::caution
+Por questões de segurança, normalmente os arquivos dos usuários não são
+listados.
+:::
+
+## Atualizando DB
+
+O `locate` utiliza um banco de dados para indexar os arquivos e caso algum
+arquivo foi criado recentemente, talvez se faz necessário forçar a atualização
+do banco de dados do `locate` sem a necessidade de reiniciar o sistema que
+também atualiza o banco. Para isso basta executar o comando `updatedb` com
+direitos de `sudo`:
+
+```bash
+sudo updatedb
+```
+
+## Criando DB do Usuário
+
+Se você deseja criar um banco de dados apenas para o seu usuário, você pode
+usar:
+
+```bash
+updatedb -l 0 -o $HOME/.mydb.db -U $HOME
+```
+
+Então, para pesquisar dentro desse novo DB, use:
+
+```bash
+locate -d ~/.mydb.db id_rsa
+```
+
+Para tornar mais conveniente o uso desse comando, crie dois `alias`:
+
+```bash
+alias lupdatedb="updatedb -l 0 -o $HOME/.mydb.db -U $HOME"
+alias llocate="locate -d ~/.mydb.db"
+```
+
+Depois de criado os dois `alias`, basta utilizá-los:
+
+```bash
+$ lupdatedb
+$ llocate id_rsa
+/home/user/.ssh/id_rsa
+/home/user/.ssh/id_rsa.pub
+```
