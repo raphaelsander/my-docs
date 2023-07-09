@@ -1,0 +1,66 @@
+---
+id: xargs
+title: xargs
+---
+
+# xargs
+
+O `xargs` é muito utilizado para executar comandos à partir de uma entrada
+padrão.
+
+---
+
+## Uso Básico
+
+O `xargs` aceita entradas via `stdin`, caso receba uma lista ou strings
+separadas por espaço, elas serão processadas como no exemplo abaixo. O comando
+`rm` irá receber o nome dos arquivos como argumento e irá remover todos do
+diretório atual que foram listados pelo comando `ls`:
+
+```bash
+$ ls | xargs -t rm
+rm 1 10 2 3 4 5 6 7 8 9
+```
+
+Outro exemplo, mas agora utilizando o parâmetro `-I` para fazer a substituição:
+
+```bash
+$ ls | xargs -t -I{} rm {}
+rm 1
+rm 10
+rm 2
+rm 3
+rm 4
+rm 5
+rm 6
+rm 7
+rm 8
+rm 9
+```
+ 
+:::info
+O parâmetro `-t` foi usado apenas para melhorar o entendimento dos comandos
+executados pelo `xargs`.
+:::
+
+## Carregando de Arquivo
+
+Podemos também passar a lista para o comando `xargs` utilizando um arquivo:
+
+```bash
+xargs -a domains.txt -I{} sh -c 'python3 paramspider.py -d "{}"'
+```
+
+**-a** ==> Carrega a lista do arquivo **domains.txt**  
+**-I** ==> Indica o caractere especial à ser reservado e substituído  
+**-P** ==> Executa o paralelismo, nesse caso de 10 itens da lista
+
+## Paralelismo
+
+Também é possível utilizar paralelismo utilizando `xargs`, considerada uma das
+melhores formas para implementar multitarefas em scripts Bash, para isso basta
+utilizar o argumento `-P` seguido do número de *threads*:
+
+```bash
+cat IPs.txt | xargs -P10 -I{} sh -c 'nmap {}'
+```
