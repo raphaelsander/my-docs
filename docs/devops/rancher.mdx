@@ -1,0 +1,29 @@
+---
+id: rancher
+title: Rancher
+---
+
+# Rancher
+
+O Rancher é uma ferramenta de gerenciamento do Kubernetes para implantar e
+executar clusters em qualquer lugar e em qualquer provedor.
+
+---
+
+## Execução Local
+
+Para executar o Rancher localmente sobre o Docker para fins de estudo ou
+gerenciar qualquer cluster Kubernetes existente:
+
+```bash
+sudo docker run --privileged -d \
+    --restart=unless-stopped \
+    -p 80:80 -p 443:443 \
+    rancher/rancher
+```
+
+:::info
+Para acessar o Rancher use o IP do host onde foi instalado.
+:::
+
+Referência: [Single Node Rancher](https://ranchermanager.docs.rancher.com/reference-guides/single-node-rancher-in-docker/http-proxy-configuration)
