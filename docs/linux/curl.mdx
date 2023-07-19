@@ -1,0 +1,235 @@
+---
+id: curl
+title: Curl
+---
+
+# Curl
+
+O Curl é uma ferramenta de linha de comando usada para transferir dados por meio
+dos protocolos HTTP, HTTPS, FTP, FTPS, SCP, SFTP, TFTP, LDAP, DAP, DICT, TELNET,
+FILE, IMAP, SMTP, POP3 e RTSP. É amplamente utilizado para testar APIs, fazer
+requisições web, transferir arquivos e realizar várias operações relacionadas a
+comunicação de rede.
+
+---
+
+## Instalação
+
+O Curl está disponível para diferentes sistemas operacionais e pode ser
+instalado seguindo as instruções específicas para cada plataforma.
+
+### Linux (Ubuntu/Debian):
+
+```bash
+sudo apt-get update
+sudo apt-get install curl
+```
+
+### macOS (Homebrew):
+
+```bash
+brew install curl
+```
+
+### Windows:
+
+Baixe o arquivo binário pré-compilado do site oficial:
+[https://curl.se/windows/](https://curl.se/windows/) e siga as instruções de
+instalação.
+
+## Utilização básica
+
+### Fazendo uma requisição GET
+
+Para fazer uma requisição GET para um determinado URL, utilize o seguinte
+comando:
+
+```bash
+curl <URL>
+```
+
+Exemplo:
+
+```bash
+curl https://api.example.com/users
+```
+
+### Salvando a resposta em um arquivo
+
+Se você deseja salvar a resposta da requisição em um arquivo, utilize a opção
+`-o` seguida do nome do arquivo de destino:
+
+```bash
+curl -o <filename> <URL>
+```
+
+Exemplo:
+
+```bash
+curl -o response.json https://api.example.com/users
+```
+
+### Requisição HEAD
+
+Se você deseja obter apenas o cabeçalho (HEAD) da resposta, utilize a opção
+`--head`:
+
+```bash
+curl --head <URL>
+```
+
+Exemplo:
+
+```bash
+curl --head https://api.example.com/users
+```
+
+## Retornando uma variável
+
+Para retornar uma variável específica, como o código de resposta HTTP, utilize o
+seguinte comando:
+
+```bash
+curl -w "%{http_code}" <URL>
+```
+
+Exemplo:
+
+```bash
+curl -w "%{http_code}" https://api.example.com/users
+```
+
+**Retorno: 200**
+
+Você pode conferir outras variáveis disponíveis na documentação do Curl,
+digitando `man curl` no terminal.
+
+## Trabalhando com apenas uma variável
+
+Se você deseja trazer apenas o valor da variável, sem exibir outros detalhes,
+utilize o seguinte comando:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" <URL>
+```
+
+Exemplo:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" https://api.example.com/users
+```
+
+## Opções avançadas
+
+O Curl oferece uma ampla variedade de opções para personalizar as requisições e
+obter informações mais detalhadas. Aqui estão algumas opções comumente
+utilizadas:
+
+### Envio de dados POST
+
+Para enviar dados no corpo de uma requisição POST, utilize a opção `-d` seguida
+dos dados a serem enviados:
+
+```bash
+curl -d "param1=value1&param2=value2" -X POST <URL>
+```
+
+Exemplo:
+
+```bash
+curl -d "name=John&email=john@example.com" -X POST https://api.example.com/users
+```
+
+### Envio de dados JSON
+
+Para enviar dados no formato JSON, utilize a opção `-d` seguida dos dados JSON e
+a opção `-H` para definir o cabeçalho `Content-Type` como `application/json`:
+
+```bash
+curl -d '{"key1":"value1","key2":"value2"}' \
+    -H "Content-Type: application/json" \
+    -X POST <URL>
+```
+
+Exemplo:
+
+```bash
+curl -d '{"name":"John","email":"john@example.com"}' \
+    -H "Content-Type: application/json" \
+    -X POST https://api.example.com/users
+```
+
+### Autenticação básica
+
+Para autenticação básica usando nome de usuário e senha, utilize a opção `-u`
+seguida do nome de usuário e senha:
+
+```bash
+curl -u <username>:<password> <URL>
+```
+
+Exemplo:
+
+```bash
+curl -u admin:password123 https://api.example.com/users
+```
+
+### Definindo cabeçalhos personalizados
+
+Para definir cabeçalhos personalizados, utilize a opção `-H` seguida do
+cabeçalho desejado:
+
+```bash
+curl -H "HeaderName: HeaderValue" <URL>
+```
+
+Exemplo:
+
+```bash
+curl -H "Authorization: Bearer your-token" https://api.example.com/users
+```
+
+### Ignorando a verificação SSL
+
+Se você estiver fazendo uma requisição para um servidor com um certificado SSL
+inválido ou autoassinado, pode ser necessário ignorar a verificação SSL. Use a
+opção `-k` para fazer isso:
+
+```bash
+curl -k <URL>
+```
+
+Exemplo:
+
+```bash
+curl -k https://api.example.com/users
+```
+
+### Definindo o tempo limite da requisição
+
+Se você deseja definir um tempo limite para a requisição, utilize a opção `-m`
+seguida do tempo limite em segundos:
+
+```bash
+curl -m <timeout> <URL>
+```
+
+Exemplo:
+
+```bash
+curl -m 10 https://api.example.com/users
+```
+
+## Referências
+
+- Documentação oficial do Curl: [https://curl.se/docs/manpage.html](https://curl.se/docs/manpage.html)
+- Cheat Sheet do Curl: [https://curl.se/docs/httpscripting.html](https://curl.se/docs/httpscripting.html)
+
+## Conclusão
+
+O Curl é uma ferramenta poderosa e flexível para fazer requisições HTTP/HTTPS e
+interagir com servidores web. Com suas diversas opções e recursos, é uma escolha
+popular para testar APIs, automatizar tarefas relacionadas a web e realizar
+depuração em nível de rede. Experimente diferentes opções e explore a
+documentação oficial para aproveitar ao máximo o Curl em seus projetos e
+atividades relacionadas a redes.
