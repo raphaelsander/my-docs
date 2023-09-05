@@ -1,0 +1,76 @@
+---
+id: sudo
+title: sudo
+---
+
+# sudo
+
+O comando `sudo`, abreviação de *"superuser do"*, é uma poderosa ferramenta em
+sistemas baseados em Unix e Linux que permite que os usuários executem comandos
+com permissões específicas e/ou elevadas. Ele é essencial para garantir a
+segurança e a integridade do sistema, controlando o acesso a recursos críticos.
+
+---
+
+## Executando um Comando como Root
+
+A maneira mais comum de usar o `sudo` é executar um comando como o superusuário
+(root), o que concede privilégios administrativos temporários. Basta inserir o
+comando desejado após o `sudo`:
+
+```bash
+sudo command
+```
+
+Exemplo:
+
+```bash
+sudo whoami
+```
+
+:::info
+Neste exemplo, o comando `whoami` é executado com privilégios de superusuário,
+retornando "root".
+:::
+
+## Executando um Comando como um Usuário Específico
+
+Além de executar comandos como root, o `sudo` permite executar comandos como um
+usuário específico, desde que você tenha as permissões adequadas. Use a opção
+`-u` seguida pelo nome do usuário desejado:
+
+```bash
+sudo -u ${USUARIO} ${COMANDO}
+```
+
+Exemplo:
+
+```bash
+sudo -u adm whoami
+```
+
+Neste exemplo, o comando `whoami` é executado com as permissões do usuário
+"adm".
+
+## Listando Comandos Disponíveis
+
+Para visualizar todos os comandos que podem ser executados com as permissões do
+usuário atual, use:
+
+```bash
+sudo -l
+```
+
+:::info
+Este comando é especialmente útil em situações de escalonamento de privilégios,
+permitindo que você veja quais ações específicas estão disponíveis para você
+realizar.
+:::
+
+:::caution
+O `sudo` é uma ferramenta amplamente utilizada em sistemas Unix e Linux,
+garantindo a segurança e a administração adequada dos recursos do sistema. No
+entanto, lembre-se de usá-lo com responsabilidade, uma vez que comandos
+executados com privilégios elevados podem ter um impacto significativo no
+sistema.
+:::
