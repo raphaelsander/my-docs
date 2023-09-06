@@ -1,0 +1,72 @@
+---
+id: ping
+title: ping
+---
+
+# ping
+
+A ferramenta `ping` é uma utilidade de linha de comando disponível em sistemas
+Linux que permite verificar a conectividade de rede com hosts específicos, bem
+como medir o tempo de resposta entre o computador local e esses hosts. O `ping`
+usa o protocolo **ICMP (Internet Control Message Protocol)** para enviar pacotes
+de teste e receber respostas de hosts remotos.
+
+---
+
+## Uso Básico
+
+Para verificar a conectividade com um host específico, você pode simplesmente
+fornecer o endereço IP ou o nome de domínio do host como argumento para o
+`ping`. Aqui está um exemplo básico:
+
+```bash
+ping 192.168.0.100
+```
+
+:::info
+Esse comando enviará pacotes de teste para o endereço IP `192.168.0.100` e
+exibirá informações sobre a latência e a disponibilidade do host.
+:::
+
+## Especificando o Número de Pacotes
+
+Você pode especificar o número de pacotes a serem enviados usando a opção `-c`
+seguida do número desejado. Por exemplo, para enviar apenas 3 pacotes para o
+alvo:
+
+```bash
+ping -c 3 192.168.0.100
+```
+
+:::info
+Neste comando, apenas 3 pacotes serão enviados para o alvo.
+:::
+
+## Varrendo a Rede com Ping
+
+É possível usar o `ping` para varrer uma faixa de endereços IP na rede em busca
+de hosts ativos. Aqui estão duas maneiras de fazer isso:
+
+### Usando um loop `for`
+
+```bash
+for ip in $(seq 1 254); do
+  ping -c 1 192.168.0.$ip | grep "64 bytes"
+done
+```
+
+### Usando `seq` e `xargs` com Paralelismo
+
+```bash
+seq 1 254 | xargs -I{} -P 64 sh -c 'ping -c 1 192.168.0.{} | grep "64 bytes"'
+```
+
+Ambos os métodos percorrerão os endereços IP de `192.168.0.1` a `192.168.0.254`,
+enviando um único pacote de ping para cada endereço e exibindo apenas os
+resultados que contenham "64 bytes".
+
+:::info
+Lembre-se de que o sucesso ao varrer a rede com `ping` depende da configuração
+da rede e das permissões do firewall, pois alguns firewalls podem bloquear o
+protocolo ICMP.
+:::
