@@ -30,6 +30,7 @@
 }
 
 /* Style to justify text */
-p {
+.markdown p,
+.markdown li {
   text-align: justify;
 }
