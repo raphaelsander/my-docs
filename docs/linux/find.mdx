@@ -1,0 +1,121 @@
+---
+id: find
+title: find
+---
+
+# find
+
+O comando `find` é uma ferramenta poderosa para busca e localização de arquivos
+e diretórios no sistema de arquivos Linux. Ele oferece uma variedade de opções
+para ajudar você a encontrar rapidamente os arquivos que deseja.
+
+---
+
+## Procurando Arquivo por Nome Completo
+
+Para procurar um arquivo com um nome completo, utilize o seguinte comando:
+
+```bash
+find /caminho/do/diretorio -name nome_do_arquivo
+```
+
+Exemplo:
+
+```bash
+find /root/ -name minhapesquisa
+```
+
+:::info
+Isso procurará por um arquivo chamado "minhapesquisa" dentro do diretório
+`/root/` e em seus subdiretórios.
+:::
+
+## Procurando Arquivo por Parte do Nome
+
+Se você deseja encontrar arquivos com parte do nome correspondente, use o
+caractere curinga `*` da seguinte forma:
+
+```bash
+find /caminho/do/diretorio -name parte_do_nome*
+```
+
+Exemplo:
+
+```bash
+find /root/ -name minhapesqui*
+```
+
+:::info
+Isso procurará arquivos cujo nome comece com "minhapesqui" dentro do diretório
+`/root/` e seus subdiretórios.
+:::
+
+## Procurando Arquivos com Permissões Específicas
+
+Você pode usar o `find` para encontrar arquivos com permissões específicas, como
+arquivos com permissão de edição para escalonar permissão. Aqui estão dois
+exemplos:
+
+### Procurando Arquivos com Permissão 0777
+
+```bash
+find / -type f -perm 0777 2>/dev/null
+```
+
+:::info
+Este comando procura por arquivos no sistema de arquivos raiz `/` com permissão
+0777 (permissão de leitura, gravação e execução para todos os usuários) e
+redireciona quaisquer erros para `/dev/null`.
+:::
+
+### Procurando Arquivos com Bit de SUID Ativado
+
+```bash
+find / -perm -u=s -type f 2>/dev/null
+```
+
+:::info
+Este comando procura por arquivos no sistema de arquivos raiz `/` com o bit de
+setuid ativado (SUID), o que geralmente indica que esses arquivos têm permissões
+especiais de execução.
+:::
+
+## Procurando Arquivos de um Usuário Específico
+
+Se você deseja encontrar arquivos pertencentes a um usuário específico, use o
+seguinte formato:
+
+```bash
+find /caminho/do/diretorio -user nome_do_usuario
+```
+
+Exemplo:
+
+```bash
+find / -user adm
+```
+
+:::info
+Isso procurará por arquivos no sistema de arquivos raiz `/` que pertencem ao
+usuário "adm".
+:::
+
+## Procurando Arquivos de um Grupo Específico
+
+Para localizar arquivos que pertencem a um grupo específico, use o formato a
+seguir:
+
+```bash
+find /caminho/do/diretorio -group nome_do_grupo
+```
+
+Exemplo:
+
+```bash
+find / -group root
+```
+
+:::info
+Isso procurará por arquivos no sistema de arquivos raiz `/` que pertencem ao
+grupo "root".
+:::
