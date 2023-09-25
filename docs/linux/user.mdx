@@ -1,0 +1,135 @@
+---
+id: user
+title: user
+---
+
+# Gerenciamento de Usuários no Linux
+
+## Exibir Todos os Usuários
+
+Para listar todos os usuários no sistema, você pode usar o comando `cat` para
+exibir o conteúdo do arquivo `/etc/passwd`:
+
+```bash
+cat /etc/passwd
+```
+
+:::info
+Este arquivo contém informações sobre todos os usuários registrados no sistema,
+incluindo seus IDs de usuário (UIDs), grupos primários, diretórios home e
+informações de shell.
+:::
+
+## Adicionar um Novo Usuário
+
+Para adicionar um novo usuário, utilize o comando `adduser` seguido pelo nome do
+usuário desejado. Este comando irá criar um novo usuário e configurar seu
+ambiente inicial:
+
+```bash
+adduser nomedousuario
+```
+
+:::info
+Siga as instruções apresentadas para definir uma senha e informações adicionais,
+se necessário.
+:::
+
+## Remover um Usuário
+
+Para excluir um usuário do sistema, utilize o comando `deluser` seguido do nome
+do usuário que deseja remover:
+
+```bash
+deluser nomedousuario
+```
+
+:::info
+Tenha cuidado ao executar este comando, pois a exclusão de um usuário pode
+resultar na perda de dados associados a esse usuário.
+:::
+
+## Definir uma Senha para um Usuário
+
+Para definir ou modificar a senha de um usuário, utilize o comando `passwd`
+seguido do nome do usuário:
+
+```bash
+passwd nomedousuario
+```
+
+:::info
+Siga as instruções para configurar a nova senha.
+:::
+
+## Entrar no Terminal como um Usuário Específico
+
+Para entrar no terminal como um usuário específico, use o comando `su`
+(substituir usuário) seguido do nome do usuário:
+
+```bash
+su nomedousuario
+```
+
+:::info
+Isso solicitará a senha do usuário, e você estará logado como o usuário
+especificado.
+:::
+
+## Conceder Privilégios de Sudo (Administrativos)
+
+Para conceder a um usuário a capacidade de executar comandos como administrador,
+você pode adicioná-lo ao grupo sudo. Use o seguinte comando para fazer isso:
+
+```bash
+adduser nomedousuario sudo
+```
+
+:::info
+Isso permitirá que o usuário execute comandos com privilégios administrativos
+usando o comando `sudo`.
+:::
+
+## Revogar Privilégios de Sudo
+
+Se você precisar remover os privilégios de sudo de um usuário, execute o
+seguinte comando:
+
+```bash
+deluser nomedousuario sudo
+```
+
+:::info
+Isso removerá o usuário do grupo sudo, limitando suas capacidades
+administrativas.
+:::
+
+## Alterar as Configurações do Sudoers Manualmente
+
+Outra maneira de alterar se um usuário tem privilégios de sudo ou não é editando
+manualmente o arquivo `/etc/sudoers`. No entanto, essa abordagem é mais avançada
+e requer cuidado para evitar erros de sintaxe.
+
+## Verificar Autenticações de Usuário
+
+Para verificar as autenticações realizadas por cada usuário no sistema, você
+pode examinar o arquivo de log de autenticação, geralmente encontrado em
+`/var/log/auth.log`:
+
+```bash
+cat /var/log/auth.log
+```
+
+:::info
+Este arquivo registra as tentativas de login e outros eventos de autenticação no
+sistema, fornecendo informações úteis para monitorar a segurança e a atividade
+dos usuários. Certifique-se de ter permissões adequadas para acessar este
+arquivo.
+:::
+
+:::caution
+Lembre-se de que o gerenciamento de usuários no Linux é uma tarefa crítica para
+a segurança e a administração do sistema. Tome cuidado ao adicionar, remover ou
+modificar usuários e seus privilégios para garantir um ambiente de sistema
+seguro e funcional.
+:::
