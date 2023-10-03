@@ -1,0 +1,52 @@
+---
+id: proxy
+title: proxy
+---
+
+# Proxy
+
+Abaixo um exemplo de uso de proxy no Python.
+
+```python
+import requests
+from urllib3.exceptions import InsecureRequestWarning
+
+
+# suppress InsecureRequestWarning from urllib3
+requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
+
+# proxy list get from http://free-proxy.cz/en/proxylist/country/all/https/ping/all
+proxies_addr = ['38.107.226.197:3333',
+                '64.189.106.6:3129',
+                '66.94.108.138:3128']
+
+url = 'https://api.ipify.org?format=json'
+
+def proxy_request(url, proxy_addr, **kwargs):
+    try:
+        proxies = {
+            'http': f'http://{proxy_addr}',
+            'https': f'http://{proxy_addr}'
+        }
+        
+        response = requests.get(url, proxies=proxies, timeout=30, verify=False, **kwargs)
+        return response.content.decode()
+    
+    except (requests.exceptions.ConnectTimeout, requests.exceptions.ReadTimeout):
+        print("Timeout")
+
+    except requests.exceptions.SSLError:
+        print("SSL Error")
+
+    except requests.exceptions.ProxyError:
+        print("Proxy Error")
+        
+    except KeyboardInterrupt:
+        exit(0)
+
+
+for proxy_addr in proxies_addr:
+    ip = proxy_request(url, proxy_addr)
+    print(ip)
+
+```
