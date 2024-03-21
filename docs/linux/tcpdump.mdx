@@ -1,0 +1,166 @@
+---
+id: tcpdump
+title: tcpdump
+---
+
+# tcpdump
+
+O `tcpdump` é uma poderosa ferramenta de linha de comando usada para capturar e
+analisar pacotes de rede. Seu uso abrange desde a simples observação do tráfego
+de rede em uma interface específica até análises detalhadas para diagnóstico de
+problemas ou monitoramento de segurança. Com uma ampla variedade de opções e
+filtros, o `tcpdump` permite aos usuários adaptar a captura e análise às suas
+necessidades específicas.
+
+## Comandos Básicos
+
+### Monitoramento de Interface de Rede
+
+```bash
+tcpdump -v -i eth0 # -v (modo verbose), -i (Interface)
+```
+
+### Salvar Captura em Arquivo
+
+Salva o tráfego capturado diretamente em um arquivo para análise posterior.
+
+```bash
+tcpdump -v -i eth0 -w scanner.pcap
+```
+
+## Filtragem de Tráfego
+
+### Por Protocolo
+
+#### ICMP
+
+```bash
+tcpdump -v -i eth0 icmp -w scanner_icmp.pcap
+```
+
+#### UDP
+
+```bash
+tcpdump -vnr scanner.pcap udp
+```
+
+#### TCP
+
+```bash
+tcpdump -vnr scanner.pcap tcp
+```
+
+#### SCTP
+
+```bash
+tcpdump -vnr scanner.pcap sctp
+```
+
+### Por Endereço IP
+
+#### Único IP
+
+```bash
+tcpdump -vnr scanner.pcap host 192.168.0.200
+```
+
+#### Entre Dois Endereços IPs
+
+```bash
+tcpdump -vnr scanner.pcap host 192.168.0.200 and 192.168.0.1
+```
+
+#### IP de Origem e Destino
+
+```bash
+tcpdump -vnr scanner.pcap src host 192.168.0.200 and dst 192.168.0.1
+```
+
+### Por Porta
+
+#### Porta Única
+
+```bash
+tcpdump -vnr scanner.pcap port 21
+```
+
+#### Múltiplas Portas
+
+```bash
+tcpdump -i any 'port 80 or 8080' -w captura.pcap
+```
+
+## Análise de Captura
+
+### Abrir e Analisar Arquivo PCAP
+
+```bash
+tcpdump -v -r scanner_icmp.pcap # -r (ler um arquivo)
+```
+
+### Mostrar IPs e não o Hostname
+
+```bash
+tcpdump -vnr scanner_icmp.pcap # -n (mostra o IP)
+```
+
+### Visualizar Caracteres em ASCII
+
+```bash
+tcpdump -vnAr scanner.pcap port 21
+```
+
+### Visualizar Caracteres em Hexadecimal
+
+```bash
+tcpdump -vnXr scanner.pcap port 21
+```
+
+### Pesquisa por String nos Pacotes
+
+```bash
+tcpdump -vnAr scanner.pcap port 21 | grep "pass"
+```
+
+## Filtragem Avançada e Análise
+
+### Filtragem e Escrita em Novo Arquivo
+
+```bash
+tcpdump -r full_sniffer.pcap -w filtered.pcap '(host 192.168.0.200 and 192.168.0.1) and port 80'
+```
+
+### Pesquisa por Conexões SYN ACK
+
+```bash
+tcpdump -vnr portscanlog.pcap | grep "\[S.\]"
+```
+
+### Verificar IPs Envolvidos
+
+```bash
+tcpdump -vnr scanner.pcap | cut -d " " -f5 | grep -v "ttl" | sort -u
+```
+
+## Dicas de Uso
+
+- O uso de flags como `[S]` (Sync), `[F]` (Finish), `[R]` (Reset), e `[.]` (ACK)
+pode ajudar na identificação do estado das conexões. A presença de uma flag de
+"finish" indica que a conexão foi estabelecida.
+
+- Para análises mais específicas, como filtrar por IP de origem e as conexões
+finalizadas, pode-se combinar com ferramentas como `cut`, `grep`, e `sort` para
+isolar informações relevantes.
+
+## Conclusão
+
+A documentação organizada e aprimorada do `tcpdump` visa facilitar o
+entendimento e a aplicação prática da ferramenta para novos usuários e
+profissionais de TI. Agrupando os comandos por categorias, fica mais fácil
+localizar a funcionalidade necessária e compreender como aplicar filtros e
+análises específicas conforme o cenário. Lembre-se de consultar a documentação
+oficial e recursos adicionais para explorar todo o potencial do `tcpdump`.
+
+## Referências
+
+- <https://danielmiessler.com/study/tcpdump/>
