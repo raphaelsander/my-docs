@@ -98,6 +98,12 @@ tcpdump -i any 'port 80 or 8080' -w captura.pcap
 tcpdump -v -r scanner_icmp.pcap # -r (ler um arquivo)
 ```
 
+### Exibir Protocolo Ethernet
+
+```bash
+tcpdump -n -e -r icmp.pcap
+```
+
 ### Mostrar IPs e não o Hostname
 
 ```bash
