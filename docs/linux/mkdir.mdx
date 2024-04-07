@@ -1,0 +1,65 @@
+---
+id: mkdir
+title: mkdir
+---
+
+# mkdir
+
+Crie DIRETÓRIO(s), caso ainda não existam.
+
+---
+
+## Criar Diretório
+
+```bash
+mkdir nome_do_diretorio
+```
+
+:::info
+O diretório ``nome_do_diretorio`` será criado com a permissão padrão 755.
+:::
+
+## Criar Múltiplos Diretórios
+
+```bash
+mkdir /srv/jellyfin/config /srv/jellyfin/cache
+# Ou
+mkdir /srv/jellyfin/{config,cache}
+```
+
+:::info
+No comando acima os diretórios ``config`` e ``cache`` serão criados no diretório
+``/srv/jellyfin/``.
+:::
+
+## Criar Diretório Com Permissão
+
+```bash
+mkdir -m 777 "nome do diretorio"
+```
+
+:::warning
+Quando precisar criar diretórios que contenham espaço é necessário utilizar
+aspas simples ou dupla.
+:::
+
+## Criar Diretório Caso Não Exista
+
+Esse parâmetro `-p` é muito utilizado em casos onde não sabemos da existência do
+diretório, caso ele exista nada será feito e nenhum código de erro será
+retornado e se ele não existir o comando ``mkdir`` irá criá-lo.
+
+```bash
+mkdir -p nomedodiretorio
+```
+
+:::info
+Também pode ser utilizado para criar diretório pai e filho ao mesmo tempo:
+
+```bash
+mkdir -p diretorio-pai/diretorio-filho
+```
+
+No exemplo acima ambos os diretórios caso não existam serão criados, tanto o
+diretorio pai como o diretorio filho.
+:::
