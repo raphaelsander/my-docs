@@ -1,17 +1,31 @@
 ---
 id: grep
-title: grep (global regular expression print)
+title: grep
 ---
 
-# grep
+# grep (**G**lobal **R**egular **E**xpression **P**rint)
 
-Procure padrões em arquivos de texto ou `stdin`.
+O `grep` é uma ferramenta utilizada para pesquisa de textos, padrões ou
+expressões regulares dentro de arquivos ou fluxos de entrada (stdin). Ele
+imprime linhas que correspondem a uma expressão regular fornecida.
 
 ---
 
 ## Pesquisa em Arquivo {#find-in-file}
 
 Para pesquisar uma *string* dentro de um arquivo:
+
+```bash
+$ cat frutas.txt
+banana
+manga
+uva
+melancia
+abacate
+
+$ grep "manga" frutas.txt
+manga
+```
 
 ```bash
 grep "/bin/bash" /etc/passwd
@@ -24,10 +38,11 @@ Também podemos fazer isso utilizando o `stdout` de outro comando e passar via
 cat /etc/passwd | grep "/bin/bash"
 ```
 
-Para informar a linha da *string* pesquisada:
+Para exibir o número da linha onde a *string* foi encontrada:
 
 ```bash
-grep "pesquisa" file -n
+$ grep "pesquisa" file -n
+231 pesquisa
 ```
 
 Podemos enviar o `stdout` do `grep` para algum arquivo:
@@ -40,10 +55,53 @@ cat /etc/passwd | grep "/bin/bash" > shell.txt
 grep "/bin/bash" /etc/passwd > shell.txt
 ```
 
+## Exibir Linhas Adjacentes
+
+Para exibir linhas acima do padrão desejado podemos utilizar o parâmetro `-B`
+(**B**efore) seguido da quantidade de linhas que queremos exibir antes:
+
+```bash
+$ cat frutas.txt
+banana
+manga
+uva
+melancia
+abacate
+
+$ grep "manga" -B 1 frutas.txt
+banana
+manga
+```
+
+Para exibir linhas abaixo do padrão desejados podemos utilizar o parêmetro `-A`
+(**A**fter) seguido da quantidade de linhas que queremos exibir após:
+
+```bash
+$ grep "manga" -A 2 frutas.txt
+manga
+uva
+melancia
+```
+
+## Pesquisa Exata
+
+Também podemos fazer pesquisa onde levará em questão a palavra completa e não
+somente um fragmento dela:
+
+```bash
+$ cat teste.txt
+salada
+salmão
+sal
+
+$ grep -w sal teste.txt
+sal
+```
+
 ## Pesquisa em Multiplos Arquivos {#find-in-multi-files}
 
-Para efetuar pesquisas de string em mais de um arquivo é somente passar mais de
-um arquivo como argumento:
+Para pesquisar uma string em vários arquivos, basta passar mais de um arquivo
+como argumento:
 
 ```bash
 grep "pesquisa" file1 file2
@@ -64,10 +122,11 @@ Mesmo exemplo utilizando `stdin`:
 cat /etc/passwd | grep -v "nologin"
 ```
 
-## Filtro com Mutiplas *Strings* {#filter-multi-strings}
+## Filtro com Multiplas *Strings* {#filter-multi-strings}
 
 Há duas formas de fazer isso, a primeira é contatenando multiplos comandos de
-`grep` e outra é utilizando o comando `egrep`.
+`grep` e outra é utilizando o comando `grep -E` ou `egrep`, uma variante
+descontinuada porém ainda funcional.
 
 ```bash
 cat /etc/passwd | grep -v "nologin" | grep -v "/bin/false"
@@ -81,7 +140,11 @@ No exemplo do `egrep` utilizamos o `|` para separar os padrões que desejamos
 pesquisar ou eliminar no `stdout`.
 
 ```bash
-egrep -v "nologin|/bin/false"
+grep -v -E "nologin|/bin/false" /etc/passwd
+```
+
+```bash
+egrep -v "nologin|/bin/false" /etc/passwd
 ```
 
 ## Pesquisa Recursiva {#recursive-grep}
@@ -95,3 +158,4 @@ grep -R "nologin"
 ## Referências {#references}
 
 - <https://www.gnu.org/software/grep/>
+- <https://www.vivaolinux.com.br/dica/Exibindo-linhas-anteriores-e-posteriores-a-string-pesquisada-no-Linux>
