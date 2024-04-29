@@ -1,0 +1,42 @@
+---
+id: printf
+title: printf
+---
+
+# printf
+
+Formate e imprima dados no terminal, similar ao comando `echo`.
+
+---
+
+## Uso Básico
+
+Imprimir a string `teste` no terminal com quebra de linha:
+
+```bash
+$ printf "teste\n"
+teste
+```
+
+## Conversões
+
+### Hexadecimal Para Decimal
+
+```bash
+$ printf "%d\n" 0x0181
+385
+```
+
+### Hexadecimal Para ASCII
+
+```bash
+$ printf "\x47\x45\x54\x20\x2f\x20\x48\x54\x54\x50\x2f\x31\x2e\x31\n"
+GET / HTTP/1.1
+```
+
+### IP(Bytes) Para Decimal
+
+```bash
+$ printf "%d.%d.%d.%d\n" 0xc0 0xa8 0x00 0xc8
+192.168.0.200
+```
