@@ -1,0 +1,1993 @@
+---
+id: ip-protocols
+title: ip-protocols
+---
+
+# Protocolos IP
+
+## Comando
+
+```bash
+cat /etc/protocols
+```
+
+## Tabela
+
+<table>
+  <thead align="left">
+    <tr>
+      <th>Decimal</th>
+      <th>Keyword</th>
+      <th>Protocol</th>
+      <th>IPv6 Extension Header</th>
+      <th>Reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>HOPOPT</td>
+      <td>IPv6 Hop-by-Hop Option</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc8200">RFC8200</a></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>ICMP</td>
+      <td>Internet Control Message</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc792">RFC792</a></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>IGMP</td>
+      <td>Internet Group Management</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc1112">RFC1112</a></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>GGP</td>
+      <td>Gateway-to-Gateway</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc823">RFC823</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>IPv4</td>
+      <td>IPv4 encapsulation</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc2003">RFC2003</a>
+      </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>ST</td>
+      <td>Stream</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc1190">RFC1190</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/rfc1819">RFC1819</a>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>TCP</td>
+      <td>Transmission Control</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc9293">RFC9293</a></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>CBT</td>
+      <td>CBT</td>
+      <td></td>
+      <td><a href="#Tony_Ballardie">Tony Ballardie</a></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>EGP</td>
+      <td>Exterior Gateway Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc888">RFC888</a>&nbsp;-&nbsp;
+        <a href="#David_Mills">David Mills</a>
+      </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>IGP</td>
+      <td>
+        any private interior gateway&nbsp;
+        (used by Cisco for their IGRP)
+      </td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>BBN-RCC-MON</td>
+      <td>BBN RCC Monitoring</td>
+      <td></td>
+      <td><a href="#Steve_Chipman">Steve Chipman</a></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>NVP-II</td>
+      <td>Network Voice Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc741">RFC741</a>&nbsp;-&nbsp;
+        <a href="#Steve_Casner">Steve Casner</a>
+      </td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>PUP</td>
+      <td>PUP</td>
+      <td></td>
+      <td>
+        Boggs, D., J. Shoch, E. Taft, and R. Metcalfe, "PUP: An
+        Internetwork Architecture", XEROX Palo Alto Research Center,
+        CSL-79-10, July 1979; also in IEEE Transactions on
+        Communication, Volume COM-28, Number 4, April 1980. XEROX
+      </td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>ARGUS (deprecated)</td>
+      <td>ARGUS</td>
+      <td></td>
+      <td><a href="#Robert_W_Scheifler">Robert W. Scheifler</a></td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>EMCON</td>
+      <td>EMCON</td>
+      <td></td>
+      <td><a href="#Bich_Nguyen">Bich Nguyen</a></td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>XNET</td>
+      <td>Cross Net Debugger</td>
+      <td></td>
+      <td>
+        Haverty, J., "XNET Formats for Internet Protocol Version 4",
+        IEN 158, October 1980.
+        <a href="#Jack_Haverty">Jack Haverty</a>
+      </td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>CHAOS</td>
+      <td>Chaos</td>
+      <td></td>
+      <td><a href="#J_Noel_Chiappa">J. Noel Chiappa</a></td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>UDP</td>
+      <td>User Datagram</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc768">RFC768</a>&nbsp;-&nbsp;
+        <a href="#Jon_Postel">Jon Postel</a>
+      </td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>MUX</td>
+      <td>Multiplexing</td>
+      <td></td>
+      <td>
+        Cohen, D. and J. Postel, "Multiplexing Protocol", IEN 90,
+        USC/Information Sciences Institute, May 1979.&nbsp;
+        <a href="#Jon_Postel">Jon Postel</a>
+      </td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>DCN-MEAS</td>
+      <td>DCN Measurement Subsystems</td>
+      <td></td>
+      <td><a href="#David_Mills">David Mills</a></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>HMP</td>
+      <td>Host Monitoring</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc869">RFC869</a>&nbsp;-&nbsp;
+        <a href="#Bob_Hinden">Bob Hinden</a>
+      </td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>PRM</td>
+      <td>Packet Radio Measurement</td>
+      <td></td>
+      <td><a href="#Zaw_Sing_Su">Zaw Sing Su</a></td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>XNS-IDP</td>
+      <td>XEROX NS IDP</td>
+      <td></td>
+      <td>
+        "The Ethernet, A Local Area Network: Data Link Layer and
+        Physical Layer Specification", AA-K759B-TK, Digital
+        Equipment Corporation, Maynard, MA.  Also as: "The
+        Ethernet - A Local Area Network", Version 1.0, Digital
+        Equipment Corporation, Intel Corporation, Xerox
+        Corporation, September 1980.  And: "The Ethernet, A Local
+        Area Network: Data Link Layer and Physical Layer
+        Specifications", Digital, Intel and Xerox, November 1982.
+        And: XEROX, "The Ethernet, A Local Area Network: Data Link
+        Layer and Physical Layer Specification", X3T51/80-50,
+        Xerox Corporation, Stamford, CT., October 1980. XEROX
+      </td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>TRUNK-1</td>
+      <td>Trunk-1</td>
+      <td></td>
+      <td><a href="#Barry_Boehm">Barry Boehm</a></td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>TRUNK-2</td>
+      <td>Trunk-2</td>
+      <td></td>
+      <td><a href="#Barry_Boehm">Barry Boehm</a></td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>LEAF-1</td>
+      <td>Leaf-1</td>
+      <td></td>
+      <td><a href="#Barry_Boehm">Barry Boehm</a></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>LEAF-2</td>
+      <td>Leaf-2</td>
+      <td></td>
+      <td><a href="#Barry_Boehm">Barry Boehm</a></td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>RDP</td>
+      <td>Reliable Data Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc908">RFC908</a>&nbsp;-&nbsp;
+        <a href="#Bob_Hinden">Bob Hinden</a>
+      </td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>IRTP</td>
+      <td>Internet Reliable Transaction</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc938">RFC938</a>&nbsp;-&nbsp;
+        <a href="#Trudy_Miller">Trudy Miller</a>
+      </td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>ISO-TP4</td>
+      <td>ISO Transport Protocol Class 4</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc905">RFC905</a>&nbsp;-&nbsp;
+        <a href="#Robert_Cole">Robert Cole</a>
+      </td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>NETBLT</td>
+      <td>Bulk Data Transfer Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc969">RFC969</a>&nbsp;-&nbsp;
+        <a href="#David_Clark">David Clark</a>
+      </td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>MFE-NSP</td>
+      <td>MFE Network Services Protocol</td>
+      <td></td>
+      <td>
+        Shuttleworth, B., "A Documentary of MFENet, a National
+        Computer Network", UCRL-52317, Lawrence Livermore Labs,
+        Livermore, California, June 1977.&nbsp;
+        <a href="#Barry_Howard">Barry Howard</a>
+      </td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>MERIT-INP</td>
+      <td>MERIT Internodal Protocol</td>
+      <td></td>
+      <td><a href="#Hans_Werner_Braun">Hans Werner Braun</a></td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>DCCP</td>
+      <td>Datagram Congestion Control Protocol</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc4340">RFC4340</a></td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>3PC</td>
+      <td>Third Party Connect Protocol</td>
+      <td></td>
+      <td><a href="#Stuart_A_Friedberg">Stuart A. Friedberg</a></td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>IDPR</td>
+      <td>Inter-Domain Policy Routing Protocol</td>
+      <td></td>
+      <td><a href="#Martha_Steenstrup">Martha Steenstrup</a></td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>XTP</td>
+      <td>XTP</td>
+      <td></td>
+      <td><a href="#Greg_Chesson">Greg Chesson</a></td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>DDP</td>
+      <td>Datagram Delivery Protocol</td>
+      <td></td>
+      <td><a href="#Wesley_Craig">Wesley Craig</a></td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>IDPR-CMTP</td>
+      <td>IDPR Control Message Transport Proto</td>
+      <td></td>
+      <td><a href="#Martha_Steenstrup">Martha Steenstrup</a></td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>TP++</td>
+      <td>TP++ Transport Protocol</td>
+      <td></td>
+      <td><a href="#Dirk_Fromhein">Dirk Fromhein</a></td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>IL</td>
+      <td>IL Transport Protocol</td>
+      <td></td>
+      <td><a href="#Dave_Presotto">Dave Presotto</a></td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>IPv6</td>
+      <td>IPv6 encapsulation</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc2473">RFC2473</a></td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>SDRP</td>
+      <td>Source Demand Routing Protocol</td>
+      <td></td>
+      <td><a href="#Deborah_Estrin">Deborah Estrin</a></td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>IPv6-Route</td>
+      <td>Routing Header for IPv6</td>
+      <td>Y</td>
+      <td><a href="#Steve_Deering">Steve Deering</a></td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>IPv6-Frag</td>
+      <td>Fragment Header for IPv6</td>
+      <td>Y</td>
+      <td><a href="#Steve_Deering">Steve Deering</a></td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>IDRP</td>
+      <td>Inter-Domain Routing Protocol</td>
+      <td></td>
+      <td><a href="#Sue_Hares">Sue Hares</a></td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>RSVP</td>
+      <td>Reservation Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc2205">RFC2205</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/rfc3209">RFC3209</a>&nbsp;-&nbsp;
+        <a href="#Bob_Braden">Bob Braden</a>
+      </td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>GRE</td>
+      <td>Generic Routing Encapsulation</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc2784">RFC2784</a>&nbsp;-&nbsp;
+        <a href="#Tony_Li">Tony Li</a>
+      </td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>DSR</td>
+      <td>Dynamic Source Routing Protocol</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc4728">RFC4728</a></td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>BNA</td>
+      <td>BNA</td>
+      <td></td>
+      <td>Gary Salamon</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>ESP</td>
+      <td>Encap Security Payload</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc4303">RFC4303</a></td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>AH</td>
+      <td>Authentication Header</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc4302">RFC4302</a></td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td>I-NLSP</td>
+      <td>Integrated Net Layer Security  TUBA</td>
+      <td></td>
+      <td><a href="#K_Robert_Glenn">K. Robert Glenn</a></td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>SWIPE (deprecated)</td>
+      <td>IP with Encryption</td>
+      <td></td>
+      <td><a href="#John_Ioannidis">John Ioannidis</a></td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>NARP</td>
+      <td>NBMA Address Resolution Protocol</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc1735">RFC1735</a></td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>Min-IPv4</td>
+      <td>Minimal IPv4 Encapsulation</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc2004">RFC2004</a>&nbsp;-&nbsp;
+        <a href="#Charlie_Perkins">Charlie Perkins</a>
+      </td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>TLSP</td>
+      <td>
+        Transport Layer Security Protocol        
+        using Kryptonet key management
+      </td>
+      <td></td>
+      <td><a href="#Christer_Oberg">Christer Oberg</a></td>
+    </tr>
+    <tr>
+      <td>57</td>
+      <td>SKIP</td>
+      <td>SKIP</td>
+      <td></td>
+      <td><a href="#Tom_Markson">Tom Markson</a></td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>IPv6-ICMP</td>
+      <td>ICMP for IPv6</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc8200">RFC8200</a></td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>IPv6-NoNxt</td>
+      <td>No Next Header for IPv6</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc8200">RFC8200</a></td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td>IPv6-Opts</td>
+      <td>Destination Options for IPv6</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc8200">RFC8200</a></td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td></td>
+      <td>any host internal protocol</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>CFTP</td>
+      <td>CFTP</td>
+      <td></td>
+      <td>
+        Forsdick, H., "CFTP", Network Message, Bolt Beranek and
+        Newman, January 1982.&nbsp;
+        <a href="#Harry_Forsdick">Harry Forsdick</a>
+      </td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td></td>
+      <td>any local network</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>SAT-EXPAK</td>
+      <td>SATNET and Backroom EXPAK</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>65</td>
+      <td>KRYPTOLAN</td>
+      <td>Kryptolan</td>
+      <td></td>
+      <td>Paul Liu</td>
+    </tr>
+    <tr>
+      <td>66</td>
+      <td>RVD</td>
+      <td>MIT Remote Virtual Disk Protocol</td>
+      <td></td>
+      <td><a href="#Michael_Greenwald">Michael Greenwald</a></td>
+    </tr>
+    <tr>
+      <td>67</td>
+      <td>IPPC</td>
+      <td>Internet Pluribus Packet Core</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td></td>
+      <td>any distributed file system</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>SAT-MON</td>
+      <td>SATNET Monitoring</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>70</td>
+      <td>VISA</td>
+      <td>VISA Protocol</td>
+      <td></td>
+      <td><a href="#Gene_Tsudik">Gene Tsudik</a></td>
+    </tr>
+    <tr>
+      <td>71</td>
+      <td>IPCV</td>
+      <td>Internet Packet Core Utility</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>72</td>
+      <td>CPNX</td>
+      <td>Computer Protocol Network Executive</td>
+      <td></td>
+      <td>David Mittnacht</td>
+    </tr>
+    <tr>
+      <td>73</td>
+      <td>CPHB</td>
+      <td>Computer Protocol Heart Beat</td>
+      <td></td>
+      <td>David Mittnacht</td>
+    </tr>
+    <tr>
+      <td>74</td>
+      <td>WSN</td>
+      <td>Wang Span Network</td>
+      <td></td>
+      <td>Victor Dafoulas</td>
+    </tr>
+    <tr>
+      <td>75</td>
+      <td>PVP</td>
+      <td>Packet Video Protocol</td>
+      <td></td>
+      <td><a href="#Steve_Casner">Steve Casner</a></td>
+    </tr>
+    <tr>
+      <td>76</td>
+      <td>BR-SAT-MON</td>
+      <td>Backroom SATNET Monitoring</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>SUN-ND</td>
+      <td>SUN ND PROTOCOL-Temporary</td>
+      <td></td>
+      <td><a href="#William_Melohn">William Melohn</a></td>
+    </tr>
+    <tr>
+      <td>78</td>
+      <td>WB-MON</td>
+      <td>WIDEBAND Monitoring</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>79</td>
+      <td>WB-EXPAK</td>
+      <td>WIDEBAND EXPAK</td>
+      <td></td>
+      <td><a href="#Steven_Blumenthal">Steven Blumenthal</a></td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>ISO-IP</td>
+      <td>ISO Internet Protocol</td>
+      <td></td>
+      <td><a href="#Marshall_T_Rose">Marshall T. Rose</a></td>
+    </tr>
+    <tr>
+      <td>81</td>
+      <td>VMTP</td>
+      <td>VMTP</td>
+      <td></td>
+      <td><a href="#Dave_Cheriton">Dave Cheriton</a></td>
+    </tr>
+    <tr>
+      <td>82</td>
+      <td>SECURE-VMTP</td>
+      <td>SECURE-VMTP</td>
+      <td></td>
+      <td><a href="#Dave_Cheriton">Dave Cheriton</a></td>
+    </tr>
+    <tr>
+      <td>83</td>
+      <td>VINES</td>
+      <td>VINES</td>
+      <td></td>
+      <td>Brian Horn</td>
+    </tr>
+    <tr>
+      <td>84</td>
+      <td>IPTM</td>
+      <td>Internet Protocol Traffic Manager</td>
+      <td></td>
+      <td><a href="#Jim_Stevens">Jim_Stevens</a><a href="#note1">1</a></td>
+    </tr>
+    <tr>
+      <td>85</td>
+      <td>NSFNET-IGP</td>
+      <td>NSFNET-IGP</td>
+      <td></td>
+      <td><a href="#Hans_Werner_Braun">Hans Werner Braun</a></td>
+    </tr>
+    <tr>
+      <td>86</td>
+      <td>DGP</td>
+      <td>Dissimilar Gateway Protocol</td>
+      <td></td>
+      <td>
+        M/A-COM Government Systems, "Dissimilar Gateway Protocol
+        Specification, Draft Version", Contract no. CS901145,
+        November 16, 1987.&nbsp;
+        <a href="#Mike_Little">Mike Little</a>
+      </td>
+    </tr>
+    <tr>
+      <td>87</td>
+      <td>TCF</td>
+      <td>TCF</td>
+      <td></td>
+      <td><a href="#Guillermo_A_Loyola">Guillermo A. Loyola</a></td>
+    </tr>
+    <tr>
+      <td>88</td>
+      <td>EIGRP</td>
+      <td>EIGRP</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc7868">RFC7868</a></td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>OSPFIGP</td>
+      <td>OSPFIGP</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc1583">RFC1583</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/rfc2328">RFC2328</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/rfc5340">RFC5340</a>&nbsp;-&nbsp;
+        <a href="#John_Moy">John Moy</a>
+      </td>
+    </tr>
+    <tr>
+      <td>90</td>
+      <td>Sprite-RPC</td>
+      <td>Sprite RPC Protocol</td>
+      <td></td>
+      <td>
+        Welch, B., "The Sprite Remote Procedure Call System",
+        Technical Report, UCB/Computer Science Dept., 86/302,
+        University of California at Berkeley, June 1986. Bruce Willins
+      </td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>LARP</td>
+      <td>Locus Address Resolution Protocol</td>
+      <td></td>
+      <td>Brian Horn</td>
+    </tr>
+    <tr>
+      <td>92</td>
+      <td>MTP</td>
+      <td>Multicast Transport Protocol</td>
+      <td></td>
+      <td><a href="#Susie_Armstrong">Susie Armstrong</a></td>
+    </tr>
+    <tr>
+      <td>93</td>
+      <td>AX.25</td>
+      <td>AX.25 Frames</td>
+      <td></td>
+      <td><a href="#Brian_Kantor">Brian Kantor</a></td>
+    </tr>
+    <tr>
+      <td>94</td>
+      <td>IPIP</td>
+      <td>IP-within-IP Encapsulation Protocol</td>
+      <td></td>
+      <td><a href="#John_Ioannidis">John Ioannidis</a></td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>MICP (deprecated)</td>
+      <td>Mobile Internetworking Control Pro.</td>
+      <td></td>
+      <td><a href="#John_Ioannidis">John Ioannidis</a></td>
+    </tr>
+    <tr>
+      <td>96</td>
+      <td>SCC-SP</td>
+      <td>Semaphore Communications Sec. Pro.</td>
+      <td></td>
+      <td><a href="#Howard_Hart">Howard Hart</a></td>
+    </tr>
+    <tr>
+      <td>97</td>
+      <td>ETHERIP</td>
+      <td>Ethernet-within-IP Encapsulation</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc3378">RFC3378</a></td>
+    </tr>
+    <tr>
+      <td>98</td>
+      <td>ENCAP</td>
+      <td>Encapsulation Header</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc1241">RFC1241</a>&nbsp;-&nbsp;
+        <a href="#Robert_Woodburn">Robert Woodburn</a>
+      </td>
+    </tr>
+    <tr>
+      <td>99</td>
+      <td></td>
+      <td>any private encryption scheme</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>GMTP</td>
+      <td>GMTP</td>
+      <td></td>
+      <td>RXB5</td>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>IFMP</td>
+      <td>Ipsilon Flow Management Protocol</td>
+      <td></td>
+      <td><a href="#Bob_Hinden">Bob Hinden</a> - November 1995, 1997.</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>PNNI</td>
+      <td>PNNI over IP</td>
+      <td></td>
+      <td><a href="#Ross_Callon">Ross Callon</a></td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>PIM</td>
+      <td>Protocol Independent Multicast</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc7761">RFC7761</a>&nbsp;-&nbsp;
+        <a href="#Dino_Farinacci">Dino Farinacci</a>
+      </td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>ARIS</td>
+      <td>ARIS</td>
+      <td></td>
+      <td><a href="#Nancy_Feldman">Nancy Feldman</a></td>
+    </tr>
+    <tr>
+      <td>105</td>
+      <td>SCPS</td>
+      <td>SCPS</td>
+      <td></td>
+      <td><a href="#Robert_Durst">Robert Durst</a></td>
+    </tr>
+    <tr>
+      <td>106</td>
+      <td>QNX</td>
+      <td>QNX</td>
+      <td></td>
+      <td><a href="#Michael_Hunter">Michael Hunter</a></td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>A/N</td>
+      <td>Active Networks</td>
+      <td></td>
+      <td><a href="#Bob_Braden">Bob Braden</a></td>
+    </tr>
+    <tr>
+      <td>108</td>
+      <td>IPComp</td>
+      <td>IP Payload Compression Protocol</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc2393">RFC2393</a></td>
+    </tr>
+    <tr>
+      <td>109</td>
+      <td>SNP</td>
+      <td>Sitara Networks Protocol</td>
+      <td></td>
+      <td><a href="#Manickam_R_Sridhar">Manickam R. Sridhar</a></td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>Compaq-Peer</td>
+      <td>Compaq Peer Protocol</td>
+      <td></td>
+      <td><a href="#Victor_Volpe">Victor Volpe</a></td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>IPX-in-IP</td>
+      <td>IPX in IP</td>
+      <td></td>
+      <td><a href="#CJ_Lee">CJ. Lee</a></td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>VRRP</td>
+      <td>Virtual Router Redundancy Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/draft-ietf-rtgwg-vrrp-rfc5798bis-18">
+          RFC-ietf-rtgwg-vrrp-rfc5798bis-18
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>PGM</td>
+      <td>PGM Reliable Transport Protocol</td>
+      <td></td>
+      <td><a href="#Tony_Speakman">Tony Speakman</a></td>
+    </tr>
+    <tr>
+      <td>114</td>
+      <td></td>
+      <td>any 0-hop protocol</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>115</td>
+      <td>L2TP</td>
+      <td>Layer Two Tunneling Protocol</td>
+      <td></td>
+      <td>
+        <a href="https://www.iana.org/go/rfc3931">RFC3931</a>&nbsp;-&nbsp;
+        <a href="#Bernard_Aboba">Bernard Aboba</a>
+      </td>
+    </tr>
+    <tr>
+      <td>116</td>
+      <td>DDX</td>
+      <td>D-II Data Exchange (DDX)</td>
+      <td></td>
+      <td><a href="#John_Worley">John Worley</a></td>
+    </tr>
+    <tr>
+      <td>117</td>
+      <td>IATP</td>
+      <td>Interactive Agent Transfer Protocol</td>
+      <td></td>
+      <td><a href="#John_Murphy">John Murphy</a></td>
+    </tr>
+    <tr>
+      <td>118</td>
+      <td>STP</td>
+      <td>Schedule Transfer Protocol</td>
+      <td></td>
+      <td><a href="#Jean_Michel_Pittet">Jean Michel Pittet</a></td>
+    </tr>
+    <tr>
+      <td>119</td>
+      <td>SRP</td>
+      <td>SpectraLink Radio Protocol</td>
+      <td></td>
+      <td><a href="#Mark_Hamilton">Mark Hamilton</a></td>
+    </tr>
+    <tr>
+      <td>120</td>
+      <td>UTI</td>
+      <td>UTI</td>
+      <td></td>
+      <td><a href="#Peter_Lothberg">Peter Lothberg</a></td>
+    </tr>
+    <tr>
+      <td>121</td>
+      <td>SMP</td>
+      <td>Simple Message Protocol</td>
+      <td></td>
+      <td><a href="#Leif_Ekblad">Leif Ekblad</a></td>
+    </tr>
+    <tr>
+      <td>122</td>
+      <td>SM (deprecated)</td>
+      <td>Simple Multicast Protocol</td>
+      <td></td>
+      <td>
+        <a href="#Jon_Crowcroft">Jon Crowcroft</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/draft-perlman-simple-multicast">
+          draft-perlman-simple-multicast
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>123</td>
+      <td>PTP</td>
+      <td>Performance Transparency Protocol</td>
+      <td></td>
+      <td><a href="#Michael_Welzl">Michael Welzl</a></td>
+    </tr>
+    <tr>
+      <td>124</td>
+      <td>ISIS over IPv4</td>
+      <td></td>
+      <td></td>
+      <td><a href="#Tony_Przygienda">Tony Przygienda</a></td>
+    </tr>
+    <tr>
+      <td>125</td>
+      <td>FIRE</td>
+      <td></td>
+      <td></td>
+      <td><a href="#Criag_Partridge">Criag Partridge</a></td>
+    </tr>
+    <tr>
+      <td>126</td>
+      <td>CRTP</td>
+      <td>Combat Radio Transport Protocol</td>
+      <td></td>
+      <td><a href="#Robert_Sautter">Robert Sautter</a></td>
+    </tr>
+    <tr>
+      <td>127</td>
+      <td>CRUDP</td>
+      <td>Combat Radio User Datagram</td>
+      <td></td>
+      <td><a href="#Robert_Sautter">Robert Sautter</a></td>
+    </tr>
+    <tr>
+      <td>128</td>
+      <td>SSCOPMCE</td>
+      <td></td>
+      <td></td>
+      <td><a href="#Kurt_Waber">Kurt Waber</a></td>
+    </tr>
+    <tr>
+      <td>129</td>
+      <td>IPLT</td>
+      <td></td>
+      <td></td>
+      <td>Hollbach</td>
+    </tr>
+    <tr>
+      <td>130</td>
+      <td>SPS</td>
+      <td>Secure Packet Shield</td>
+      <td></td>
+      <td><a href="#Bill_McIntosh">Bill McIntosh</a></td>
+    </tr>
+    <tr>
+      <td>131</td>
+      <td>PIPE</td>
+      <td>Private IP Encapsulation within IP</td>
+      <td></td>
+      <td><a href="#Bernhard_Petri">Bernhard Petri</a></td>
+    </tr>
+    <tr>
+      <td>132</td>
+      <td>SCTP</td>
+      <td>Stream Control Transmission Protocol</td>
+      <td></td>
+      <td><a href="#Randall_R_Stewart">Randall R. Stewart</a></td>
+    </tr>
+    <tr>
+      <td>133</td>
+      <td>FC</td>
+      <td>Fibre Channel</td>
+      <td></td>
+      <td>
+        <a href="#Murali_Rajagopal">Murali Rajagopal</a>&nbsp;-&nbsp;
+        <a href="https://www.iana.org/go/rfc6172">RFC6172</a>
+      </td>
+    </tr>
+    <tr>
+      <td>134</td>
+      <td>RSVP-E2E-IGNORE</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc3175">RFC3175</a></td>
+    </tr>
+    <tr>
+      <td>135</td>
+      <td>Mobility Header</td>
+      <td></td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc6275">RFC6275</a></td>
+    </tr>
+    <tr>
+      <td>136</td>
+      <td>UDPLite</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc3828">RFC3828</a></td>
+    </tr>
+    <tr>
+      <td>137</td>
+      <td>MPLS-in-IP</td>
+      <td></td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc4023">RFC4023</a></td>
+    </tr>
+    <tr>
+      <td>138</td>
+      <td>manet</td>
+      <td>MANET Protocols</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc5498">RFC5498</a></td>
+    </tr>
+    <tr>
+      <td>139</td>
+      <td>HIP</td>
+      <td>Host Identity Protocol</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc7401">RFC7401</a></td>
+    </tr>
+    <tr>
+      <td>140</td>
+      <td>Shim6</td>
+      <td>Shim6 Protocol</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc5533">RFC5533</a></td>
+    </tr>
+    <tr>
+      <td>141</td>
+      <td>WESP</td>
+      <td>Wrapped Encapsulating Security Payload</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc5840">RFC5840</a></td>
+    </tr>
+    <tr>
+      <td>142</td>
+      <td>ROHC</td>
+      <td>Robust Header Compression</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc5858">RFC5858</a></td>
+    </tr>
+    <tr>
+      <td>143</td>
+      <td>Ethernet</td>
+      <td>Ethernet</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc8986">RFC8986</a></td>
+    </tr>
+    <tr>
+      <td>144</td>
+      <td>AGGFRAG</td>
+      <td>AGGFRAG encapsulation payload for ESP</td>
+      <td></td>
+      <td><a href="https://www.iana.org/go/rfc9347">RFC9347</a></td>
+    </tr>
+    <tr>
+      <td>145</td>
+      <td>NSH</td>
+      <td>Network Service Header</td>
+      <td>N</td>
+      <td><a href="https://www.iana.org/go/rfc9491">RFC9491</a></td>
+    </tr>
+    <tr>
+      <td>146-252</td>
+      <td></td>
+      <td>Unassigned</td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>253</td>
+      <td></td>
+      <td>Use for experimentation and testing</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc3692">RFC3692</a></td>
+    </tr>
+    <tr>
+      <td>254</td>
+      <td></td>
+      <td>Use for experimentation and testing</td>
+      <td>Y</td>
+      <td><a href="https://www.iana.org/go/rfc3692">RFC3692</a></td>
+    </tr>
+    <tr>
+      <td>255</td>
+      <td>Reserved</td>
+      <td></td>
+      <td></td>
+      <td>
+        <a href="#Internet_Assigned_Numbers_Authority">
+          Internet Assigned Numbers Authority
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Contatos
+
+<table>
+  <thead>
+    <tr align="left">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Contact URI</th>
+      <th>Last Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a name="Barry_Boehm" id="Barry_Boehm">Barry_Boehm</a>
+      </td>
+      <td>Barry Boehm</td>
+      <td>
+        <a href="mailto:boehm@arpa.mil">mailto:boehm@arpa.mil</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Barry_Howard" id="Barry_Howard">Barry_Howard</a>
+      </td>
+      <td>Barry Howard</td>
+      <td>
+        <a href="mailto:Howard@nmfecc.llnl.gov">mailto:Howard@nmfecc.llnl.gov</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bernard_Aboba" id="Bernard_Aboba">Bernard_Aboba</a>
+      </td>
+      <td>Bernard Aboba</td>
+      <td>
+        <a href="mailto:bernarda@microsoft.com">mailto:bernarda@microsoft.com</a>
+      </td>
+      <td>1998-04</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bernhard_Petri" id="Bernhard_Petri">Bernhard_Petri</a>
+      </td>
+      <td>Bernhard Petri</td>
+      <td>
+        <a href="mailto:bernhard.petri@siemens.com">mailto:bernhard.petri@siemens.com</a>
+      </td>
+      <td>2012-07-09</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bich_Nguyen" id="Bich_Nguyen">Bich_Nguyen</a>
+      </td>
+      <td>Bich Nguyen</td>
+      <td>
+        <a href="mailto:bitnguyen@gmail.com">mailto:bitnguyen@gmail.com</a>
+      </td>
+      <td>2023-01-09</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bill_McIntosh" id="Bill_McIntosh">Bill_McIntosh</a>
+      </td>
+      <td>Bill McIntosh</td>
+      <td>
+        <a href="mailto:BMcIntosh@fortresstech.com">mailto:BMcIntosh@fortresstech.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bob_Braden" id="Bob_Braden">Bob_Braden</a>
+      </td>
+      <td>Bob Braden</td>
+      <td>
+        <a href="mailto:braden@isi.edu">mailto:braden@isi.edu</a>
+      </td>
+      <td>1997-07</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Bob_Hinden" id="Bob_Hinden">Bob_Hinden</a>
+      </td>
+      <td>Bob Hinden</td>
+      <td>
+        <a href="mailto:bob.hinden@gmail.com">mailto:bob.hinden@gmail.com</a>
+      </td>
+      <td>2013-02-17</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Brian_Kantor" id="Brian_Kantor">Brian_Kantor</a>
+      </td>
+      <td>Brian Kantor</td>
+      <td>
+        <a href="mailto:brian@ucsd.edu">mailto:brian@ucsd.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="CJ_Lee" id="CJ_Lee">CJ_Lee</a>
+      </td>
+      <td>CJ Lee</td>
+      <td>
+        <a href="mailto:cj_lee@novell.com">mailto:cj_lee@novell.com</a>
+      </td>
+      <td>1997-10</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Charlie_Perkins" id="Charlie_Perkins">Charlie_Perkins</a>
+      </td>
+      <td>Charlie Perkins</td>
+      <td>
+        <a href="mailto:perk@watson.ibm.com">mailto:perk@watson.ibm.com</a>
+      </td>
+      <td>1994-10</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Christer_Oberg" id="Christer_Oberg">Christer_Oberg</a>
+      </td>
+      <td>Christer Oberg</td>
+      <td>
+        <a href="mailto:chg@bull.se">mailto:chg@bull.se</a>
+      </td>
+      <td>1994-10</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Criag_Partridge" id="Criag_Partridge">Criag_Partridge</a>
+      </td>
+      <td>Criag Partridge</td>
+      <td>
+        <a href="mailto:craig@bbn.com">mailto:craig@bbn.com</a>
+      </td>
+      <td>1999-08</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Dave_Cheriton" id="Dave_Cheriton">Dave_Cheriton</a>
+      </td>
+      <td>Dave Cheriton</td>
+      <td>
+        <a href="mailto:cheriton@pescadero.stanford.edu">mailto:cheriton@pescadero.stanford.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Dave_Presotto" id="Dave_Presotto">Dave_Presotto</a>
+      </td>
+      <td>Dave Presotto</td>
+      <td>
+        <a href="mailto:presotto@plan9.att.com">mailto:presotto@plan9.att.com</a>
+      </td>
+      <td>1995-07</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="David_Clark" id="David_Clark">David_Clark</a>
+      </td>
+      <td>David Clark</td>
+      <td>
+        <a href="mailto:ddc@lcs.mit.edu">mailto:ddc@lcs.mit.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="David_Mills" id="David_Mills">David_Mills</a>
+      </td>
+      <td>David Mills</td>
+      <td>
+        <a href="mailto:Mills@huey.udel.edu">mailto:Mills@huey.udel.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Deborah_Estrin" id="Deborah_Estrin">Deborah_Estrin</a>
+      </td>
+      <td>Deborah Estrin</td>
+      <td>
+        <a href="mailto:estrin@usc.edu">mailto:estrin@usc.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Dino_Farinacci" id="Dino_Farinacci">Dino_Farinacci</a>
+      </td>
+      <td>Dino Farinacci</td>
+      <td>
+        <a href="mailto:dino@cisco.com">mailto:dino@cisco.com</a>
+      </td>
+      <td>1996-03</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Dirk_Fromhein" id="Dirk_Fromhein">Dirk_Fromhein</a>
+      </td>
+      <td>Dirk Fromhein</td>
+      <td>
+        <a href="mailto:df@watershed.com">mailto:df@watershed.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Gene_Tsudik" id="Gene_Tsudik">Gene_Tsudik</a>
+      </td>
+      <td>Gene Tsudik</td>
+      <td>
+        <a href="mailto:tsudik@usc.edu">mailto:tsudik@usc.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Greg_Chesson" id="Greg_Chesson">Greg_Chesson</a>
+      </td>
+      <td>Greg Chesson</td>
+      <td>
+        <a href="mailto:Greg@sgi.com">mailto:Greg@sgi.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Guillermo_A_Loyola" id="Guillermo_A_Loyola">Guillermo_A_Loyola</a>
+      </td>
+      <td>Guillermo A. Loyola</td>
+      <td>
+        <a href="mailto:LOYOLA@ibm.com">mailto:LOYOLA@ibm.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Hans_Werner_Braun" id="Hans_Werner_Braun">Hans_Werner_Braun</a>
+      </td>
+      <td>Hans-Werner Braun</td>
+      <td>
+        <a href="mailto:HWB@mcr.umich.edu">mailto:HWB@mcr.umich.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Harry_Forsdick" id="Harry_Forsdick">Harry_Forsdick</a>
+      </td>
+      <td>Harry Forsdick</td>
+      <td>
+        <a href="mailto:Forsdick@bbn.com">mailto:Forsdick@bbn.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Howard_Hart" id="Howard_Hart">Howard_Hart</a>
+      </td>
+      <td>Howard Hart</td>
+      <td>
+        <a href="mailto:hch@hybrid.com">mailto:hch@hybrid.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Internet_Assigned_Numbers_Authority" id="Internet_Assigned_Numbers_Authority">Internet_Assigned_Numbers_Authority</a>
+      </td>
+      <td>Internet Assigned Numbers Authority</td>
+      <td>
+        <a href="mailto:iana@iana.org">mailto:iana@iana.org</a>
+      </td>
+      <td>1995-06</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="J_Noel_Chiappa" id="J_Noel_Chiappa">J_Noel_Chiappa</a>
+      </td>
+      <td>J. Noel Chiappa</td>
+      <td>
+        <a href="mailto:JNC@xx.lcs.mit.edu">mailto:JNC@xx.lcs.mit.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Jack_Haverty" id="Jack_Haverty">Jack_Haverty</a>
+      </td>
+      <td>Jack Haverty</td>
+      <td>
+        <a href="mailto:jhaverty@oracle.com">mailto:jhaverty@oracle.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Jean_Michel_Pittet" id="Jean_Michel_Pittet">Jean_Michel_Pittet</a>
+      </td>
+      <td>Jean-Michel Pittet</td>
+      <td>
+        <a href="mailto:jmp@gandalf.engr.sgi.com">mailto:jmp@gandalf.engr.sgi.com</a>
+      </td>
+      <td>1998-11</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Jim_Stevens" id="Jim_Stevens">Jim_Stevens</a>
+      </td>
+      <td>Jim Stevens</td>
+      <td>
+        <a href="mailto:jasteven@rockwellcollins.com">mailto:jasteven@rockwellcollins.com</a>
+      </td>
+      <td>2011-01-26</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="John_Ioannidis" id="John_Ioannidis">John_Ioannidis</a>
+      </td>
+      <td>John Ioannidis</td>
+      <td>
+        <a href="mailto:ji@tla.org">mailto:ji@tla.org</a>
+      </td>
+      <td>2015-01-06</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="John_Moy" id="John_Moy">John_Moy</a>
+      </td>
+      <td>John Moy</td>
+      <td>
+        <a href="mailto:jmoy@proteon.com">mailto:jmoy@proteon.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="John_Murphy" id="John_Murphy">John_Murphy</a>
+      </td>
+      <td>John Murphy</td>
+      <td>
+        <a href="mailto:john.m.murphy@mci.com">mailto:john.m.murphy@mci.com</a>
+      </td>
+      <td>1998-10</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="John_Worley" id="John_Worley">John_Worley</a>
+      </td>
+      <td>John Worley</td>
+      <td>
+        <a href="mailto:worley@milehigh.net">mailto:worley@milehigh.net</a>
+      </td>
+      <td>1998-06</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Jon_Crowcroft" id="Jon_Crowcroft">Jon_Crowcroft</a>
+      </td>
+      <td>Jon Crowcroft</td>
+      <td>
+        <a href="mailto:jon@cs.ucl.ac.uk">mailto:jon@cs.ucl.ac.uk</a>
+      </td>
+      <td>1999-06</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Jon_Postel" id="Jon_Postel">Jon_Postel</a>
+      </td>
+      <td>Jon Postel</td>
+      <td>
+        <a href="mailto:postel@isi.edu">mailto:postel@isi.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="K_Robert_Glenn" id="K_Robert_Glenn">K_Robert_Glenn</a>
+      </td>
+      <td>K. Robert Glenn</td>
+      <td>
+        <a href="mailto:glenn@osi.ncsl.nist.gov">mailto:glenn@osi.ncsl.nist.gov</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Kurt_Waber" id="Kurt_Waber">Kurt_Waber</a>
+      </td>
+      <td>Kurt Waber</td>
+      <td>
+        <a href="mailto:kurt.waber@swisscom.com">mailto:kurt.waber@swisscom.com</a>
+      </td>
+      <td>1999-08</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Leif_Ekblad" id="Leif_Ekblad">Leif_Ekblad</a>
+      </td>
+      <td>Leif Ekblad</td>
+      <td>
+        <a href="mailto:leif@rdos.net">mailto:leif@rdos.net</a>
+      </td>
+      <td>2012-08-21</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Manickam_R_Sridhar" id="Manickam_R_Sridhar">Manickam_R_Sridhar</a>
+      </td>
+      <td>Manickam R. Sridhar</td>
+      <td>
+        <a href="mailto:msridhar@sitaranetworks.com">mailto:msridhar@sitaranetworks.com</a>
+      </td>
+      <td>1997-09</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Mark_Hamilton" id="Mark_Hamilton">Mark_Hamilton</a>
+      </td>
+      <td>Mark Hamilton</td>
+      <td>
+        <a href="mailto:mah@spectralink.com">mailto:mah@spectralink.com</a>
+      </td>
+      <td>1998-11</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Marshall_T_Rose" id="Marshall_T_Rose">Marshall_T_Rose</a>
+      </td>
+      <td>Marshall T. Rose</td>
+      <td>
+        <a href="mailto:mrose@dbc.mtview.ca.us">mailto:mrose@dbc.mtview.ca.us</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Martha_Steenstrup" id="Martha_Steenstrup">Martha_Steenstrup</a>
+      </td>
+      <td>Martha Steenstrup</td>
+      <td>
+        <a href="mailto:MSteenst@bbn.com">mailto:MSteenst@bbn.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Michael_Greenwald" id="Michael_Greenwald">Michael_Greenwald</a>
+      </td>
+      <td>Michael Greenwald</td>
+      <td>
+        <a href="mailto:Greenwald@scrc-stony-brook.symbolics.com">mailto:Greenwald@scrc-stony-brook.symbolics.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Michael_Hunter" id="Michael_Hunter">Michael_Hunter</a>
+      </td>
+      <td>Michael Hunter</td>
+      <td>
+        <a href="mailto:mphunter@qnx.com">mailto:mphunter@qnx.com</a>
+      </td>
+      <td>1997-07</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Michael_Welzl" id="Michael_Welzl">Michael_Welzl</a>
+      </td>
+      <td>Michael Welzl</td>
+      <td>
+        <a href="mailto:michael@tk.uni-linz.ac.at">mailto:michael@tk.uni-linz.ac.at</a>
+      </td>
+      <td>1999-08</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Mike_Little" id="Mike_Little">Mike_Little</a>
+      </td>
+      <td>Mike Little</td>
+      <td>
+        <a href="mailto:little@macom4.arpa">mailto:little@macom4.arpa</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Murali_Rajagopal" id="Murali_Rajagopal">Murali_Rajagopal</a>
+      </td>
+      <td>Murali Rajagopal</td>
+      <td>
+        <a href="mailto:murali@gadzoox.com">mailto:murali@gadzoox.com</a>
+      </td>
+      <td>2000-05</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Nancy_Feldman" id="Nancy_Feldman">Nancy_Feldman</a>
+      </td>
+      <td>Nancy Feldman</td>
+      <td>
+        <a href="mailto:nkf@vnet.ibm.com">mailto:nkf@vnet.ibm.com</a>
+      </td>
+      <td>1997-01</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Peter_Lothberg" id="Peter_Lothberg">Peter_Lothberg</a>
+      </td>
+      <td>Peter Lothberg</td>
+      <td>
+        <a href="mailto:roll@stupi.se">mailto:roll@stupi.se</a>
+      </td>
+      <td>1999-03</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Randall_R_Stewart" id="Randall_R_Stewart">Randall_R_Stewart</a>
+      </td>
+      <td>Randall R. Stewart</td>
+      <td>
+        <a href="mailto:rrs@lakerest.net">mailto:rrs@lakerest.net</a>
+      </td>
+      <td>2000-04</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Robert_Cole" id="Robert_Cole">Robert_Cole</a>
+      </td>
+      <td>Robert Cole</td>
+      <td>
+        <a href="mailto:robert@CS.UCL.AC.UK">mailto:robert@CS.UCL.AC.UK</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Robert_Durst" id="Robert_Durst">Robert_Durst</a>
+      </td>
+      <td>Robert Durst</td>
+      <td>
+        <a href="mailto:durst@mitre.org">mailto:durst@mitre.org</a>
+      </td>
+      <td>1997-03</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Robert_Sautter" id="Robert_Sautter">Robert_Sautter</a>
+      </td>
+      <td>Robert Sautter</td>
+      <td>
+        <a href="mailto:rsautter@acdnj.itt.com">mailto:rsautter@acdnj.itt.com</a>
+      </td>
+      <td>1999-08</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Robert_W_Scheifler" id="Robert_W_Scheifler">Robert_W_Scheifler</a>
+      </td>
+      <td>Robert W. Scheifler</td>
+      <td>
+        <a href="mailto:rscheifler@comcast.net">mailto:rscheifler@comcast.net</a>
+      </td>
+      <td>2015-10-06</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Robert_Woodburn" id="Robert_Woodburn">Robert_Woodburn</a>
+      </td>
+      <td>Robert Woodburn</td>
+      <td>
+        <a href="mailto:woody@cseic.saic.com">mailto:woody@cseic.saic.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Ross_Callon" id="Ross_Callon">Ross_Callon</a>
+      </td>
+      <td>Ross Callon</td>
+      <td>
+        <a href="mailto:rcallon@baynetworks.com">mailto:rcallon@baynetworks.com</a>
+      </td>
+      <td>1995-12</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Steve_Casner" id="Steve_Casner">Steve_Casner</a>
+      </td>
+      <td>Steve Casner</td>
+      <td>
+        <a href="mailto:casner@isi.edu">mailto:casner@isi.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Steve_Chipman" id="Steve_Chipman">Steve_Chipman</a>
+      </td>
+      <td>Steve Chipman</td>
+      <td>
+        <a href="mailto:Chipman@f.bbn.com">mailto:Chipman@f.bbn.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Steve_Deering" id="Steve_Deering">Steve_Deering</a>
+      </td>
+      <td>Steve Deering</td>
+      <td>
+        <a href="mailto:deering@parc.xerox.com">mailto:deering@parc.xerox.com</a>
+      </td>
+      <td>1995-03</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Steven_Blumenthal" id="Steven_Blumenthal">Steven_Blumenthal</a>
+      </td>
+      <td>Steven Blumenthal</td>
+      <td>
+        <a href="mailto:BLUMENTHAL@vax.bbn.com">mailto:BLUMENTHAL@vax.bbn.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Stuart_A_Friedberg" id="Stuart_A_Friedberg">Stuart_A_Friedberg</a>
+      </td>
+      <td>Stuart A. Friedberg</td>
+      <td>
+        <a href="mailto:stuart@cs.wisc.edu">mailto:stuart@cs.wisc.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Sue_Hares" id="Sue_Hares">Sue_Hares</a>
+      </td>
+      <td>Sue Hares</td>
+      <td>
+        <a href="mailto:skh@merit.edu">mailto:skh@merit.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Susie_Armstrong" id="Susie_Armstrong">Susie_Armstrong</a>
+      </td>
+      <td>Susie Armstrong</td>
+      <td>
+        <a href="mailto:Armstrong.wbst128@xerox.com">mailto:Armstrong.wbst128@xerox.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Tom_Markson" id="Tom_Markson">Tom_Markson</a>
+      </td>
+      <td>Tom Markson</td>
+      <td>
+        <a href="mailto:markson@osmosys.ingog.com">mailto:markson@osmosys.ingog.com</a>
+      </td>
+      <td>1995-09</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Tony_Ballardie" id="Tony_Ballardie">Tony_Ballardie</a>
+      </td>
+      <td>Tony Ballardie</td>
+      <td>
+        <a href="mailto:A.Ballardie@cs.ucl.ac.uk">mailto:A.Ballardie@cs.ucl.ac.uk</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Tony_Li" id="Tony_Li">Tony_Li</a>
+      </td>
+      <td>Tony Li</td>
+      <td>
+        <a href="mailto:tony.li@tony.li">mailto:tony.li@tony.li</a>
+      </td>
+      <td>2012-10-17</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Tony_Przygienda" id="Tony_Przygienda">Tony_Przygienda</a>
+      </td>
+      <td>Tony Przygienda</td>
+      <td>
+        <a href="mailto:prz@siara.com">mailto:prz@siara.com</a>
+      </td>
+      <td>1999-08</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Tony_Speakman" id="Tony_Speakman">Tony_Speakman</a>
+      </td>
+      <td>Tony Speakman</td>
+      <td>
+        <a href="mailto:speakman@cisco.com">mailto:speakman@cisco.com</a>
+      </td>
+      <td>1998-01</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Trudy_Miller" id="Trudy_Miller">Trudy_Miller</a>
+      </td>
+      <td>Trudy Miller</td>
+      <td>
+        <a href="mailto:Trudy@acc.com">mailto:Trudy@acc.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Victor_Volpe" id="Victor_Volpe">Victor_Volpe</a>
+      </td>
+      <td>Victor Volpe</td>
+      <td>
+        <a href="mailto:vvolpe@smtp.microcom.com">mailto:vvolpe@smtp.microcom.com</a>
+      </td>
+      <td>1997-10</td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Wesley_Craig" id="Wesley_Craig">Wesley_Craig</a>
+      </td>
+      <td>Wesley Craig</td>
+      <td>
+        <a href="mailto:Wesley.Craig@terminator.cc.umich.edu">mailto:Wesley.Craig@terminator.cc.umich.edu</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="William_Melohn" id="William_Melohn">William_Melohn</a>
+      </td>
+      <td>William Melohn</td>
+      <td>
+        <a href="mailto:Melohn@sun.com">mailto:Melohn@sun.com</a>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <a name="Zaw_Sing_Su" id="Zaw_Sing_Su">Zaw_Sing_Su</a>
+      </td>
+      <td>Zaw-Sing Su</td>
+      <td>
+        <a href="mailto:ZSu@tsca.istc.sri.">mailto:ZSu@tsca.istc.sri.</a>
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+## Referências
+
+- http://www.iana.org/assignments/protocol-numbers
