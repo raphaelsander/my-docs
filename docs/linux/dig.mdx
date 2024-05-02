@@ -1,0 +1,49 @@
+---
+id: dig
+title: dig
+---
+
+# dig
+
+`dig` é uma ferramenta flexível para interrogar servidores de nomes DNS. Ele 
+realiza pesquisas de DNS e exibe as respostas retornadas do nome servidores que
+foram consultados. A maioria dos administradores de DNS usa dig para solucionar
+problemas de DNS devido à sua flexibilidade, facilidade de uso e clareza de
+saída. Outras ferramentas de pesquisa tendem a ter menos funcionalidades do que
+`dig`.
+
+---
+
+## Checando Nameserver
+
+```bash
+dig -t ns site.com
+```
+
+```bash
+dig -t mx site.com
+```
+
+## Transferência de Zona
+
+Para forçar a transferência de zona:
+
+```bash
+dig -t axfr site.com @ns1.site.com
+```
+
+```bash
+dig -t axfr site.com @ns2.site.com
+```
+
+## Endereços A (IPv4)
+
+```bash
+$ dig tesla.com +short
+23.9.66.10
+104.119.104.74
+184.85.228.70
+23.201.26.71
+184.30.18.203
+96.16.108.43
+```
