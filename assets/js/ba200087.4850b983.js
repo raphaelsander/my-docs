@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[8255],{9614:e=>{e.exports=JSON.parse('{"title":"DevOps","slug":"/category/devops","permalink":"/my-docs/docs/category/devops","navigation":{"previous":{"title":"Introdu\xe7\xe3o","permalink":"/my-docs/docs/intro"},"next":{"title":"Ansible","permalink":"/my-docs/docs/devops/ansible"}}}')}}]);

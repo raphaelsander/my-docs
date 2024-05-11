@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[2430],{9252:s=>{s.exports=JSON.parse('{"title":"Python","slug":"/category/python","permalink":"/my-docs/docs/category/python","navigation":{"previous":{"title":"waybackurls","permalink":"/my-docs/docs/pentest/waybackurls"},"next":{"title":"proxy","permalink":"/my-docs/docs/python/proxy"}}}')}}]);
