@@ -3,12 +3,12 @@ id: stderr_and_stdout
 title: StdErr and StdOut
 ---
 
-# StdErr e StdOut
-
 O redirecionamento de saída padrão (StdOut) e saída de erro padrão (StdErr) é
 uma técnica essencial no Bash para controlar o destino das mensagens geradas por
 comandos. Este guia descreve as várias sintaxes e opções disponíveis para
 redirecionar esses fluxos de dados.
+
+---
 
 | Sintaxe                     | StdOut p/ Terminal | StdErr p/ Terminal | StdOut p/ Arquivo | StdErr p/ Arquivo |  Arquivo   |
 | :-------------------------- | :----------------: | :----------------: | :---------------: | :---------------: | :--------: |
@@ -18,12 +18,12 @@ redirecionar esses fluxos de dados.
 | `2>>`                       |        sim         |        não         |        não        |        sim        | incrementa |
 | `&>`                        |        não         |        não         |        sim        |        sim        | substitui  |
 | `&>>`                       |        não         |        não         |        sim        |        sim        | incrementa |
-| <code>&#124; tee</code>     |        sim         |        sim         |        sim        |        não        | substitui  |
-| <code>&#124; tee -a</code>  |        sim         |        sim         |        sim        |        não        | incrementa |
+| `\| tee`                    |        sim         |        sim         |        sim        |        não        | substitui  |
+| `\| tee -a`                 |        sim         |        sim         |        sim        |        não        | incrementa |
 | [N/A](#observation)         |        sim         |        sim         |        não        |        sim        | substitui  |
 | [N/A](#observation)         |        sim         |        sim         |        não        |        sim        | incrementa |
-| <code>&#124;& tee</code>    |        sim         |        sim         |        sim        |        sim        | substitui  |
-| <code>&#124;& tee -a</code> |        sim         |        sim         |        sim        |        sim        | incrementa |
+| `\|& tee`                   |        sim         |        sim         |        sim        |        sim        | substitui  |
+| `\|& tee -a`                |        sim         |        sim         |        sim        |        sim        | incrementa |
 
 ---
 

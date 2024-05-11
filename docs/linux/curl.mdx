@@ -3,8 +3,6 @@ id: curl
 title: Curl
 ---
 
-# Curl
-
 O Curl é uma ferramenta de linha de comando usada para transferir dados por meio
 dos protocolos HTTP, HTTPS, FTP, FTPS, SCP, SFTP, TFTP, LDAP, DAP, DICT, TELNET,
 FILE, IMAP, SMTP, POP3 e RTSP. É amplamente utilizado para testar APIs, fazer
@@ -18,20 +16,20 @@ comunicação de rede.
 O Curl está disponível para diferentes sistemas operacionais e pode ser
 instalado seguindo as instruções específicas para cada plataforma.
 
-### Linux (Ubuntu/Debian):
+### Linux (Ubuntu/Debian)
 
 ```bash
 sudo apt-get update
 sudo apt-get install curl
 ```
 
-### macOS (Homebrew):
+### macOS (Homebrew)
 
 ```bash
 brew install curl
 ```
 
-### Windows:
+### Windows
 
 Baixe o arquivo binário pré-compilado do site oficial:
 [https://curl.se/windows/](https://curl.se/windows/) e siga as instruções de
@@ -96,10 +94,9 @@ curl -w "%{http_code}" <URL>
 Exemplo:
 
 ```bash
-curl -w "%{http_code}" https://api.example.com/users
+$ curl -w "%{http_code}" https://api.example.com/users
+200
 ```
-
-**Retorno: 200**
 
 Você pode conferir outras variáveis disponíveis na documentação do Curl,
 digitando `man curl` no terminal.
