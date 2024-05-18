@@ -1,0 +1,45 @@
+---
+id: big-file-resume
+title: big-file-resume
+---
+
+Abaixo temos um exemplo de código capaz de ler um grande arquivo de texto e
+recuperar a última linha processada, por exemplo essa wordlist `weakpass_3a`
+possui aproximadamente 100Gb.
+
+```python
+#!/bin/python3
+
+import time
+
+
+def main():
+    filename = "E:\\Wordlists\\weakpass_3a"
+    pos_file = "position.txt"
+
+    try:
+        last_position = int(open(pos_file).read())
+    except (FileNotFoundError, ValueError):
+        last_position = 0
+
+    try:
+        with open(filename, "rb") as file:
+            file.seek(last_position)
+            for line in file:
+                print("%s: %s (+%s)" % (
+                    last_position,
+                    line.strip().decode('utf8'),
+                    len(line)
+                ))
+                time.sleep(1)
+
+                last_position += len(line)
+                
+    except KeyboardInterrupt:
+        with open(pos_file, "w") as pos_file:
+            pos_file.write(str(last_position))
+        exit(0)
+
+if __name__ == "__main__":
+    main()
+```
