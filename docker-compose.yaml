@@ -1,0 +1,12 @@
+services:
+  my-docs:
+    image: node
+    entrypoint: sh docker-entrypoint.sh
+    restart: always
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+    environment:
+      PORT: ${PORT:-3000}
+    volumes:
+      - ${PWD}:${PWD}
+    working_dir: ${PWD}
