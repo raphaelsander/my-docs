@@ -91,3 +91,23 @@ lp
 mail
 ...
 ```
+
+## Extraindo String Entre Dois Padrões
+
+Extraindo apenas a primeira ocorrência:
+
+```bash
+$ echo 'text (value1) text (value2) text (value3) text' | \
+    awk -F'[()]' '{print $2}'
+value1
+```
+
+Extraindo todas as ocorrências:
+
+```bash
+$ echo 'text (value1) text (value2) text (value3) text' | \
+    awk -F'[()]' '{for(i=2;i<=NF;i+=2) print $i}'
+value1
+value2
+value3
+```
