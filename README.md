@@ -1,41 +1,32 @@
-# Website
+# My-Docs
 
-This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
+![my-docs-logo](static/img/logo.svg)
 
-### Installation
+My-Docs is a project that helps both newer and expert developers with Linux
+commands and some code used in Dev, Ops and Security contexts. Any new
+suggestions, commands, and issue reports are welcome.
 
-```
-$ yarn
-```
+Check out the official GitHub Pages link of the project:
+[https://raphaelsander.github.io/my-docs/](https://raphaelsander.github.io/my-docs/).
 
-### Local Development
+> This project was built using [Docusaurus](https://docusaurus.io/), a modern
+> static website generator.
 
-```
-$ yarn start
-```
+## Running
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+### Locally
 
-### Build
-
-```
-$ yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+yarn
+yarn start
 ```
 
-Not using SSH:
+> Needs `node` >=18.0 and `yarn` installed.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+### Docker
+
+```bash
+docker compose up
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+> Needs `docker` and `docker compose` installed.
