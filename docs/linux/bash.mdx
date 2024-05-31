@@ -1,0 +1,186 @@
+---
+id: bash
+title: bash
+---
+
+Bash Script é uma linguagem de script que utiliza o Bash (Bourne Again SHell)
+como interpretador. Bash é um dos shells mais populares e amplamente usados em
+sistemas operacionais Unix e Unix-like, como Linux e macOS. Scripts Bash são
+arquivos de texto contendo uma série de comandos que são executados em sequência
+pelo interpretador Bash.
+
+---
+
+## Primeiro Script
+
+Para começar a criar scripts em Bash, você pode usar qualquer editor de texto.
+Aqui está um exemplo de um script simples:
+
+```bash
+#!/bin/bash
+# Este é o seu primeiro script Bash
+
+echo "Olá, Mundo!"
+```
+
+:::info
+`#!/bin/bash`: Esta linha é chamada de shebang e indica ao sistema que o script
+deve ser executado usando o interpretador Bash.
+
+`echo "Olá, Mundo!"`: Este comando imprime "Olá, Mundo!" no terminal.
+:::
+
+## Estrutura de um Script Bash
+
+Um script Bash típico possui a seguinte estrutura:
+
+1. **Shebang**: Informa qual interpretador deve ser usado.
+2. **Comentários**: Linhas iniciadas com `#` são comentários.
+3. **Comandos**: Instruções que o script deve executar.
+
+Exemplo:
+
+```bash
+#!/bin/bash
+# Script de exemplo
+
+# Imprime uma mensagem
+echo "Este é um script Bash!"
+```
+
+## Como Tornar um Script Executável
+
+Para tornar um script executável, você precisa usar o comando `chmod`:
+
+```bash
+chmod +x nome_do_script.sh
+```
+
+Depois disso, você pode executar o script usando:
+
+```bash
+./nome_do_script.sh
+```
+
+## Variáveis e Tipos de Dados
+
+### Declaração de Variáveis
+
+Em Bash, você pode declarar variáveis simplesmente atribuindo um valor a um
+nome:
+
+```bash
+# Declaração de uma variável
+nome="João"
+```
+
+### Tipos de Dados e Atribuição
+
+Bash trata todas as variáveis como strings por padrão, mas você pode realizar
+operações aritméticas usando `let`, `expr` ou a notação `$(( ))`:
+
+#### Uso do `let`
+
+O comando `let` permite realizar operações aritméticas diretamente em variáveis.
+Aqui estão alguns exemplos:
+
+```bash
+#!/bin/bash
+# Usando let para operações aritméticas
+
+# Inicializando variáveis
+a=5
+b=10
+
+# Soma
+let soma=a+b
+echo "A soma de $a e $b é: $soma"
+
+# Subtração
+let subtracao=a-b
+echo "A subtração de $b por $a é: $subtracao"
+
+# Multiplicação
+let multiplicacao=a*b
+echo "A multiplicação de $a por $b é: $multiplicacao"
+
+# Divisão
+let divisao=b/a
+echo "A divisão de $b por $a é: $divisao"
+
+# Incremento
+let a++
+echo "Valor de a após incremento: $a"
+
+# Decremento
+let b--
+echo "Valor de b após decremento: $b"
+```
+
+#### Uso do `expr`
+
+O comando `expr` é usado para avaliar expressões e imprimir o resultado. Ele é
+frequentemente usado com a sintaxe de substituição de comandos `$(...)` ou
+crases `` `...` ``.
+
+```bash
+#!/bin/bash
+# Usando expr para operações aritméticas
+
+# Inicializando variáveis
+a=5
+b=10
+
+# Soma
+soma=$(expr $a + $b)
+echo "A soma de $a e $b é: $soma"
+
+# Subtração
+subtracao=$(expr $b - $a)
+echo "A subtração de $b por $a é: $subtracao"
+
+# Multiplicação (note a necessidade de escape para o operador `*`)
+multiplicacao=$(expr $a \* $b)
+echo "A multiplicação de $a por $b é: $multiplicacao"
+
+# Divisão
+divisao=$(expr $b / $a)
+echo "A divisão de $b por $a é: $divisao"
+
+# Módulo
+modulo=$(expr $b % $a)
+echo "O módulo de $b por $a é: $modulo"
+```
+
+#### Uso do `$(( ))`
+
+```bash
+# Atribuição de variáveis
+numero=5
+outro_numero=10
+
+# Operações aritméticas
+soma=$((numero + outro_numero))
+echo "A soma é: $soma"
+```
+
+## Entrada e Saída
+
+### `echo`
+
+O comando `echo` é usado para exibir texto no terminal:
+
+```bash
+echo "Olá, Mundo!"
+```
+
+### `read`
+
+O comando `read` é usado para receber entrada do usuário:
+
+```bash
+# Solicita ao usuário que digite algo
+echo "Digite seu nome:"
+read nome
+echo "Olá, $nome!"
+```
