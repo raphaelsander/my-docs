@@ -1,0 +1,43 @@
+---
+id: base64
+title: base64
+---
+
+Codifique e decodifique arquivos e entrada padrão (stdin) em base 64.
+
+---
+
+## Codificando Arquivo
+
+```bash
+base64 file.txt
+```
+
+:::info
+Cada linha da saída padrão do base64 tem tamanho de 76 caracteres, porém que pode ser mudada ou desativada.
+
+```bash
+# desativar a quebra de linha
+base64 -w0 file.txt
+# definir o número de caracteres da linha
+base64 -w80 file.txt
+```
+
+:::
+
+## Codificando STDIN
+
+```bash
+echo "teste" | base64
+```
+
+:::warning
+Lembre-se que sem o parâmetro `-n` no comando `echo`, a quebra de linha ao final
+da *string* também é codificada.
+:::
+
+## Decodificando BASE64
+
+```bash
+echo dGVzdGUK | base64 -d
+```
