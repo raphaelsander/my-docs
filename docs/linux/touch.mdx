@@ -1,0 +1,92 @@
+---
+id: touch
+title: touch
+---
+
+O comando `touch` no Linux é utilizado principalmente para criar arquivos vazios
+ou atualizar os *timestamps* (horários de acesso e modificação) de arquivos
+existentes.
+
+---
+
+## Sintaxe
+
+```bash
+touch [opções] arquivo1 [arquivo2 ...]
+```
+
+## Opções
+
+- `-a`: Atualiza apenas o horário de acesso.
+- `-m`: Atualiza apenas o horário de modificação.
+- `-c` ou `--no-create`: Não cria arquivos se eles não existirem.
+- `-d` `data`: Usa a data especificada em vez da atual. Formato: `AAAAMMDDHHMM.SS`
+- `-t` `[[CC]AA]MMDDhhmm[.ss]`: Define uma data e hora específicas.
+- `-r` `arquivo`: Usa os timestamps do arquivo especificado.
+
+## Criar Arquivo Vazio
+
+```bash
+touch arquivo.txt
+```
+
+## Atualizar Horário De Acesso
+
+```bash
+touch -a arquivo.txt
+```
+
+:::info
+O horário de acesso é quando um arquivo foi acessado pela última vez (lido ou
+modificado). O horário de modificação é quando um arquivo teve seu conteúdo
+modificado pela última vez. E o horário de alteração é quando um arquivo teve
+seus metadados alterados pela última vez (como permissões de arquivo ou o nome
+do arquivo).
+:::
+
+## Atualizar Horário De Modificação
+
+```bash
+touch -m arquivo.txt
+```
+
+## Não Cria o Arquivo se Inexistente
+
+```bash
+touch -c arquivo_inexistente.txt
+```
+
+:::info
+Se o arquivo existir, somente o *timestamp* será atualizado e o conteúdo do
+arquivo será mantido.
+:::
+
+## Usar Data Específica
+
+```bash
+touch -d "2023-01-01 12:34:56" arquivo.txt
+```
+
+## Usar *Timestamp* de Outro Arquivo
+
+```bash
+touch -r arquivo_referencia.txt arquivo.txt
+```
+
+## Definir Data e Hora Específicas
+
+```bash
+touch -t 202401011234.56 arquivo.txt
+```
+
+## Referências
+
+Para mais detalhes, consulte a página de manual do `touch`:
+
+```bash
+man touch
+```
+
+Ou visite a documentação online do GNU Coreutils:
+
+[GNU Coreutils - touch](https://www.gnu.org/software/coreutils/manual/html_node/touch-invocation.html)
