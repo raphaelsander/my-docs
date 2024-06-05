@@ -117,3 +117,50 @@ find / -group root
 Isso procurará por arquivos no sistema de arquivos raiz `/` que pertencem ao
 grupo "root".
 :::
+
+## Procurando Arquivos Modificados e/ou Acessados
+
+Modificados nos últimos 7 dias:
+
+```bash
+find . -mtime -7
+```
+
+Acessados nos últimos 10 minutos:
+
+```bash
+find . -amin -10
+```
+
+Modificados exatamente à 10 minutos atrás:
+
+```bash
+find . -mmin 10
+```
+
+Modificados à mais de 10 minutos:
+
+```bash
+find . -mmin +10
+```
+
+:::info
+`-amin` (access minute): Tempo de acesso em minutos.  
+`-atime` (access time): Tempo de acesso em dias.  
+`-cmin` (change minute): Tempo de alteração em minutos.  
+`-ctime` (change time): Tempo de alteração em dias.  
+`-mmin` (modify minute): Tempo de modificação em minutos.  
+`-mtime` (modify time): Tempo de modificação em dias.
+
+**Access Time (atime, amin)**: Refere-se ao último momento em que o arquivo foi lido
+ou acessado.  
+**Change Time (ctime, cmin)**: Refere-se à última vez que o inode do arquivo foi
+alterado, que pode incluir mudanças nas permissões ou no proprietário do
+arquivo, além de modificações no próprio conteúdo.  
+**Modify Time (mtime, mmin)**: Refere-se à última vez que o conteúdo do arquivo foi
+modificado.
+
+`-mtime n`: Encontra arquivos modificados exatamente `n` dias atrás.  
+`-mtime +n`: Encontra arquivos modificados há mais de `n` dias.  
+`-mtime -n`: Encontra arquivos modificados nos últimos `n` dias.
+:::
