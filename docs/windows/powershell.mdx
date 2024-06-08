@@ -1,0 +1,125 @@
+---
+id: powershell
+title: powershell
+---
+
+## Hello World
+
+```powershell
+echo "Hello World"
+```
+
+```powershell
+Write-Host "Hello World"
+```
+
+```powershell
+Write-Output "Hello World"
+```
+
+## Comentário
+
+```powershell
+# Este é um comentário
+```
+
+## Executando
+
+```powershell
+.\script.ps1
+```
+
+## Pegar Diretório Atual
+
+```powershell
+Get-Location
+```
+
+```powershell
+echo "Meu diretório atual: $(Get-Location)"
+```
+
+```powershell
+echo "Meu diretório atual: $(pwd)"
+```
+
+## Pegar Usuário Atual
+
+```powershell
+Write-Host "Meu usuário atual: $(whoami)"
+```
+
+## Definindo variável
+
+```powershell
+$ip = "192.168.0.1"
+echo "Varrendo o host: $ip"
+```
+
+## Lendo Entrada do Usuário
+
+```powershell
+$ip = Read-Host "Digite o IP"
+echo "Varrendo o host: $ip"
+```
+
+## Exemplo com Ping
+
+```powershell
+$ip = Read-Host "Digite o IP"
+echo "Efetuando Ping no host: $ip"
+ping -n 1 $ip
+```
+
+## Filtrando Output
+
+```powershell
+ping -n 1 192.168.0.1 | Select-String "bytes=32"
+```
+
+## Argumentos
+
+```powershell
+# execução: .\script.ps1 192.168.0.1
+param($ip)
+ping -n 1 $ip
+```
+
+## Condições
+
+```powershell
+param($ip)
+if (!$ip){
+    echo "Exemplo de uso: .\script.ps1 192.168.0.1"
+} else {
+    ping -n 1 $ip
+}
+```
+
+```powershell
+$idade = Read-Host "Qual a idade?"
+if ($idade -ge "18"){
+    echo "Pode dirigir"
+} else {
+    echo "Não pode dirigir"
+}
+```
+
+## Loop de Repetição (FOR)
+
+```powershell
+foreach ($var in 1..10) {
+    echo "192.168.0.$var"
+}
+```
+
+## Split de Strings
+
+```powershell
+foreach ($var in 1..10) {
+    try {
+        $resp = ping -n 1 192.168.0.$var | Select-String "bytes=32"
+        $resp.Line.split(' ')[2] -replace ":", ""
+    } catch {}
+}
+```
