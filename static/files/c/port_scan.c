@@ -7,8 +7,8 @@
 #include <arpa/inet.h>
 
 int main(int argc, char *argv[]) {
-    int socket_fd;
-    int connection_status;
+    int sockfd;
+    int connection;
     
     int port;
     int start_port = 0;
@@ -24,17 +24,23 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in target_addr;
 
     for(int port=start_port; port < end_port; port++){
-        socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+        sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
+        if (sockfd < 0) {
+            perror("socket");
+            return 1;
+        }
+        
         target_addr.sin_family = AF_INET;
         target_addr.sin_port = htons(port);
         target_addr.sin_addr.s_addr = inet_addr(target_ip);
 
-        connection_status = connect(socket_fd, (struct sockaddr *)&target_addr, sizeof(target_addr));
+        connection = connect(sockfd, (struct sockaddr *)&target_addr, sizeof(target_addr));
 
-        if(connection_status == 0){
+        if(connection == 0){
             printf("port TCP/%i open\n", port);
-            close(socket_fd);
-            close(connection_status);
+            close(sockfd);
+            close(connection);
         }
     }
 
