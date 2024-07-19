@@ -1,0 +1,45 @@
+---
+id: whois
+title: whois
+---
+
+Whois é um protocolo de consulta utilizado para obter informações sobre a
+propriedade e os detalhes de registro de um domínio ou endereço IP.
+
+---
+
+## Cliente Whois
+
+A maioria das distribuições Linux inclui um cliente whois por padrão.
+
+## Utilização do Comando Whois
+
+Para realizar uma consulta whois para um domínio específico, utilize o seguinte
+comando:
+
+```bash
+whois site.com.br
+```
+
+## Consulta em um Servidor Específico
+
+Para consultar informações sobre um domínio em um servidor específico, utilize a
+opção `-h` para especificar o servidor:
+
+```bash
+whois desec.com.br -h whois.registro.br
+```
+
+:::info
+É necessário que a autoridade do servidor especificado tenha jurisdição sobre o
+domínio consultado. Por exemplo, não é possível realizar uma pesquisa whois de
+um domínio brasileiro no servidor de um órgão no Japão.
+:::
+
+## Referências
+
+- [IANA](https://www.iana.org) - Autoridade máxima na organização e atribuição
+de endereços IP.
+- [Root Servers](https://www.iana.org/domains/root/servers)
+- [RIRs](https://www.iana.org/numbers)
+- [Whois IANA](https://whois.iana.org)
