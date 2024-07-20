@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
     int end_port = 65535;
     
     if(argc <= 1){
-        printf("Use: ./port_scan <IP>\n");
+        printf("Use: %s <IP>\n", argv[0]);
         return 1;
     }
 
@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 
     struct sockaddr_in target_addr;
 
-    for(int port=start_port; port < end_port; port++){
+    for (int port=start_port; port < end_port; port++) {
         sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
         if (sockfd < 0) {
