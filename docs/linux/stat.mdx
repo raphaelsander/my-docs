@@ -1,0 +1,112 @@
+---
+id: stat
+title: stat
+---
+
+O comando `stat` é utilizado para exibir informações detalhadas sobre arquivos e
+sistemas de arquivos no Linux. Ele fornece dados sobre os tempos de acesso,
+modificação, e alteração, entre outras informações úteis.
+
+---
+
+## Sintaxe
+
+```bash
+stat [OPÇÃO]... [ARQUIVO]...
+```
+
+## Opções Comuns
+
+- `-L, --dereference`: Segue links simbólicos.
+- `-f, --file-system`: Exibe informações sobre o sistema de arquivos em vez do
+arquivo.
+- `-c --format=FORMATO`: Usa um formato de saída específico.
+- `-t, --terse`: Emite a saída em um formato conciso.
+
+## Exemplos de Uso
+
+### Exibir Informações Básicas de um Arquivo
+
+```bash
+$ stat docker-entrypoint.sh
+  File: docker-entrypoint.sh
+  Size: 27              Blocks: 8          IO Block: 4096   regular file
+Device: 820h/2080d      Inode: 100213      Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/  sander)   Gid: ( 1000/  sander)
+Access: 2024-07-21 23:32:54.209379059 -0300
+Modify: 2024-05-26 12:30:51.400014066 -0300
+Change: 2024-05-26 12:30:51.400014066 -0300
+ Birth: 2024-05-26 12:30:51.400014066 -0300
+```
+
+### Exibir Informações do Sistema de Arquivos
+
+```bash
+$ stat -f docker-entrypoint.sh
+  File: "docker-entrypoint.sh"
+    ID: c82ae060ae7eb0ae Namelen: 255     Type: ext2/ext3
+Block size: 4096       Fundamental block size: 4096
+Blocks: Total: 263940717  Free: 262932636  Available: 249506768
+Inodes: Total: 67108864   Free: 66998111
+
+```
+
+### Usar um Formato de Saída Personalizado
+
+```bash
+stat -c '%n %s %y' arquivo.txt
+```
+
+### Seguir Links Simbólicos
+
+```bash
+stat -L link_simbolico
+```
+
+## Saída Padrão
+
+Ao executar `stat` em um arquivo, a saída típica inclui:
+
+- **File**: Nome do arquivo.
+- **Size**: Tamanho do arquivo em bytes.
+- **Blocks**: Número de blocos alocados.
+- **IO Block**: Tamanho do bloco de E/S.
+- **Device**: Identificador do dispositivo.
+- **Inode**: Número do inode.
+- **Links**: Número de links físicos.
+- **Access**: Permissões de acesso.
+- **Uid**: Identificador do usuário proprietário.
+- **Gid**: Identificador do grupo proprietário.
+- **Access**: Último acesso.
+- **Modify**: Última modificação.
+- **Change**: Última alteração do status.
+- **Birth**: Data de criação (se suportado).
+
+## Formatos de Saída
+
+Você pode personalizar a saída do `stat` usando a opção `--format` ou `-c`,
+utilizando as seguintes sequências de formato:
+
+- `%n`: Nome do arquivo.
+- `%s`: Tamanho do arquivo.
+- `%y`: Última modificação.
+- `%z`: Último acesso.
+- `%x`: Última mudança de status.
+- `%b`: Número de blocos alocados.
+- `%i`: Número do inode.
+
+:::info
+Existem mais opções que podem ser consultadas através do comando `stat --help`.
+:::
+
+## Referências
+
+Para mais informações sobre o comando `stat`, consulte a página de manual:
+
+```bash
+man stat
+```
+
+Outras referências:
+
+- [linuxconfig.org](https://linuxconfig.org/check-file-access-and-modification-time-in-linux)
