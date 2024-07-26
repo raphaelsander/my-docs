@@ -131,7 +131,9 @@ tcpdump -vnAr scanner.pcap port 21 | grep "pass"
 ### Filtragem e Escrita em Novo Arquivo
 
 ```bash
-tcpdump -r full_sniffer.pcap -w filtered.pcap '(host 192.168.0.200 and 192.168.0.1) and port 80'
+tcpdump -r full_sniffer.pcap \
+    -w filtered.pcap \
+    '(host 192.168.0.200 and 192.168.0.1) and port 80'
 ```
 
 ### Pesquisa por Conexões SYN ACK
@@ -167,4 +169,4 @@ oficial e recursos adicionais para explorar todo o potencial do `tcpdump`.
 
 ## Referências
 
-- [https://danielmiessler.com/study/tcpdump/]
+- [https://danielmiessler.com/study/tcpdump/](https://danielmiessler.com/study/tcpdump/)
