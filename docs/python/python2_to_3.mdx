@@ -1,0 +1,80 @@
+---
+id: python2-to-3
+title: python2-to-3
+---
+
+Sabemos que vários scripts e exploits, principalmente para exploração de
+vulnerabilidades mais antigas podem estar escritos em Python 2, porém se torna
+cada vez mais difícil a execução desses códigos legados. Uma das alternativas
+além da utilização do código legado em um container utilizando Python 2.x pode
+ser a conversão automática que pode funcionar na maiorias dos casos utilizando a
+biblioteca `2to3`.
+
+---
+
+## Uso Básico
+
+Aqui temos um exemplo de arquivo fonte Python 2.x, example.py:
+
+```python title="example.py"
+def greet(name):
+    print "Hello, {0}!".format(name)
+print "What's your name?"
+name = raw_input()
+greet(name)
+```
+
+O mesmo pode ser convertido para código Python 3.x através de `2to3` através da
+linha de comando:
+
+```bash
+2to3 example.py
+```
+
+:::info
+É impresso um diff contra o arquivo original.
+:::
+
+## Convertendo e Salvando
+
+O 2to3 também pode escrever as modificações necessárias de volta ao arquivo de
+origem. Um backup do arquivo original sempre será feito, salvo se a opção: `-n`
+for utilizada. Escrever as alterações de volta está disponível com o uso do
+sinalizador `-w`:
+
+```bash
+2to3 -w example.py
+```
+
+:::info
+Após a transformação, o arquivo example.py se parecerá com isso:
+
+```python title="example.py"
+def greet(name):
+    print("Hello, {0}!".format(name))
+print("What's your name?")
+name = input()
+greet(name)
+```
+
+:::
+
+## 2to3 Será Deprecado
+
+O módulo lib2to3 foi marcado como pendente para descontinuação no Python 3.9
+(levantando PendingDeprecationWarning na importação) e totalmente descontinuado
+no Python 3.11 (levantando DeprecationWarning). A ferramenta 2to3 faz parte
+disso. Ele será removido no Python 3.13.
+
+## Conversão Manual
+
+Em alguns casos o 2to3 não é sufiente, sendo necessário a conversão do script
+Python 2.x manualmente para a versão Python 3.x, nesse caso recorra à
+documentação oficial:
+
+[https://docs.python.org/3.8/howto/pyporting.html](https://docs.python.org/3.8/howto/pyporting.html)
+
+## Referências
+
+- [https://docs.python.org/pt-br/3/library/2to3.html](https://docs.python.org/pt-br/3/library/2to3.html)
+- [https://docs.python.org/3.8/howto/pyporting.html](https://docs.python.org/3.8/howto/pyporting.html)
