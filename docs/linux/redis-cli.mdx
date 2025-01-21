@@ -1,0 +1,87 @@
+---
+id: redis-cli
+title: redis-cli
+---
+
+O `redis-cli` é uma ferramenta de linha de comando que permite interagir
+diretamente com um servidor **Redis**. Este guia fornece instruções simples para
+instalação, conexão e execução de comandos comuns no Redis usando o `redis-cli`.
+
+## Instalação
+
+Para instalar o pacote necessário para usar o `redis-cli` em sistemas baseados
+no Debian, execute o comando abaixo:
+
+```bash
+sudo apt install redis-tools
+```
+
+## Conectando ao Servidor
+
+Use o comando abaixo para se conectar a um servidor Redis remoto:
+
+```bash
+redis-cli -h <IP>
+```
+
+:::info
+Substitua `<IP>` pelo endereço IP ou hostname do servidor Redis.
+
+Exemplo:
+
+```bash
+redis-cli -h 172.16.0.10
+```
+
+**-h**: Especifica o host (endereço IP ou nome de domínio) do servidor Redis.
+Por padrão, o Redis utiliza a porta 6379. Caso seja diferente, utilize o
+parâmetro `-p <PORT>` para informar a porta correta.
+:::
+
+## Extraindo Informações
+
+Depois de conectado, você pode obter informações detalhadas sobre o servidor
+Redis com o comando:
+
+```bash
+172.16.0.10:6379> info
+```
+
+## Selecionando Banco de Dados
+
+O Redis possui suporte para múltiplos bancos de dados (numerados de 0 a 15 por
+padrão). Para selecionar um banco de dados específico:
+
+```bash
+172.16.0.10:6379> select 0
+```
+
+:::info
+O comando `select` muda o contexto para o banco de dados especificado.
+Exemplo: `select 1` muda para o banco de dados `1`.
+:::
+
+## Listando as Chaves
+
+Para listar todas as chaves no banco de dados atual, use:
+
+```bash
+172.16.0.10:6379> keys *
+```
+
+:::warning
+Evite usar `keys *` em ambientes com muitas chaves, pois pode impactar a
+performance.
+:::
+
+## Ler Determinada Chave
+
+Para recuperar o valor associado a uma chave específica:
+
+```bash
+172.16.0.10:6379> get <key>
+```
+
+:::info
+Substitua `<key>` pelo nome da chave que você deseja consultar.
+:::
