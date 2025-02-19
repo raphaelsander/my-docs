@@ -164,3 +164,13 @@ modificado.
 `-mtime +n`: Encontra arquivos modificados há mais de `n` dias.  
 `-mtime -n`: Encontra arquivos modificados nos últimos `n` dias.
 :::
+
+## Procurando Diretórios com Permissão de Escrita
+
+Procurar um diretório com permissão de escrita é muito útil para carregar
+executáveis para fazer *troubleshooting* ou no caso de um teste de segurança
+pode ser útil para baixar ferramentas e/ou fazer o *upload* de *shells*.
+
+```bash
+find / -writable -type d 2>/dev/null
+```
