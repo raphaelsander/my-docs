@@ -81,6 +81,33 @@ const config = {
         darkTheme: darkCodeTheme,
         additionalLanguages: ['powershell']
       },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: 'JHZC50T3RC',
+  
+        // Public API key: it is safe to commit it
+        apiKey: 'ac2769eebee968516d2b8dffdca6b48f',
+  
+        indexName: 'raphaelsanderio',
+  
+        // Optional: see doc section below
+        contextualSearch: true,
+  
+        // Optional: Specify domains where the navigation should occur through
+        // window.location instead on history.push. Useful when our Algolia
+        // config crawls multiple documentation sites and we want to navigate
+        // with window.location.href to them.
+        externalUrlRegex: 'localhost|raphaelsander\\.github\\.io',
+  
+        // Optional: Algolia search parameters
+        searchParameters: {},
+  
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+  
+        // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
+        insights: false,
+      },
     }),
 };
 
