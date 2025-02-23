@@ -1,0 +1,29 @@
+---
+id: network
+title: network
+---
+
+Nessa sessão será mostrado os principais comandos para trabalhar com redes no
+sistema operacional Windows.
+
+## Netstat
+
+Para exibir todas as conexões ativas, em formato numérico, tanto as portas
+quanto os hosts, isso significa que a resolução de hostname não será efetuada e
+irá mostrar os IPs.
+
+```cmd
+netstat -n
+```
+
+Exibindo somente as conexões TCP:
+
+```cmd
+netstat -p tcp
+```
+
+Exibindo somente as conexões UDP:
+
+```cmd
+netstat -p udp
+```
