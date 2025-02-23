@@ -19,3 +19,95 @@ usuário administrador por arquivos que contenham a extensão `txt`.
 :::
 
 [Documentação da Microsoft](https://learn.microsoft.com/pt-br/windows-server/administration/windows-commands/where)
+
+## Icacls
+
+O `icacls` é uma ferramenta de linha de comando do Windows usada para exibir,
+modificar, fazer backup e restaurar as listas de controle de acesso (ACLs) de
+arquivos e pastas. Em resumo, ele permite gerenciar quem tem quais tipos de
+acesso (como leitura, gravação, execução, etc.) a um determinado objeto do
+sistema de arquivos.
+
+### Visualizar Permissão
+
+Você pode listar as permissões de um arquivo ou pasta com o comando:
+
+```cmd
+icacls "C:\Caminho\Para\ArquivoOuPasta"
+```
+
+:::info
+Isso exibirá as ACLs atuais, mostrando quais usuários ou grupos têm quais
+permissões.
+:::
+
+### Conceder Permissões
+
+Para conceder permissões a um usuário ou grupo, usa-se o parâmetro `/grant`. Por
+exemplo:
+
+```cmd
+icacls "C:\MinhaPasta" /grant "Usuario:(R,X)"
+```
+
+:::info
+Neste exemplo, o usuário "Usuario" recebe permissão de Leitura (R) e Execução
+(X).
+
+Alguns dos modificadores comuns são:
+
+- F: Controle Total (Full Control)
+- M: Modificar (Modify)
+- RX: Leitura e Execução (Read & Execute)
+- R: Leitura (Read)
+- W: Gravação (Write)
+
+Você também pode usar `/grant:r` para substituir as permissões já existentes
+para aquele usuário.
+:::
+
+### Remover Permissões
+
+Para remover as permissões de um usuário:
+
+```cmd
+icacls "C:\MinhaPasta" /remove "Usuario"
+```
+
+### Controlar a Herança de Permissões
+
+O `icacls` permite definir *flags* de herança para que as permissões se
+propaguem para subpastas e arquivos. Alguns exemplos de flags são:
+
+- (OI) – Object Inherit: Aplica a arquivos dentro da pasta.
+- (CI) – Container Inherit: Aplica a subpastas.
+- (IO) – Inherit Only: A permissão só será aplicada aos objetos filhos, não à
+pasta atual.
+
+Exemplo para aplicar uma permissão que se herda para subpastas e arquivos:
+
+```cmd
+icacls "C:\MinhaPasta" /grant "Usuario:(OI)(CI)(R)"
+```
+
+### Fazer Backup e Restaurar ACLs
+
+Você pode salvar as configurações de permissões em um arquivo e depois
+restaurá-las, o que é útil para migrações ou backups:
+
+Salvar as ACLs:
+
+```cmd
+icacls "C:\MinhaPasta" /save acl_backup.txt /T
+```
+
+:::info
+O parâmetro `/T` indica que o comando deve ser aplicado recursivamente a todas
+as subpastas e arquivos.
+:::
+
+Restaurar as ACLs:
+
+```cmd
+icacls "C:\NovaPasta" /restore acl_backup.txt
+```
