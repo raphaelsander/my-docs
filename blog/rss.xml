@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>My-Docs Blog</title>
+        <link>https://raphaelsander.github.io/my-docs/blog</link>
+        <description>My-Docs Blog</description>
+        <lastBuildDate>Tue, 25 Feb 2025 23:57:40 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>pt-BR</language>
+        <item>
+            <title><![CDATA[GPU CUDA no WSL]]></title>
+            <link>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</link>
+            <guid>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</guid>
+            <pubDate>Tue, 25 Feb 2025 23:57:40 GMT</pubDate>
+            <description><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></description>
+            <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
+<p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
+facilitar a configuração e manutenção dos ambientes, permitindo a criação de
+snapshots antes de alterações significativas; porém, a quebra de hashes nessas
+VMs pode ser limitada pelo uso da CPU, e o aproveitamento da GPU exige
+passthrough de uma placa de vídeo adicional. Dessa forma, existem duas
+alternativas: instalar a ferramenta diretamente no sistema operacional do host
+ou utilizar o WSL com aceleração GPU CUDA em placas Nvidia, mantendo o ambiente
+de teste isolado.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="instalação">Instalação<a href="https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl#instala%C3%A7%C3%A3o" class="hash-link" aria-label="Link direto para Instalação" title="Link direto para Instalação">​</a></h2>
+<p>Esse procedimento foi testado tanto no Kali Linux quanto no Ubuntu, sendo este
+último o recomendado pela documentação da Nvidia.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sudo dpkg -i cuda-keyring_1.1-1_all.deb</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sudo apt-get update</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sudo apt-get -y install cuda-toolkit-12-8</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copiar código para a área de transferência" title="Copiar" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>atenção</div><div class="admonitionContent_BuS1"><p>O driver CUDA instalado no host do Windows será compartilhado dentro do WSL 2
+como libcuda.so, portanto, os usuários não devem instalar nenhum driver NVIDIA
+GPU Linux no WSL 2, pois o CUDA Toolkit padrão vem empacotado com um driver e é
+fácil substituir o driver WSL 2 NVIDIA pela instalação padrão.</p></div></div>
+<p>Após a instalação do driver no seu WSL você será capaz de utilizar o Hashcat,
+por exemplo, com aceleração GPU CUDA:</p>
+<p><img decoding="async" loading="lazy" alt="kali_wsl_hashcat_info_devices" src="https://raphaelsander.github.io/my-docs/assets/images/kali_wsl_hashcat_info_devices-f87411c9811879b5de8940216d687fca.png" width="984" height="762" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="referências">Referências<a href="https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl#refer%C3%AAncias" class="hash-link" aria-label="Link direto para Referências" title="Link direto para Referências">​</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl" target="_blank" rel="noopener noreferrer">https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl</a></li>
+<li><a href="https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl-2" target="_blank" rel="noopener noreferrer">https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl-2</a></li>
+<li><a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=WSL-Ubuntu&amp;target_version=2.0&amp;target_type=deb_network" target="_blank" rel="noopener noreferrer">https://developer.nvidia.com/cuda-downloads?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=WSL-Ubuntu&amp;target_version=2.0&amp;target_type=deb_network</a></li>
+</ul>]]></content:encoded>
+            <category>hashcat</category>
+            <category>hash</category>
+            <category>wsl</category>
+            <category>gpu</category>
+        </item>
+    </channel>
+</rss>
