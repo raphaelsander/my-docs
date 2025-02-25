@@ -1,0 +1,52 @@
+---
+title: GPU CUDA no WSL
+description: Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.
+slug: gpu_cuda_in_wsl
+authors: raphaelsander
+tags: [hashcat, hash, wsl, gpu]
+image: /img/blog/gpu_cuda_in_wsl/wsl_plus_nvidia_cuda.png
+hide_table_of_contents: false
+---
+
+![wsl_plus_nvidia_cuda](/img/blog/gpu_cuda_in_wsl/wsl_plus_nvidia_cuda.png)
+
+Durante a execução de pentests, é comum utilizar máquinas virtuais para
+facilitar a configuração e manutenção dos ambientes, permitindo a criação de
+snapshots antes de alterações significativas; porém, a quebra de hashes nessas
+VMs pode ser limitada pelo uso da CPU, e o aproveitamento da GPU exige
+passthrough de uma placa de vídeo adicional. Dessa forma, existem duas
+alternativas: instalar a ferramenta diretamente no sistema operacional do host
+ou utilizar o WSL com aceleração GPU CUDA em placas Nvidia, mantendo o ambiente
+de teste isolado.
+
+{/* truncate */}
+
+## Instalação
+
+Esse procedimento foi testado tanto no Kali Linux quanto no Ubuntu, sendo este
+último o recomendado pela documentação da Nvidia.
+
+```bash
+wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-8
+```
+
+:::warning
+O driver CUDA instalado no host do Windows será compartilhado dentro do WSL 2
+como libcuda.so, portanto, os usuários não devem instalar nenhum driver NVIDIA
+GPU Linux no WSL 2, pois o CUDA Toolkit padrão vem empacotado com um driver e é
+fácil substituir o driver WSL 2 NVIDIA pela instalação padrão.
+:::
+
+Após a instalação do driver no seu WSL você será capaz de utilizar o Hashcat,
+por exemplo, com aceleração GPU CUDA:
+
+![kali_wsl_hashcat_info_devices](/img/blog/gpu_cuda_in_wsl/kali_wsl_hashcat_info_devices.png)
+
+## Referências
+
+- [https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl](https://learn.microsoft.com/en-us/windows/ai/directml/gpu-cuda-in-wsl)
+- [https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl-2](https://docs.nvidia.com/cuda/wsl-user-guide/index.html#getting-started-with-cuda-on-wsl-2)
+- [https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_network](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_network)
