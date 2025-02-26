@@ -4,7 +4,7 @@
         <title>My-Docs Blog</title>
         <link>https://raphaelsander.github.io/my-docs/blog</link>
         <description>My-Docs Blog</description>
-        <lastBuildDate>Tue, 25 Feb 2025 23:57:40 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 26 Feb 2025 23:17:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[GPU CUDA no WSL]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</guid>
-            <pubDate>Tue, 25 Feb 2025 23:57:40 GMT</pubDate>
+            <pubDate>Wed, 26 Feb 2025 23:17:05 GMT</pubDate>
             <description><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para

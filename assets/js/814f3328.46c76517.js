@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[7472],{5513:s=>{s.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"GPU CUDA no WSL","permalink":"/my-docs/blog/gpu_cuda_in_wsl","unlisted":false}]}')}}]);
