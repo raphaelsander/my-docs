@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_docs=self.webpackChunkmy_docs||[]).push([[6349],{4587:e=>{e.exports=JSON.parse('{"authors":[{"name":"Raphael Sander","title":"Senior DevSecOps","url":"https://github.com/raphaelsander","socials":{"github":"https://github.com/raphaelsander"},"imageURL":"https://github.com/raphaelsander.png","key":"raphaelsander","page":null,"count":2}]}')}}]);
