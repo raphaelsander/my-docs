@@ -1,0 +1,117 @@
+---
+title: Codificando Remotamente com SSH e VSCode
+description: Como codificar remotamente utilizando o VSCode via SSH.
+slug: remote_code_vscode
+authors: raphaelsander
+tags: [vscode, ide, ssh]
+hide_table_of_contents: false
+---
+
+É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
+devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
+mesmo tempo preferirmos a interface mais amigável e aplicativos corporativos
+nativos do Windows. Porém, compartilhar arquivos entre esses sistemas via SMB ou
+NFS frequentemente traz problemas como diferenças de fim de linha (CRLF vs. LF)
+e permissões. Neste post, apresentarei uma solução eficiente utilizando a
+extensão de desenvolvimento remoto por SSH no VSCode, permitindo editar
+confortavelmente no Windows, enquanto builds, testes e commits permanecem no
+Linux.
+
+<!-- markdownlint-disable MD037 -->
+{/* truncate */}
+<!-- markdownlint-enable MD037 -->
+
+## Criando Chave SSH
+
+Primeiro passo é a criação da chave SSH caso não tenha uma em seu Windows,
+porque é muito mais conveniente e seguro o uso da chave assimétrica do que de
+senha.
+
+```cmd
+ssh-keygen
+```
+
+![ssh-keygen](/img/blog/remote_code_vscode/ssh-keygen.png)
+
+:::info
+
+1. Diretório onde deve ser criado a chave privada e pública do SSH.
+2. Senha para fazer uso da chave SSH.
+3. Confirmação da senha.
+
+Recomendo usar o diretório padrão e não definir senha.
+:::
+
+## Copiando a Chave Pública SSH para o Linux
+
+Para copiar a chave pública via Linux ou WSL é bem simples:
+
+```bash
+ssh-copy-id <user>@<hostname or ip>
+# Exemplo: ssh-copy-id kali@10.0.2.15
+```
+
+Porém o comando `ssh-copy-id` não está disponível no Windows, mas existe um
+solução de contorno:
+
+```cmd
+type "<diretório_public_key>" | ^
+ssh <user>@<host ou IP> "cat >> .ssh/authorized_keys && chmod 600 .ssh/authorized_keys"
+```
+
+Exemplo:
+
+```cmd
+type "C:\Users\rapha\.ssh\id_ed25519.pub" | ^
+ssh kali@192.168.0.118 "cat >> .ssh/authorized_keys && chmod 600 .ssh/authorized_keys"
+```
+
+Agora você será capaz de fazer o acesso SSH ao seu ambiente Linux sem a
+necessidade de informar a senha à todo momento.
+
+## Conectando o VSCode
+
+Com o seu VSCode aberto va até a área de conexão remota, na parte inferior
+esquerda:
+
+![remote_vscode](/img/blog/remote_code_vscode/remote_vscode.png)
+
+No menu que abrir, clique na opção `Connect to Host...`:
+
+![connect_to_host](/img/blog/remote_code_vscode/connect_to_host.png)
+
+Clique em `Add New SSH Host`:
+
+![add_new_ssh_host](/img/blog/remote_code_vscode/add_new_ssh_host.png)
+
+Digite o comando SSH que será utilizado para fazer a conexão:
+
+![configure_host](/img/blog/remote_code_vscode/configure_host.png)
+
+Selecione onde deseja salvar a configuração desse host, eu costumo utilizar a
+primeira opção onde fica as minhas chaves SSH:
+
+![config](/img/blog/remote_code_vscode/config.png)
+
+Após configurado, irá aparecer uma tela do lado inferior direito para se
+conectar ou então você pode abrir novamente o `Connect to Host...` e o seu host
+estará na lista:
+
+![host_list](/img/blog/remote_code_vscode/host_list.png)
+
+Clicando no host para efetuar a conexão, na primeira vez irá perguntar qual o
+sistema operacional, no nosso caso é a opção Linux:
+
+![os](/img/blog/remote_code_vscode/os.png)
+
+Após o VSCode efetuar a instalação do server no seu host remoto a conexão será
+estabelecida e aparecerá no canto inferior esquerdo:
+
+![connected](/img/blog/remote_code_vscode/connected.png)
+
+Agora basta abrir qualquer projeto do seu host remoto e aproveitar:
+
+![projects](/img/blog/remote_code_vscode/projects.png)
+
+Outro ponto que me agrada é que quando abrimos o terminal do VSCode com a
+conexão remota ativa, o terminal do Linux fica disponível diretamente.
