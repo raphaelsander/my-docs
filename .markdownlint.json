@@ -1,6 +1,15 @@
 {
   "MD033": {
-    "allowed_elements": ["table", "thead", "tr", "th", "tbody", "td", "a"]
+    "allowed_elements": [
+      "table",
+      "thead",
+      "tr",
+      "th",
+      "tbody",
+      "td",
+      "a",
+      "code"
+    ]
   },
   "MD013": {
     "line_length": 80,
