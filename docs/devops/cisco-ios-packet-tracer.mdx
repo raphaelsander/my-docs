@@ -1,0 +1,375 @@
+---
+id: cisco-packet-tracer
+title: cisco-packet-tracer
+---
+
+Guia Rápido de Comandos — Cisco IOS (Packet Tracer)
+
+Este guia organiza e explica os comandos mais usados em **roteadores** e
+**switches** no Cisco IOS via emulador Cisco Packet Tracer, acrescentando boas
+práticas, variações e verificações úteis.
+
+---
+
+## Modos do IOS e Navegação
+
+| Prompt                  | Modo                            | Como entrar / Exemplo              |
+|-------------------------|---------------------------------|------------------------------------|
+| `Router>`               | Usuário (EXEC)                  | (padrão ao acessar o dispositivo)  |
+| `Router#`               | Privilégios (EXEC privilegiado) | `enable`                           |
+| `Router(config)#`       | Configuração global             | `configure terminal`               |
+| `Router(config-if)#`    | Configuração de interface       | `interface Gi0/0`                  |
+| `Router(config-line)#`  | Linhas (console/VTY)            | `line console 0` ou `line vty 0 4` |
+| `Router(config-subif)#` | Subinterface (802.1Q)           | `interface Fa0/1.10`               |
+
+Comandos úteis de navegação:
+
+| Atalho/Comando      | Descrição                                      | Observações                                                               |
+|---------------------|------------------------------------------------|---------------------------------------------------------------------------|
+| `exit`              | Volta um nível                                 | Sai do modo atual para o nível imediatamente anterior                     |
+| `end`               | Retorna ao EXEC privilegiado (`Router#`)       | Equivalente a sair direto para o modo privilegiado                        |
+| `CTRL+Z`            | Atalho para `end`                              | Funciona a partir de modos de configuração                                |
+| `?`                 | Ajuda contextual                               | `comando ?` lista parâmetros; `?` sozinho mostra opções do modo atual     |
+| `TAB`               | Auto-completa                                  | Completa comandos/parâmetros válidos                                      |
+| `CTRL+SHIFT+6`, `X` | Interrompe ping/telnet/traceroute em andamento | Pressione `Ctrl+Shift+6`, solte, depois `X` para abortar a operação atual |
+
+## Identidade, Qualidade de Vida e Segurança Básica
+
+```text
+configure terminal
+hostname R1
+# evita demoras em comandos digitados errado
+no ip domain-lookup
+# cifra senhas em texto claro exibidas no running-config
+service password-encryption
+# substitui 'enable password' (usa hash MD5/scrypt conforme plataforma)
+enable secret <SENHA_FORTE>
+banner motd ^C Acesso não autorizado proibido. ^C
+# opcional (ambiente simulado)
+clock timezone BRT -3
+# necessário para SSH
+ip domain-name lab.local
+# gera chave para SSH (use 2048+ se disponível)
+crypto key generate rsa modulus 1024
+line console 0
+  logging synchronous
+  password <SENHA>
+  login
+line vty 0 4
+  transport input ssh
+  login local
+username admin secret <SENHA>
+```
+
+Verificações:
+
+```text
+show running-config | section line vty
+show ip ssh
+```
+
+## Salvando, Copiando e Restaurando Configuração
+
+```text
+show running-config
+show startup-config
+# salva
+copy running-config startup-config
+# carrega (merge)
+copy startup-config running-config
+# equivalente a salvar (em muitas versões)
+write memory
+# apaga
+erase startup-config
+# reinicia (confirme quando solicitado)
+reload
+```
+
+## Interfaces, Endereçamento e Status
+
+Entrar na interface e configurá-la:
+
+```text
+interface GigabitEthernet0/0
+  description LAN Principal
+  ip address 192.168.1.1 255.255.255.0
+  no shutdown
+```
+
+Seriais (apenas lado **DCE** define clock):
+
+```text
+interface Serial0/0/0
+  ip address 10.0.0.1 255.255.255.252
+  # use apenas se a interface for DCE
+  clock rate 2000000
+  no shutdown
+```
+
+Verificações rápidas:
+
+```text
+show ip interface brief
+show interfaces description
+# mostra se é DTE ou DCE
+show controllers serial 0/0/0
+```
+
+## Roteamento
+
+### Estático
+
+```text
+ip route <REDE_DEST> <MÁSCARA> <NEXT-HOP_IP>
+ip route <REDE_DEST> <MÁSCARA> <SAÍDA_IF>
+# rota padrão
+ip route 0.0.0.0 0.0.0.0 <NEXT-HOP_IP>
+```
+
+Verificar:
+
+```text
+show ip route
+```
+
+### RIP v2 (laboratórios simples)
+
+```text
+router rip
+  version 2
+  no auto-summary
+  network 192.168.0.0
+```
+
+### OSPF (comum em labs maiores)
+
+```text
+router ospf 1
+  router-id 1.1.1.1
+  network 192.168.1.0 0.0.0.255 area 0
+  passive-interface default
+  # habilite onde há vizinho OSPF
+  no passive-interface GigabitEthernet0/0
+```
+
+Verificações:
+
+```text
+show ip protocols
+show ip route ospf
+show ip ospf neighbor
+```
+
+## VLANs, Trunking e Inter-VLAN Routing
+
+### Em **Switch L2**
+
+Criar VLANs e atribuir portas de acesso:
+
+```text
+vlan 10
+  name USERS
+vlan 20
+  name SERVERS
+interface Fa0/3
+  switchport mode access
+  switchport access vlan 10
+interface Fa0/4
+  switchport mode access
+  switchport access vlan 20
+```
+
+Configurar trunk 802.1Q:
+
+```text
+interface Fa0/5
+  # em modelos que exigem
+  switchport trunk encapsulation dot1q
+  switchport mode trunk
+  switchport trunk allowed vlan 10,20
+  # opcional (atenção a VLAN nativa)
+  switchport trunk native vlan 99
+```
+
+Verificações:
+
+```text
+show vlan brief
+show interfaces trunk
+```
+
+### Router-on-a-Stick (Inter-VLAN em **Router**)
+
+```text
+interface Fa0/1.10
+  encapsulation dot1Q 10
+  ip address 172.17.10.1 255.255.255.0
+interface Fa0/1.20
+  encapsulation dot1Q 20
+  ip address 172.17.20.1 255.255.255.0
+  no shutdown
+```
+
+Teste de conectividade entre VLANs após criar rotas/padrão adequadas.
+
+## DHCP no Roteador
+
+Reservar endereços (excluídos do pool):
+
+```text
+ip dhcp excluded-address 192.168.1.1 192.168.1.50
+ip dhcp excluded-address 192.168.1.100
+```
+
+Criar pool:
+
+```text
+ip dhcp pool LAN10
+  network 192.168.1.0 255.255.255.0
+  default-router 192.168.1.1
+  dns-server 198.0.0.2
+  # opcional
+  domain-name lab.local
+```
+
+Verificação:
+
+```text
+show ip dhcp binding
+show ip dhcp pool
+```
+
+## NAT/PAT (Acesso à Internet Simulada)
+
+### PAT (sobrecarga) — caso mais comum
+
+```text
+access-list 1 permit 192.168.1.0 0.0.0.255
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+interface Gi0/0
+  ip nat inside
+interface Gi0/1
+  ip nat outside
+```
+
+Verificar:
+
+```text
+show ip nat translations
+show ip nat statistics
+```
+
+---
+
+## Listas de Controle de Acesso (ACLs)
+
+### Padrão (filtra apenas origem)
+
+```text
+access-list 1 deny   192.168.10.5 0.0.0.0
+access-list 1 permit any
+interface GigabitEthernet0/0
+  ip access-group 1 out
+```
+
+### Estendida (filtra origem/destino/protocolo/porta)
+
+```text
+ip access-list extended BLOQUEIOS
+  # bloqueia Telnet saindo
+  deny tcp 192.168.10.0 0.0.0.255 any eq 23
+  permit ip any any
+interface Gi0/0
+  ip access-group BLOQUEIOS in
+```
+
+Dicas:
+
+- **Ordem importa** (primeira correspondência vence).
+- Use `remark` para documentar:
+
+  ```text
+  ip access-list extended BLOQUEIOS
+    remark Bloqueia Telnet da LAN10 para qualquer destino
+  ```
+
+- Valide com:
+
+  ```text
+  show access-lists
+  ```
+
+## Comandos de Diagnóstico
+
+```text
+ping <IP>
+traceroute <IP>
+# descobre vizinhos Cisco (no Packet Tracer funciona bem)
+show cdp neighbors detail
+show arp
+show ip interface <IF>
+# em switches
+show interfaces status
+show ip route
+# use com parcimônia; desligue com: undebug all
+debug ip rip | debug ip ospf adj
+```
+
+## Recursos Úteis em Switches
+
+### Port-Security (controle de MACs)
+
+```text
+interface Fa0/3
+  switchport mode access
+  switchport access vlan 10
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security violation restrict
+  switchport port-security mac-address sticky
+```
+
+Verificação:
+
+```text
+show port-security interface Fa0/3
+```
+
+### Spanning-Tree (noções)
+
+```text
+spanning-tree mode pvst
+spanning-tree vlan 10,20 priority 4096
+# em portas de acesso, não use em trunks
+spanning-tree portfast
+# protege contra loops acidentais
+spanning-tree bpduguard enable
+```
+
+Verificação:
+
+```text
+show spanning-tree vlan 10
+```
+
+## Boas Práticas Finais para Labs
+
+- Nomeie dispositivos e interfaces com `description`.
+- Salve com frequência (`copy run start`).
+- Teste cada etapa: `show ip int brief`, `show vlan`, `show ip route`.
+- Documente ACLs com `remark` e mantenha o mínimo necessário.
+- Em seriais, lembre-se: **clock rate** apenas no lado **DCE**.
+- Para SSH, crie **`username`** local e gere **RSA**; desative Telnet
+(`transport input ssh`).
+
+## Tabela de Referência Rápida
+
+| Comando                   | O que mostra / faz                           | Onde usar / Notas                                               |
+|---------------------------|----------------------------------------------|-----------------------------------------------------------------|
+| `show ip interface brief` | Status das interfaces e endereços IP         | Roteadores e switches L3 (SVI). Ótimo para checagem rápida      |
+| `show ip route`           | Tabela de rotas (C, S, O, R, …)              | Roteadores e switches multilayer                                |
+| `show interfaces trunk`   | Trunks 802.1Q ativos e VLANs permitidas      | **Somente switches**                                            |
+| `show vlan brief`         | VLANs existentes e portas em access          | **Somente switches L2**                                         |
+| `show ip dhcp binding`    | Concessões DHCP (IPs entregues aos clientes) | Dispositivo com serviço DHCP (roteador ou switch L3 compatível) |
+| `show access-lists`       | ACLs configuradas e contadores               | Roteadores e switches que suportam ACL                          |
+| `copy run start`          | Salva a configuração em NVRAM                | Alias de `copy running-config startup-config`                   |
