@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://raphaelsander.github.io/my-docs/blog</id>
     <title>My-Docs Blog</title>
-    <updated>2025-08-14T21:28:53.000Z</updated>
+    <updated>2025-11-01T23:41:12.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://raphaelsander.github.io/my-docs/blog"/>
     <subtitle>My-Docs Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Extraindo Usuários do Gitea]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration"/>
-        <updated>2025-08-14T21:28:53.000Z</updated>
+        <updated>2025-11-01T23:41:12.000Z</updated>
         <summary type="html"><![CDATA[Como extrair usuários do Gitea DB e como quebrá-los via brute force.]]></summary>
         <content type="html"><![CDATA[<p>Quando ganhamos acesso a um <em>host</em> porém precisamos escalar privilégios e
 conseguir acesso à autenticação de usuário com permissões mais elevadas pode ser
@@ -81,7 +81,7 @@ definido.</p>
         <title type="html"><![CDATA[GPU CUDA no WSL]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl"/>
-        <updated>2025-08-14T21:28:53.000Z</updated>
+        <updated>2025-11-01T23:41:12.000Z</updated>
         <summary type="html"><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></summary>
         <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
@@ -123,7 +123,7 @@ por exemplo, com aceleração GPU CUDA:</p>
         <title type="html"><![CDATA[Codificando Remotamente com SSH e VSCode]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/remote_code_vscode"/>
-        <updated>2025-08-14T21:28:53.000Z</updated>
+        <updated>2025-11-01T23:41:12.000Z</updated>
         <summary type="html"><![CDATA[Como codificar remotamente utilizando o VSCode via SSH.]]></summary>
         <content type="html"><![CDATA[<p>É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
 devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
