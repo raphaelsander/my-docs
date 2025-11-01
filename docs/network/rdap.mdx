@@ -1,0 +1,70 @@
+---
+id: rdap
+title: rdap
+---
+
+O RDAP (*Registration Data Access Protocol*) é um protocolo moderno para
+consulta de informações de registro de recursos da internet, como nomes de
+domínio, endereços IP e sistemas autônomos (ASNs).
+
+Ele foi criado para substituir o WHOIS, que é antigo, não padronizado e pouco
+seguro.
+
+## Objetivo
+
+Fornecer informações sobre quem administra um determinado domínio, bloco de IP
+ou ASN e permitir consultas padronizadas e estruturadas em formato JSON,
+facilitando o uso por aplicações e APIs.
+
+## Principais Diferenças em Relação ao WHOIS
+
+| Aspecto                           | WHOIS                        | RDAP                                                               |
+|:----------------------------------|:-----------------------------|:-------------------------------------------------------------------|
+| Formato                           | Texto livre, sem padrão fixo | JSON com estrutura definida por RFCs                               |
+| Transporte                        | Geralmente TCP em porta 43   | HTTPS (porta 443)                                                  |
+| Internacionalização               | Limitada                     | Suporte a Unicode                                                  |
+| Autenticação e controle de acesso | Inexistente                  | Suporta autenticação, ACLs e respostas diferenciadas               |
+| Descoberta de servidor            | Manual e difícil             | Possui “bootstrapping” para redirecionar consultas automaticamente |
+
+## Como Funciona
+
+<!-- markdownlint-disable MD034 -->
+Você envia uma requisição HTTPS para um endpoint RDAP (por exemplo,
+https://rdap.verisign.com/com/v1/domain/example.com) e servidor retorna um JSON
+com informações como:
+<!-- markdownlint-enable MD034 -->
+
+- Registrante (titular do domínio ou bloco de IP);
+- Datas de criação e expiração;
+- Servidores DNS;
+- Contatos administrativos e técnicos (quando permitido).
+
+## RFCs Principais
+
+- RFC 7480 – Requisitos de transporte via HTTP(S)
+- RFC 7481 – Segurança e autenticação
+- RFC 7482 – Especificação de consulta
+- RFC 7483 – Modelo de resposta em JSON
+- RFC 7484 – Descoberta de servidores (bootstrapping)
+
+## Casos de Uso
+
+- Ferramentas de whois modernos (ex.: whois com suporte a RDAP).
+- Sistemas de abuse management para combater spam, phishing e ataques.
+- Integração em painéis de controle, monitoramento de domínios, e serviços de
+cyber threat intelligence.
+
+## Exemplos de Endpoints
+
+<!-- markdownlint-disable MD034 -->
+Domínios genéricos (gTLDs): https://rdap.verisign.com/com/v1/domain/example.com
+
+IPs e ASNs: https://rdap.arin.net/registry/ip/8.8.8.8 ou https://rdap.lacnic.net/rdap/ip/200.160.0.8
+<!-- markdownlint-enable MD034 -->
+
+## Conclusão
+
+Em resumo, o RDAP traz padronização, segurança e automação ao acesso a dados de
+registro, sendo o sucessor natural e recomendado do WHOIS.
+
+[client.rdap.org](https://client.rdap.org)
