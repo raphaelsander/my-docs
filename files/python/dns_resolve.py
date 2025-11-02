@@ -13,5 +13,5 @@ if len(sys.argv) != 2:
 try:
     ip = socket.gethostbyname(sys.argv[1])
     print(ip)
-except:
+except socket.gaierror:
     print("Hostname unreachable")
