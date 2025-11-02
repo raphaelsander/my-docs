@@ -28,5 +28,5 @@ for port in range(start_port, end_port + 1):
     try:
         sock.connect((ip, port))
         print(f"Port {port} open")
-    except:
+    except socket.error:
         pass
