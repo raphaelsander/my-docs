@@ -1,0 +1,104 @@
+---
+id: host
+title: host
+---
+
+O `host` é uma ferramenta simples para consultas DNS. É útil durante a **fase de
+reconhecimento** para descobrir endereços IP, registros de e‑mail, servidores de
+nome e, ocasionalmente, obter transferências de zone mal configuradas.
+
+---
+
+## Instalação
+
+Debian/Ubuntu:
+
+```bash
+sudo apt install bind9-dnsutils  # inclui host, dig, nslookup
+```
+
+## Uso Simples
+
+Consultar o(s) registro(s) A (endereços IPv4) do domínio:
+
+```bash
+$ host -t A alvo.com
+alvo.com has address 203.0.113.42
+```
+
+:::info
+domínio pode ter múltiplos registros A (round-robin / multiple frontends).
+:::
+
+Listar os registros MX — servidores responsáveis por receber e‑mail para o
+domínio:
+
+```bash
+$ host -t mx alvo.com
+alvo.com mail is handled by 10 mx1.alvo.com.
+```
+
+:::info
+Com essa enumeração podemos identificar servidores de e‑mail, possíveis pontos
+para engenharia social, usernames discovery (via VRFY/EXPN quando habilitado) ou
+serviços expostos (SMTP, webmail).
+O número antes do hostname (10) é a prioridade MX.
+:::
+
+Retorna os nameservers autoritativos do domínio:
+
+```bash
+$ host -t ns alvo.com
+alvo.com name server ns1.alvo.com.
+```
+
+:::info
+Os nameservers enumerados podem ser utilizados para consultas diretas ou
+tentativas de zone transfer.
+:::
+
+## Zone Transfer (Transferência de Zona)
+
+A transferência de zona DNS é uma operação que replica o conteúdo de uma zona
+DNS (mapeamento de nomes de domínio para IPs) de um servidor primário para
+servidores secundários, garantindo redundância e consistência de dados, usando
+geralmente o protocolo TCP para um processo cliente-servidor AXFR (transferência
+completa) ou IXFR (transferência incremental). O problema é que se mal
+configurado o serviço de DNS, ele pode aceitar transferência de qualquer
+endereço, vazazando todo o mapa de hosts do domínio.
+
+Tentativa de transferência de zona:
+
+```bash
+host -l <hostname> <nameserver>
+host -l alvo.com ns2.alvo.com
+host -l -a alvo.com ns2.alvo.com # opção -a traz informações adicionais
+```
+
+:::info
+Em um Pentest, todos os nameservers devem ser validados.
+Se o nameserver aceitar AXFR, você verá todos os registros (A, MX, CNAME, PTR,
+etc.). Isso é uma descoberta de alto valor para pentest: lista de hosts,
+subdomínios e IPs.
+
+Consultas repetidas e transferências de zona podem gerar alarmes no IDS/IPS.
+:::
+
+## PTR - DNS Reverso
+
+Com a consulta do DNS reverso, podemos descobrir nomes de host relacionados a um
+IP (útil para correlação entre serviços e hosts).
+
+```bash
+$ host 203.0.113.42
+42.113.0.203.in-addr.arpa domain name pointer host.example.com.
+```
+
+:::info
+Algumas versões o comando pode ser diferente:
+
+```bash
+host -t ptr <IP>
+```
+
+:::
