@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://raphaelsander.github.io/my-docs/blog</id>
     <title>My-Docs Blog</title>
-    <updated>2025-11-03T23:50:22.000Z</updated>
+    <updated>2025-12-21T21:59:23.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://raphaelsander.github.io/my-docs/blog"/>
     <subtitle>My-Docs Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Extraindo Usuários do Gitea]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration"/>
-        <updated>2025-11-03T23:50:22.000Z</updated>
+        <updated>2025-12-21T21:59:23.000Z</updated>
         <summary type="html"><![CDATA[Como extrair usuários do Gitea DB e como quebrá-los via brute force.]]></summary>
         <content type="html"><![CDATA[<p>Quando ganhamos acesso a um <em>host</em> porém precisamos escalar privilégios e
 conseguir acesso à autenticação de usuário com permissões mais elevadas pode ser
@@ -81,7 +81,7 @@ definido.</p>
         <title type="html"><![CDATA[GPU CUDA no WSL]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl"/>
-        <updated>2025-11-03T23:50:22.000Z</updated>
+        <updated>2025-12-21T21:59:23.000Z</updated>
         <summary type="html"><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></summary>
         <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
@@ -120,10 +120,81 @@ por exemplo, com aceleração GPU CUDA:</p>
         <category label="gpu" term="gpu"/>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Pentest Flow]]></title>
+        <id>https://raphaelsander.github.io/my-docs/blog/pentest_flow</id>
+        <link href="https://raphaelsander.github.io/my-docs/blog/pentest_flow"/>
+        <updated>2025-12-21T21:59:23.000Z</updated>
+        <summary type="html"><![CDATA[Check list de tudo que deveria ser validado em um Pentest.]]></summary>
+        <content type="html"><![CDATA[<p>Durante a execução do Pentest é comum se perder ou esquecer de determinada
+enumeração ou teste, o que pode impactar no resultado final, já que qualquer
+falha é bem vinda no relatório final. Esse post tem a a finalidade de definir um
+check list de falhas para testar e tools para executar e será atualizado toda
+vez que algo novo ou melhorias surgirem.</p>
+<!-- -->
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="information-gathering">Information Gathering<a href="https://raphaelsander.github.io/my-docs/blog/pentest_flow#information-gathering" class="hash-link" aria-label="Link direto para Information Gathering" title="Link direto para Information Gathering">​</a></h2>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Whois/RDAP (online)<!-- -->
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de nameservers</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de blocos de IP</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->DNS Lookup (online)<!-- -->
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de blocos de IP</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Verificação do SPF</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração do servidor de e-mail</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://www.shodan.io/" target="_blank" rel="noopener noreferrer">Shodan</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de subdomínios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de blocos de IP</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificação de serviços e possíveis vulnerabilidades</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://web.archive.org/" target="_blank" rel="noopener noreferrer">Wayback Machine</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de subdomínios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Reconhecimento de URLs</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://intelx.io/" target="_blank" rel="noopener noreferrer">IntelX</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificação de vazamentos</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de e-mails</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de tecnologias utilizadas</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://www.exploit-db.com/google-hacking-database" target="_blank" rel="noopener noreferrer">Google Hacking</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de subdomínios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de arquivos e diretórios sensíveis</li>
+</ul>
+</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <a href="https://emkei.cz/" target="_blank" rel="noopener noreferrer">emkei.cz</a>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Teste de e-mail <em>spoofing</em></li>
+</ul>
+</li>
+</ul>]]></content>
+        <author>
+            <name>Raphael Sander</name>
+            <uri>https://github.com/raphaelsander</uri>
+        </author>
+        <category label="tools" term="tools"/>
+        <category label="pentest" term="pentest"/>
+        <category label="flow" term="flow"/>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Codificando Remotamente com SSH e VSCode]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/remote_code_vscode"/>
-        <updated>2025-11-03T23:50:22.000Z</updated>
+        <updated>2025-12-21T21:59:23.000Z</updated>
         <summary type="html"><![CDATA[Como codificar remotamente utilizando o VSCode via SSH.]]></summary>
         <content type="html"><![CDATA[<p>É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
 devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
