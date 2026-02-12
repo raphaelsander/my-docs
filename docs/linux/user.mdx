@@ -16,6 +16,61 @@ cat /etc/passwd
 Este arquivo contém informações sobre todos os usuários registrados no sistema,
 incluindo seus IDs de usuário (UIDs), grupos primários, diretórios home e
 informações de shell.
+
+No passado, também era utilizado para salvar as senhas.
+
+Atualmente as senhas dos usuários ficam em formato de hash no arquivo
+`/etc/shadow` e somente os usuários com direito de `sudoers` pode visualiza-lo.
+:::
+
+## Estrutura do Arquivo `/etc/shadow`
+
+O arquivo `/etc/shadow` é utilizando para armazenar as informações sensíveis dos
+usuários, já que somente usuários com permissões de `sudoers` podem
+visualiza-lo. Dentre as informações sensíveis o arquivo `shadow` armazena a
+senha do usuário em formato de *hash*. No exemplo abaixo, a maioria dos usuário
+não possuem senha, porém aqueles com maiores informações, como exemplo o usuário
+`kali` possui.
+
+```hash
+uuidd:*:19683:0:99999:7:::
+tcpdump:*:19683:0:99999:7:::
+kali:$y$j9T$P4e5rDVu4IoZc9phsGnXr0$Bug5WTkDSra/pzgNbm7aFWTJAa1RSO5iI5msAaADYCC:19996:0:99999:7:30:3403031096:
+mysql:!:19931:0:99999:7:::
+postgres:*:19931:0:99999:7:::
+sshd:*:20015:0:99999:7:::
+```
+
+Fazendo a decomposição dessa linha em várias partes temos:
+
+`kali`: ID do usuário.  
+`$y$j9T$P4e5rDVu4IoZc9phsGnXr0$Bug5WTkDSra/pzgNbm7aFWTJAa1RSO5iI5msAaADYCC`:
+Informações do algoritmo *hash* e o próprio *hash*.  
+`19996`": Última alteração de senha em Unix time.  
+`0`: O número mínimo de dias necessários entre as alterações de senha.  
+`99999`: O número máximo de dias em que a senha é válida.  
+`7`: O número de dias antes da expiração da senha em que o usuário é avisado de
+que sua senha deve ser alterada.  
+`30`: O número de dias após a expiração da senha em que a conta é desativada.  
+`3403031096`: A data de expiração da conta em Unix time.
+
+No fragmento que representa as informações do algorítmo *hash* e o próprio
+*hash*, podemos identificar qual o algoritmo *hash* seguindo a tabela abaixo:
+
+| ID do Hash | Nome do Hash |
+|:-----------|:-------------|
+| $1         | MD5          |
+| $2         | Blowfish     |
+| $2a        | eksblowfish  |
+| $5         | SHA-256      |
+| $6         | SHA-512      |
+| $y         | yescrypt     |
+
+:::info
+Maiores detalhes com o comando `man crypt`.
+
+Para verificar como efetuar a quebra dos Hashs acima confira a documentação do
+[Hashcat](/my-docs/docs/pentest/hashcat) ou [John the Ripper](/my-docs/docs/pentest/john).
 :::
 
 ## Adicionar um Novo Usuário
