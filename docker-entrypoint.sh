@@ -2,5 +2,5 @@
 
 git config --global --add safe.directory "${PWD}"
 
-yarn
-yarn start
+npm install
+npm run start

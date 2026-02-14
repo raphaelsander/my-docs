@@ -17,11 +17,11 @@ Check out the official GitHub Pages link of the project:
 ### Locally
 
 ```bash
-yarn
-yarn start
+npm install
+npm run start
 ```
 
-> Needs `node` >=18.0 and `yarn` installed.
+> Needs `nodejs` >=18.0 and `npm` installed.
 
 ### Docker
 
