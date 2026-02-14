@@ -3,6 +3,7 @@ services:
     image: node
     entrypoint: sh docker-entrypoint.sh
     restart: always
+    user: ${UID:-1000}:${GID:-1000}
     ports:
       - ${PORT:-3000}:${PORT:-3000}
     environment:
