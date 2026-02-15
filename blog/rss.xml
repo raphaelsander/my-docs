@@ -4,7 +4,7 @@
         <title>My-Docs Blog</title>
         <link>https://raphaelsander.github.io/my-docs/blog</link>
         <description>My-Docs Blog</description>
-        <lastBuildDate>Sat, 14 Feb 2026 20:44:02 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 15 Feb 2026 19:05:19 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[Extraindo Usuários do Gitea]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</guid>
-            <pubDate>Sat, 14 Feb 2026 20:44:02 GMT</pubDate>
+            <pubDate>Sun, 15 Feb 2026 19:05:19 GMT</pubDate>
             <description><![CDATA[Como extrair usuários do Gitea DB e como quebrá-los via brute force.]]></description>
             <content:encoded><![CDATA[<p>Quando ganhamos acesso a um <em>host</em> porém precisamos escalar privilégios e
 conseguir acesso à autenticação de usuário com permissões mais elevadas pode ser
@@ -78,7 +78,7 @@ definido.</p>
             <title><![CDATA[GPU CUDA no WSL]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</guid>
-            <pubDate>Sat, 14 Feb 2026 20:44:02 GMT</pubDate>
+            <pubDate>Sun, 15 Feb 2026 19:05:19 GMT</pubDate>
             <description><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
@@ -116,7 +116,7 @@ por exemplo, com aceleração GPU CUDA:</p>
             <title><![CDATA[Pentest Flow]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/pentest_flow</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/pentest_flow</guid>
-            <pubDate>Sat, 14 Feb 2026 20:44:02 GMT</pubDate>
+            <pubDate>Sun, 15 Feb 2026 19:05:19 GMT</pubDate>
             <description><![CDATA[Check list de tudo que deveria ser validado em um Pentest.]]></description>
             <content:encoded><![CDATA[<p>Durante a execução do Pentest é comum se perder ou esquecer de determinada
 enumeração ou teste, o que pode impactar no resultado final, já que qualquer
@@ -183,7 +183,7 @@ vez que algo novo ou melhorias surgirem.</p>
             <title><![CDATA[Codificando Remotamente com SSH e VSCode]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</guid>
-            <pubDate>Sat, 14 Feb 2026 20:44:02 GMT</pubDate>
+            <pubDate>Sun, 15 Feb 2026 19:05:19 GMT</pubDate>
             <description><![CDATA[Como codificar remotamente utilizando o VSCode via SSH.]]></description>
             <content:encoded><![CDATA[<p>É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
 devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
