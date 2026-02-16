@@ -1,0 +1,187 @@
+---
+id: bgp
+title: bgp
+---
+
+O **BGP (Border Gateway Protocol)** é o principal protocolo de roteamento da
+Internet. Ele é responsável por trocar informações de rotas
+**entre Sistemas Autônomos (AS – Autonomous Systems)**.
+
+Se protocolos como **OSPF** e **RIP** são usados dentro de uma rede (IGP –
+Interior Gateway Protocol), o BGP é usado
+**entre redes diferentes (EGP – Exterior Gateway Protocol)** — principalmente
+entre provedores, grandes empresas, data centers e provedores de nuvem.
+
+---
+
+## Sistema Autônomo (AS)
+
+Um **Sistema Autônomo (AS)** é um conjunto de redes IP sob uma única
+administração técnica, identificado por um número único chamado:
+
+```none
+ASN – Autonomous System Number
+```
+
+Exemplos:
+
+* Seu ISP → possui um ASN
+* Google → AS15169
+* Cloudflare → AS13335
+
+A comunicação entre esses AS ocorre utilizando **BGP**.
+
+## Para que serve o BGP?
+
+O BGP permite:
+
+* Descobrir quais redes existem na Internet
+* Determinar o melhor caminho até um prefixo IP
+* Implementar políticas de roteamento
+* Conectar múltiplos provedores (multi-homing)
+* Garantir redundância e controle de tráfego
+
+Sem BGP, a Internet global não funcionaria.
+
+## Como o BGP funciona?
+
+O BGP é um protocolo do tipo **Path Vector**.
+
+Diferente de protocolos como OSPF, que escolhem rotas com base em custo ou
+métrica técnica, o BGP é:
+
+> **Baseado em políticas administrativas**
+
+Ele utiliza atributos para tomar decisões de roteamento.
+
+## Principais Atributos do BGP
+
+### AS-PATH
+
+Lista de AS pelos quais o prefixo passou.
+
+* Quanto menor, geralmente mais preferível
+* Previne loops
+
+Exemplo:
+
+```none
+AS 65001 → 65010 → 15169
+```
+
+### NEXT_HOP
+
+Define o próximo salto para alcançar o prefixo.
+
+### LOCAL_PREF
+
+Preferência interna dentro do AS.
+
+* Quanto maior, mais preferido
+* Controla o tráfego de saída
+
+### MED (Multi Exit Discriminator)
+
+Sugere qual link deve ser usado quando existem múltiplas conexões entre dois AS.
+
+### COMMUNITY
+
+Permite marcar rotas com “tags” para aplicação de políticas específicas.
+
+Muito utilizado por ISPs e ambientes multi-homed.
+
+## Tipos de BGP
+
+### eBGP (External BGP)
+
+Utilizado entre AS diferentes.
+
+Exemplo:
+
+```none
+Seu ASN ↔ Provedor
+```
+
+### iBGP (Internal BGP)
+
+Utilizado dentro do mesmo AS para distribuir rotas aprendidas externamente.
+
+Em redes grandes, costuma-se usar:
+
+* Route Reflectors
+* Confederations
+
+## Características Técnicas
+
+* Utiliza **TCP porta 179**
+* Sessões estabelecidas manualmente (não há auto-discovery)
+* Alta escalabilidade
+* Convergência mais lenta que IGPs
+* Baseado em troca incremental de rotas
+
+## Exemplo Prático (Multi-Homing)
+
+Cenário:
+
+* ASN próprio
+* Prefixo próprio (/24 ou maior)
+* Dois links com provedores diferentes
+
+Com BGP é possível:
+
+* Anunciar o prefixo para ambos provedores
+* Controlar por qual link o tráfego sai (LOCAL_PREF)
+* Influenciar por qual link o tráfego entra (AS-PATH prepend, communities)
+* Garantir failover automático
+
+## Problemas e Riscos
+
+* Route Leaks
+* BGP Hijacking
+* Configurações incorretas podem afetar grande parte da Internet
+* Dependência de boas práticas (RPKI, prefix filtering)
+
+## Ferramentas Públicas para Consulta BGP
+
+### [https://bgp.he.net](https://bgp.he.net)
+
+O **Hurricane Electric BGP Toolkit** permite:
+
+* Consultar ASN
+* Ver anúncios de prefixos
+* Visualizar peers
+* Analisar AS-PATH
+* Ver gráficos históricos
+* Consultar informações de RPKI
+
+Muito utilizado para troubleshooting e análise de roteamento global.
+
+### [https://bgpview.io](https://bgpview.io)
+
+O **BGPView** fornece:
+
+* Informações detalhadas sobre ASN
+* Prefixos anunciados
+* Relações de peering
+* Histórico de anúncios
+* Dados agregados de múltiplas fontes
+
+Interface mais moderna e de fácil navegação para consultas rápidas.
+
+## Resumo Técnico
+
+| Característica | BGP                      |
+| -------------- | ------------------------ |
+| Tipo           | Path Vector              |
+| Porta          | TCP 179                  |
+| Escopo         | Entre Sistemas Autônomos |
+| Baseado em     | Políticas                |
+| Escalabilidade | Internet global          |
+| Suporte a IPv6 | Sim                      |
+
+## Conclusão
+
+O BGP é o protocolo que sustenta a Internet. Ele não escolhe apenas o caminho
+"mais curto", mas sim o caminho definido por políticas administrativas,
+permitindo controle granular, redundância e engenharia de tráfego em escala
+global.
