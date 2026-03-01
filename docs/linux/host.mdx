@@ -30,6 +30,12 @@ alvo.com has address 203.0.113.42
 domínio pode ter múltiplos registros A (round-robin / multiple frontends).
 :::
 
+Consultar o(s) resgistro(s) AAAA (endereços IPv6) do domínio:
+
+```bash
+host -t AAAA alvo.com
+```
+
 Listar os registros MX — servidores responsáveis por receber e‑mail para o
 domínio:
 
@@ -55,6 +61,23 @@ alvo.com name server ns1.alvo.com.
 :::info
 Os nameservers enumerados podem ser utilizados para consultas diretas ou
 tentativas de zone transfer.
+:::
+
+Para ver as informações do sistema operacional e CPU do servidor podemos
+utilizar o tipo HINFO:
+
+```bash
+host -t hinfo alvo.com
+```
+
+:::info
+Hoje em dia o HINFO é raramente usado, porque:
+
+- Expõe informações sensíveis.
+- Facilita fingerprinting.
+- Pode ajudar em reconhecimento durante *pentests*.
+
+Por isso, a maioria dos domínios não publica HINFO.
 :::
 
 ## Zone Transfer (Transferência de Zona)
