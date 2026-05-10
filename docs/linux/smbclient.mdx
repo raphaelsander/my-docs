@@ -1,0 +1,40 @@
+---
+id: smbclient
+title: smbclient
+---
+
+O `smbclient` é um cliente que pode "conversar" com um servidor SMB/CIFS. Ele
+oferece uma interface semelhante à do programa `ftp`. As operações incluem
+coisas como obter arquivos do servidor para a máquina local, enviar arquivos da
+máquina local para o servidor, recuperar informações de diretório do servidor e
+assim por diante.
+
+[Documentação Oficial](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html)
+
+---
+
+## Listagem de diretórios
+
+```bash
+# smbclient -L //<ip> -U <usuário> -W <workgroup>
+smbclient -L //10.0.0.50 -U user -W WORKGROUP
+```
+
+## Acessando diretórios
+
+```bash
+# smbclient //<ip>/<diretório> -U <usuário> -W <workgroup>
+smbclient //10.0.0.50/ADMIN$ -U user -W WORKGROUP
+```
+
+## Teste de Conexão sem Autenticação
+
+```bash
+smbclient //10.0.0.50/share -U " "%" "
+```
+
+## Conexão com Credencial
+
+```bash
+smbclient //10.0.0.50/C$ -U "administrator"%"weekpass"
+```

@@ -1,0 +1,26 @@
+Listagem das regras
+iptables -nL
+
+Trocar a política default do firewall
+iptables -P INPUT DROP
+
+Liberando acesso TCP na porta 80
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+
+Liberando ICMP no firewall
+iptables -A INPUT -p icmp -j ACCEPT
+
+Limpar todas as regras, exceto a política default
+iptables -F
+
+Liberando determinada porta somente para um IP ou rede
+iptables -A INPUT -p tcp --dport 80 -s 192.168.0.35 -j ACCEPT
+
+Liberando ICMP, mas somente o `echo request`
+iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+
+Permitindo protocolo UDP
+iptables -A INPUT -p udp -j ACCEPT
+
+Criando regras de DROP
+iptables -A INPUT -p tcp --dport 80 -j DROP
