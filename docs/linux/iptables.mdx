@@ -1,0 +1,107 @@
+---
+id: iptables
+title: iptables
+---
+
+O `iptables` é a ferramenta de linha de comando para configurar regras de firewall
+no Linux. Ele controla o tráfego de rede permitindo ou bloqueando pacotes com base
+em cadeia (`INPUT`, `OUTPUT`, `FORWARD`), protocolo e porta.
+
+> Use sempre `sudo` ao rodar comandos do `iptables`, pois ele exige privilégios
+> de administrador.
+
+## Comandos Básicos
+
+### Listar Regras
+
+Mostrar as regras atuais em todas as cadeias. A opção `-n` evita resolução de nomes
+e `-L` lista as regras.
+
+```bash
+sudo iptables -nL
+```
+
+### Limpar Todas as Regras
+
+Remover todas as regras da tabela de filtro, mas manter as políticas padrão das
+cadeias.
+
+```bash
+sudo iptables -F
+```
+
+### Definir Política Padrão
+
+Definir a política padrão da cadeia `INPUT` como `DROP`. Isso significa que todo
+tráfego de entrada será bloqueado, a menos que uma regra explícita permita.
+
+```bash
+sudo iptables -P INPUT DROP
+```
+
+## Permitir Tráfego Específico
+
+### Liberar Acesso TCP
+
+Adicionar (`-A`) uma regra à cadeia `INPUT` que permite pacotes TCP destinados à
+porta 80.
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+```
+
+### Liberar ICMP
+
+Permitir tráfego ICMP, usado por comandos como `ping`. Isso facilita diagnóstico
+de conectividade.
+
+```bash
+sudo iptables -A INPUT -p icmp -j ACCEPT
+```
+
+### Liberar ICMP `echo-request`
+
+Permitir apenas o tipo ICMP 8, que é o `echo-request` usado por `ping`. Outros tipos
+ICMP continuam bloqueados.
+
+```bash
+sudo iptables -A INPUT -p icmp --icmp-type 8 -j ACCEPT
+```
+
+### Permitir Protocolo UDP
+
+Permitir qualquer pacote UDP de entrada, independente da porta.
+
+```bash
+sudo iptables -A INPUT -p udp -j ACCEPT
+```
+
+### Liberar Porta para Apenas IP
+
+Permitir acesso à porta 80 apenas se o pacote vier do endereço `192.168.0.35`. Isso
+é útil para restringir serviços a hosts confiáveis.
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 80 -s 192.168.0.35 -j ACCEPT
+```
+
+## Regras de Bloqueio
+
+### Bloquear Porta TCP
+
+Descartar todos os pacotes TCP destinados à porta 80. Use isso quando quiser negar
+explicitamente acesso a uma porta.
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 80 -j DROP
+```
+
+## Observações importantes
+
+- A ordem das regras importa: o `iptables` testa as regras de cima para baixo.
+- Com `-A` você adiciona regras no final da cadeia. Para inserir em uma posição
+  específica, use `-I`.
+- Depois de ajustar regras, teste cuidadosamente para não se bloquear fora da
+  máquina.
+- Em distribuições modernas, o `iptables` pode ser gerenciado também por ferramentas
+  como `ufw` ou `firewalld`, mas o `iptables` é a forma direta e básica.
