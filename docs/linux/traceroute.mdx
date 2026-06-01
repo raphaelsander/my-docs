@@ -1,0 +1,106 @@
+---
+id: traceroute
+title: traceroute
+---
+
+Programa voltado para verificar a rota tomada por um determinado pacote.
+Nem todo `traceroute` binário possui as mesmas funcionalidades.
+
+---
+
+## Instalação
+
+```bash
+sudo apt install traceroute
+sudo apt remove inetutils-traceroute
+```
+
+```bash
+$ traceroute -V
+Modern traceroute for Linux, version 2.1.0
+Copyright (c) 2016  Dmitry Butskoy,   License: GPL v2 or any later
+```
+
+## Uso Básico
+
+Uso básico do traceroute:
+
+```bash
+traceroute www.alvo.com
+```
+
+:::info
+Ele utiliza o padrão UDP.
+:::
+
+Para alterar o valor do TTL:
+
+```bash
+traceroute www.alvo.com -m 1
+```
+
+:::info
+Nesse caso haverá apenas um salto.
+:::
+
+Para ir para um salto específico:
+
+```bash
+traceroute www.alvo.com -f 8
+```
+
+Para não resolver o nome e exibir apenas o IP:
+
+```bash
+traceroute www.alvo.com -n
+```
+
+Para enviar pacotes ICMP:
+
+```bash
+traceroute www.alvo.com -I
+```
+
+Para enviar pacotes TCP:
+
+```bash
+traceroute www.alvo.com -T
+```
+
+Mostrar a AS (Autonomous System):
+
+```bash
+traceroute www.alvo.com -A
+```
+
+Utilizando UDP, padrão porta 53:
+
+```bash
+traceroute www.alvo.com -U
+```
+
+## Entendendo o Resultado
+
+```bash
+$ traceroute 8.8.8.8
+traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
+ 1  mars.mshome.net (172.17.96.1)  0.534 ms  0.509 ms  0.501 ms
+ 2  192.168.0.1 (192.168.0.1)  2.902 ms  2.890 ms  3.091 ms
+ 3  * * *
+ 4  * 138.94.52.245 (138.94.52.245)  5.356 ms *
+ 5  * * *
+ 6  * 186-225-221-241.fastnet.net.br (186.225.221.241)  7.202 ms  6.970 ms
+ 7  corp-14-041.fastnet.net.br (170.233.14.41)  11.278 ms  12.299 ms  12.265 ms
+ 8  72.14.196.54 (72.14.196.54)  18.448 ms * *
+ 9  209.85.244.163 (209.85.244.163)  7.688 ms 192.178.84.13 (192.178.84.13)  22.955 ms  24.551 ms
+10  192.178.110.203 (192.178.110.203)  24.655 ms 192.178.110.171 (192.178.110.171)  8.463 ms 192.178.110.179 (192.178.110.179)  20.414 ms
+11  dns.google (8.8.8.8)  7.541 ms  7.695 ms  9.011 ms
+```
+
+- Por padrão sempre são enviados 3 pacotes e podemos ver a latência de cada um com
+  sucesso em cada hop.
+- No *hop* 3 e 5, falhou todas as tentativas, podendo ser timeout ou firewall bloqueando.
+  Para validar se é firewall mude o protocolo entre UDP, TCP (teste mais de uma porta) e ICMP.
+- No *hop* 10 há vários IP, isso significa a presença de um *loadbalancer*.
+- No *hop* 6, o asterísco no início ou no final (hop 4 ou 8), indica que falharam
+  por timeout.
