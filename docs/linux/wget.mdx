@@ -1,0 +1,84 @@
+---
+id: wget
+title: wget
+---
+
+`wget` é uma ferramenta de linha de comando poderosa para fazer download de arquivos
+da internet. Ele suporta HTTP, HTTPS e FTP, permitindo downloads contínuos, recursivos,
+agendados e em background. É especialmente útil para baixar arquivos grandes, sites
+inteiros, ou múltiplos arquivos com facilidade e eficiência, funcionando mesmo sem
+interface gráfica ou em conexões instáveis.
+
+---
+
+## Fazer download de um arquivo
+
+```bash
+wget https://example.com/arquivo.zip
+```
+
+## Fazer mirror (cópia) completo de um website
+
+```bash
+wget -m -e robots=off domain.com
+```
+
+## Fazer download ignorando erros e certificados SSL
+
+```bash
+wget --no-check-certificate -c https://example.com/arquivo.iso
+```
+
+## Fazer download em background
+
+```bash
+wget -b https://example.com/arquivo.tar.gz
+```
+
+## Fazer download com limite de velocidade
+
+```bash
+wget --limit-rate=1M https://example.com/arquivo.zip
+```
+
+## Fazer download de múltiplos arquivos de um arquivo lista
+
+```bash
+wget -i urls.txt
+```
+
+## Fazer download com nome de arquivo customizado
+
+```bash
+wget -O novo_nome.zip https://example.com/arquivo.zip
+```
+
+## Fazer download recursivo de um diretório específico
+
+```bash
+wget -r --no-parent https://example.com/diretorio/
+```
+
+## Fazer download retomando arquivos interrompidos
+
+```bash
+wget -c https://example.com/arquivo.iso
+```
+
+## Fazer download incluindo referências e imagens
+
+```bash
+wget -H -E -k -p https://example.com/pagina.html
+```
+
+## Fazer download com tempo de espera customizado
+
+```bash
+wget --timeout=10 https://example.com/arquivo.zip
+```
+
+## Fazer download com autenticação
+
+```bash
+wget --user=usuario --password=senha https://example.com/arquivo.zip
+```
