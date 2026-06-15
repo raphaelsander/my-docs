@@ -4,7 +4,7 @@
         <title>My-Docs Blog</title>
         <link>https://raphaelsander.github.io/my-docs/blog</link>
         <description>My-Docs Blog</description>
-        <lastBuildDate>Tue, 02 Jun 2026 00:26:14 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 15 Jun 2026 00:27:59 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>pt-BR</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[Extraindo Usuários do Gitea]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</guid>
-            <pubDate>Tue, 02 Jun 2026 00:26:14 GMT</pubDate>
+            <pubDate>Mon, 15 Jun 2026 00:27:59 GMT</pubDate>
             <description><![CDATA[Como extrair usuários do Gitea DB e como quebrá-los via brute force.]]></description>
             <content:encoded><![CDATA[<p>Quando ganhamos acesso a um <em>host</em> porém precisamos escalar privilégios e
 conseguir acesso à autenticação de usuário com permissões mais elevadas pode ser
@@ -78,7 +78,7 @@ definido.</p>
             <title><![CDATA[GPU CUDA no WSL]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</guid>
-            <pubDate>Tue, 02 Jun 2026 00:26:14 GMT</pubDate>
+            <pubDate>Mon, 15 Jun 2026 00:27:59 GMT</pubDate>
             <description><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></description>
             <content:encoded><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
@@ -116,7 +116,7 @@ por exemplo, com aceleração GPU CUDA:</p>
             <title><![CDATA[Pentest Flow]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/pentest_flow</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/pentest_flow</guid>
-            <pubDate>Tue, 02 Jun 2026 00:26:14 GMT</pubDate>
+            <pubDate>Mon, 15 Jun 2026 00:27:59 GMT</pubDate>
             <description><![CDATA[Check list de tudo que deveria ser validado em um Pentest.]]></description>
             <content:encoded><![CDATA[<p>Durante a execução do Pentest é comum se perder ou esquecer de determinada
 enumeração ou teste, o que pode impactar no resultado final, já que qualquer
@@ -190,6 +190,47 @@ vez que algo novo ou melhorias surgirem.</p>
 <li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Enumeração de subdomínios</li>
 </ul>
 </li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="scanning">Scanning<a href="https://raphaelsander.github.io/my-docs/blog/pentest_flow#scanning" class="hash-link" aria-label="Link direto para Scanning" title="Link direto para Scanning" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="scanning-web">Scanning Web<a href="https://raphaelsander.github.io/my-docs/blog/pentest_flow#scanning-web" class="hash-link" aria-label="Link direto para Scanning Web" title="Link direto para Scanning Web" translate="no">​</a></h3>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar o Web Server</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar a tecnologia</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar diretórios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar arquivos</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar possíveis controles e bloqueios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar métodos http permitidos</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar Listagem de diretórios</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Identificar estrutura da página</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Analisar Código Fonte</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Analisar arquivos encontrados (JavaScript)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="web-recon">Web Recon<a href="https://raphaelsander.github.io/my-docs/blog/pentest_flow#web-recon" class="hash-link" aria-label="Link direto para Web Recon" title="Link direto para Web Recon" translate="no">​</a></h3>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Parsing HTML / JS</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Mirror Website</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Robots.txt / Sitemap.xml</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Brute force Diretórios / Arquivos</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Analise de respostas HTTP</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Bypass User-Agent</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Burp Suite (Proxy)</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Whatsweb</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Wappalyzer</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Análise de extensões e icon</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Analise de erros e banners</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mapear-a-página">Mapear a Página<a href="https://raphaelsander.github.io/my-docs/blog/pentest_flow#mapear-a-p%C3%A1gina" class="hash-link" aria-label="Link direto para Mapear a Página" title="Link direto para Mapear a Página" translate="no">​</a></h3>
+<ul class="contains-task-list containsTaskList_mC6p">
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Login?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Cadastro? É possível cadastrar?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Busca?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Posts?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Redirecionamento?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Upload?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Download?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Erros?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Banco de dados?</li>
+<li class="task-list-item"><input type="checkbox" disabled=""> <!-- -->Envio de dados?</li>
 </ul>]]></content:encoded>
             <category>tools</category>
             <category>pentest</category>
@@ -199,7 +240,7 @@ vez que algo novo ou melhorias surgirem.</p>
             <title><![CDATA[Codificando Remotamente com SSH e VSCode]]></title>
             <link>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</link>
             <guid>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</guid>
-            <pubDate>Tue, 02 Jun 2026 00:26:14 GMT</pubDate>
+            <pubDate>Mon, 15 Jun 2026 00:27:59 GMT</pubDate>
             <description><![CDATA[Como codificar remotamente utilizando o VSCode via SSH.]]></description>
             <content:encoded><![CDATA[<p>É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
 devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
