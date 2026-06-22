@@ -30,3 +30,9 @@ docker compose up
 ```
 
 > Needs `docker` and `docker compose` installed.
+
+### Podman
+
+```bash
+podman compose up
+```

@@ -4,6 +4,7 @@ services:
     entrypoint: sh docker-entrypoint.sh
     restart: always
     user: ${UID:-1000}:${GID:-1000}
+    userns_mode: keep-id # used only by podman, ignored by docker
     ports:
       - ${PORT:-3000}:${PORT:-3000}
     environment:
