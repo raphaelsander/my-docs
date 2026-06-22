@@ -21,7 +21,7 @@ npm install
 npm run start
 ```
 
-> Needs `nodejs` >=18.0 and `npm` installed.
+> Needs `nodejs` >=20.0 and `npm` installed.
 
 ### Docker
 
