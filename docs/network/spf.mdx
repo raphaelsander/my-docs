@@ -1,0 +1,83 @@
+---
+id: spf
+title: spf
+---
+
+O Sender Policy Framework (SPF) é um mecanismo de autenticação de e-mail que ajuda
+a evitar falsificação de remetente. Ele permite que um domínio publique quais servidores
+de e-mail estão autorizados a enviar mensagens em seu nome.
+
+## Como funciona
+
+1. Um servidor de e-mail remetente envia uma mensagem para um destinatário.
+2. O servidor de recebimento consulta o DNS do domínio do remetente procurando o
+   registro `TXT` de SPF.
+3. O registro SPF informa quais endereços IP ou hosts estão autorizados.
+4. O servidor de recebimento valida o remetente com base no registro SPF.
+5. Se a validação falhar, a mensagem pode ser rejeitada, sinalizada ou marcada como
+   suspeita.
+
+## Exemplo de registro SPF
+
+```text
+v=spf1 mx include:_spf.google.com -all
+```
+
+- `v=spf1` define a versão do SPF.
+- `mx` autoriza os servidores MX do domínio.
+- `include:_spf.google.com` permite os servidores do Google Workspace.
+- `-all` indica que qualquer outro servidor deve ser rejeitado.
+
+## Verificando o SPF
+
+```bash
+host -t txt <hostname>
+```
+
+ou
+
+```bash
+dig +short txt <hostname>
+```
+
+Outra opção seria utilizar ferramentas online para verificar o registro SPF, como:
+
+[Emkei's Fake Mailer](https://emkei.cz/)
+
+## Riscos quando não há SPF
+
+A ausência de um registro SPF deixa o domínio vulnerável a ataques de falsificação
+de e-mail e phishing. Sem SPF, um invasor pode enviar mensagens aparentemente legítimas
+utilizando o endereço do seu domínio.
+
+### Ataques comuns
+
+- E-mail spoofing: o atacante envia mensagens com remetente falsificado, fazendo
+  parecer que a mensagem vem de um domínio confiável.
+- Phishing: o invasor utiliza o domínio falso para enganar destinatários e coletar
+  credenciais ou dados sensíveis.
+- Business Email Compromise (BEC): mensagens de phishing direcionadas a executivos
+  ou equipes financeiras para autorizar pagamentos ou transferências.
+
+## Por que usar SPF
+
+- Reduz o risco de e-mails falsos enviados em nome do domínio.
+- Melhora a reputação de entrega de e-mail ao fornecer regras claras para recepção.
+- Funciona como parte de uma estratégia de autenticação de e-mail junto com DKIM
+  e DMARC.
+
+## Limitações do SPF
+
+- SPF valida apenas a origem do envio, não o conteúdo da mensagem.
+- Não protege contra e-mails forjados enviados de domínios com registros SPF fracos
+  ou incorretos.
+- O SPF só é verificado para o envelope SMTP do remetente; redirecionamentos podem
+  quebrar a validação.
+
+## Recomendações
+
+- Defina um registro SPF para todos os domínios usados em envio de e-mail.
+- Use `-all` para políticas estritas quando tiver certeza da lista de servidores
+  autorizados.
+- Combine SPF com DKIM e DMARC para proteger o domínio de ameaças de falsificação
+  e spoofing.
