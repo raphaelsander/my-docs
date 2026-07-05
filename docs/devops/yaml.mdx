@@ -1,0 +1,229 @@
+---
+id: yaml
+title: YAML
+---
+
+YAML ("YAML Ain't Markup Language") é uma linguagem de serialização legível por
+humanos para representar dados estruturados. A notação baseia-se na indentação por
+espaços para indicar hierarquia; mapeamentos usam o formato `chave: valor`, sequências
+usam `-` e blocos multilinha são definidos com os marcadores `|` (literal) e `>`
+(folded). Evite tabulações — use espaços para garantir compatibilidade.
+
+## Exemplos de Sintaxe YAML
+
+### Escalares YAML
+
+Tipos escalares:
+
+```yaml
+a: 1            # integer - número inteiro
+a: 1.234        # float - número decimal/ponto flutuante
+b: 'abc'        # string entre aspas simples - texto literal
+b: "abc"        # string entre aspas duplas - texto com escape
+b: abc          # string sem aspas - texto simples
+c: false        # boolean - valor booleano (false ou true)
+d: 2015-04-05   # date - tipo data no formato ISO 8601
+```
+
+Forçando strings:
+
+```yaml
+b: !str 2015-04-05
+```
+
+### Sequências YAML
+
+#### Sequência simples
+
+```yaml
+array:
+  - 132
+  - 2.434
+  - 'abc'
+```
+
+#### Sequência de sequências
+
+```yaml
+my_list_of_lists:
+  - [1, 2, 3]
+  - [4, 5, 6]
+```
+
+### Dicionários YAML
+
+Dicionário aninhado:
+
+```yaml
+my_hash:
+  subkey:
+    subsubkey1: 5
+    subsubkey2: 6
+  another:
+    somethingelse: 'Important!'
+```
+
+Dicionário com sintaxe JSON (é possível misturar):
+
+```yaml
+my_hash: {nr1: 5, nr2: 6}
+```
+
+### HereDoc YAML (strings multilinhas)
+
+**Notação em bloco**: As quebras de linha se tornam espaços
+
+```yaml
+content:
+  Arbitrary free text
+  over multiple lines stopping only
+  after the indentation changes...
+```
+
+**Estilo literal**: As quebras de linha são preservadas
+
+```yaml
+content: |
+  Arbitrary free text            
+  over "multiple lines" stopping 
+  after indentation changes...
+```
+
+**Indicador +**: Mantém quebras de linha extras após o bloco
+
+```yaml
+content: |+
+  Arbitrary free text with newlines after
+```
+
+**Indicador -**: Remove quebras de linha extras após o bloco
+
+```yaml
+content: |-
+  Arbitrary free text without newlines after it
+```
+
+**Estilo dobrável**: As quebras de linha dobradas são preservadas
+
+```yaml
+content: >
+  Arbitrary free text
+  over "multiple lines" stopping
+  after indentation changes...
+```
+
+Note que HereDoc YAML são a forma de escapar caracteres especiais:
+
+```yaml
+# sub chave "url" com valor 'https://example.com'
+code: 
+  url: "https://example.com"
+
+# versus chave "code" contendo como valor 'url: "https://example.com"'
+code: |-                             
+  url: "https://example.com"
+```
+
+Há um bom visualizador online para os diferentes modos heredoc:
+[https://yaml-multiline.info/](https://yaml-multiline.info/)
+
+### Múltiplos Documentos
+
+Um arquivo YAML pode ter múltiplos documentos, é por isso que cada documento precisa começar com uma linha `---`:
+
+```yaml
+---
+content: doc1
+---
+content: doc2
+```
+
+Isso também significa que analisadores YAML podem retornar múltiplos documentos!
+
+### Referências de Conteúdo (Aliases)
+
+```yaml
+---
+values:
+  - &ref Something to reuse
+  - *ref # O literal "Something to reuse" é inserido aqui!
+```
+
+### Mesclando Chaves
+
+Imagine algumas propriedades padrão para um dicionário como estas:
+
+```yaml
+default_settings: &default_settings
+  install:
+    dir: /usr/local
+    owner: root
+  config:
+    enabled: false
+```
+
+Use-as em outro dicionário usando `<<: *default_settings`:
+
+```yaml
+# Derivar configurações para 'my_app' do padrão e alterar install.owner
+# e adicionar a configuração adicional "group: my_group"
+
+my_app_settings:
+  <<: *default_settings
+  install:
+    owner: my_user
+    group: my_group
+```
+
+### Problemas Comuns
+
+Alguns problemas aparecem com frequência ao escrever YAML:
+
+- Indentação inconsistente ou uso de tabulações pode quebrar a estrutura.
+- Strings sem aspas podem ser interpretadas de forma diferente por parsers, por
+  exemplo `yes`, `no`, `on`, `off`, `null` e `~`.
+- Caracteres como `:`, `#`, `[` e `]` podem exigir aspas em valores simples.
+- Blocos multilinha precisam de indentação correta; espaços extras no início podem
+  alterar o resultado.
+- Ancoras e aliases precisam ser definidos antes de serem usados.
+
+```yaml
+# Exemplo problemático: "yes" pode ser interpretado como booleano
+status: yes
+
+# Melhor opção se o valor for texto literal
+status: "yes"
+```
+
+### Mapeamento Complexo
+
+Em YAML uma chave de mapeamento pode ser qualquer nó (não só um string). Use o indicador
+explícito `?` para declarar uma chave complexa, e `:` para separar chave → valor.
+
+```yaml
+---                              
+? - key                          
+:                                
+  - value
+```
+
+:::info
+`---` => início do documento YAML (opcional).  
+`? - key` => a chave é uma sequência (lista) com um único item "key".  
+`:` => separador — o que vem indentado abaixo é o valor associado àquela chave complexa.  
+`  - value` => o valor é uma sequência com o item "value".
+
+Equivalente mais compacto: `? [key]: [value]` (mesma ideia: chave = lista [key], valor = lista [value]).
+
+Observações: é um recurso avançado, usado quando a chave precisa ser uma lista ou
+um mapa. Muitos usos comuns preferem chaves escalares; alguns analisadores ou estruturas
+de dados em linguagens de programação convertem chaves complexas em objetos/tuplas,
+portanto use com cuidado.
+:::
+
+## Links
+
+- [Especificação YAML 1.2](http://www.yaml.org/spec/1.2/spec.html)
+- [Validador YAML Online (Ruby)](http://www.yamllint.com/)
+- [Analisador YAML Online (Python)](http://yaml-online-parser.appspot.com/)
+- [kwalify - Validador de esquema YAML (Ruby)](http://www.kuwata-lab.com/kwalify/)
