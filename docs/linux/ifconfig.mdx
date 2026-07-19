@@ -1,0 +1,60 @@
+---
+id: ifconfig
+title: ifconfig
+---
+
+O comando `ifconfig` é usado para visualizar e configurar interfaces de rede no
+Linux. Ele foi deprecado e, em muitos ambientes, foi substituído pelo comando `ip`,
+que oferece uma interface mais moderna e completa.
+
+---
+
+## Uso Básico
+
+Exibir informações dos adaptadores de rede:
+
+```bash
+ifconfig
+```
+
+Exibir as informações de uma interface específica:
+
+```bash
+ifconfig eth0
+```
+
+```bash
+ifconfig eth0 up
+ifconfig eth0 down
+```
+
+Para setar um IP e máscara:
+
+```bash
+# ifconfig <interface> <IP> netmask <MASK>
+ifconfig eth0 192.168.0.117 netmask 255.255.255.0
+```
+
+## Uso Avançado
+
+Alterar o MTU da interface:
+
+```bash
+ifconfig eth0 mtu 1500
+```
+
+Definir o endereço de broadcast:
+
+```bash
+ifconfig eth0 broadcast 192.168.0.255
+```
+
+## Alterar MAC Address
+
+Trocar o MAC Address de um adaptador de rede:
+
+```bash
+ifconfig wlan0 down
+ifconfig wlan0 hw ether 00:11:22:33:44:55
+ifconfig wlan0 up
+```
